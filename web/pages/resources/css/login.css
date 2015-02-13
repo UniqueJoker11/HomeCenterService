@@ -1,0 +1,54 @@
+
+
+.form_model {
+    width: 60%;
+    margin: 0px auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.form_model a:hover {
+    text-decoration: none;
+    color: #B2DFEE;
+}
+
+.tabPanel {
+    width: 49.7%;
+    height: 60px;
+    display: inline-block;
+    text-align: center;
+    background-color: dimgrey;
+
+}
+
+.tabTitle {
+    line-height: 60px;
+    font-size: 2.0em;
+    color: white;
+}
+
+.panelModel {
+    width: 60%;
+    margin: 0 auto;
+}
+.panelModel #registerForm,#loginForm{
+    width: 100%;
+    margin:0;
+    padding: 0;
+    background-color: #ffffff;
+    height: 200px;
+}
+.registerForm{
+   padding: 20px;
+ }
+.registerForm .uk-form-label{
+    letter-spacing: 8px;
+}
+.footer-style{
+    text-align: center;
+    padding:45px 0;
+    letter-spacing: 16px;
+}
+.footer-style h1{
+    font-size: 3.5em;
+}

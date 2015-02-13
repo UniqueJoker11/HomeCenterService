@@ -1,0 +1,83 @@
+ <div class="uk-grid">
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-panel uk-panel-box uk-text-left">...</div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-panel uk-panel-box uk-text-right">...</div>
+                </div>
+            </div>
+            <div class="uk-gird">
+                <div class="uk-width-medium-1-1">
+                    <img class="uk-thumbnail" src="<%=request.getContextPath()%>/images/pic1.jpg"
+                         alt="snapshoot">
+                </div>
+            </div>
+
+
+
+            <div class="uk-width-medium-1-2">
+                                <div class="uk-panel uk-panel-box uk-panel-header">
+                                    <div class="uk-panel-badge uk-badge uk-badge-danger ">New</div>
+                                    <h3 class="uk-panel-title">文章标题</h3>
+                                    比起忙碌的工作日，一个人的周末更让人不知所措
+                                    起床、吃饭、fewifnwelfeNLSKfc,sz冷风口味啊哦放假啊肉就噢趴摊在床上盯着天花板发呆。窗外光影变换啊肉就噢趴摊在床上盯着天花板发呆。窗外光影变，到日落黄昏之时，寻一部电影，戴上耳机，某个镜头让人心底一暖。恰到好处的旋律不经意间流淌出来，无法言语的情绪慢慢发酵...
+                                    一个人看电影 一个人听电影里的歌 一个人也可以这般美好
+                                    <div class="uk-panel-foot">
+                                        <ul>
+                                            <li><a href="#" data-uk-tooltip title="添加书签"
+                                                   class="uk-icon-button uk-icon-bookmark-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="标注记号"
+                                                   class="uk-icon-button uk-icon-circle-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="添加星级"
+                                                   class="uk-icon-button uk-icon-star-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="发表评论"
+                                                   class="uk-icon-button uk-icon-comment-o"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-1-2">
+                                <div class="uk-panel uk-panel-box">
+                                    <div class="uk-panel-badge uk-badge uk-badge-danger">New</div>
+                                    <h3 class="uk-panel-title">文章标题</h3>
+                                    比起忙碌的工作日，一个人的周末更让人不知所措
+                                    起床、吃饭、摊在床上盯着天花板发呆。窗外光影变换，到日落黄昏之时，寻一部电影，戴上耳机，某个镜头让人心底一暖。恰到好处的旋律不经意间流淌出来，无法言语的情绪慢慢发酵...
+                                    一个人看电影
+                                    一个人听电影里的歌 一个人也可以这般美好
+                                    <div class="uk-panel-foot">
+                                        <ul>
+                                            <li><a href="#" data-uk-tooltip title="添加书签"
+                                                   class="uk-icon-button uk-icon-bookmark-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="标注记号"
+                                                   class="uk-icon-button uk-icon-circle-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="添加星级"
+                                                   class="uk-icon-button uk-icon-star-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="发表评论"
+                                                   class="uk-icon-button uk-icon-comment-o"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-medium-1-2">
+                                <div class="uk-panel uk-panel-box uk-panel-header">
+                                    <div class="uk-panel-badge uk-badge uk-badge-danger ">New</div>
+                                    <h3 class="uk-panel-title">文章标题</h3>
+                                    比起忙碌的工作日，一个人的周末更让人不知所措
+                                    起床、吃饭、fewifnwelfeNLSKfc,sz冷风口味啊哦放假啊肉就噢趴摊在床上盯着天花板发呆。窗外光影变换啊肉就噢趴摊在床上盯着天花板发呆。窗外光影变，到日落黄昏之时，寻一部电影，戴上耳机，某个镜头让人心底一暖。恰到好处的旋律不经意间流淌出来，无法言语的情绪慢慢发酵...
+                                    一个人看电影 一个人听电影里的歌 一个人也可以这般美好
+                                    <div class="uk-panel-foot">
+                                        <ul>
+                                            <li><a href="#" data-uk-tooltip title="添加书签"
+                                                   class="uk-icon-button uk-icon-bookmark-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="标注记号"
+                                                   class="uk-icon-button uk-icon-circle-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="添加星级"
+                                                   class="uk-icon-button uk-icon-star-o"></a></li>
+                                            <li><a href="#" data-uk-tooltip title="发表评论"
+                                                   class="uk-icon-button uk-icon-comment-o"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>

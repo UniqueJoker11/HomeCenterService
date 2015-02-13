@@ -1,0 +1,82 @@
+.aticleMainContet{
+    width: 1024px;
+    min-height:600px;
+    margin:0 auto;
+}
+.colin-nav-header{
+    background-color: #FCFCFC;
+    height: 60px;
+    line-height: 60px;
+}
+.aticleMainContet ul{
+    width: 100%;
+}
+.colin-tab-panel{
+    margin:10px 0;
+}
+.tab-nav li{
+    width: 20%;
+    text-align: center;
+}
+.tabStyle{
+    height: 40px;
+    line-height: 40px;
+    width: 40%;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.colin-aticle-body
+{
+    margin: 15px 0;
+}
+.colin-aticle-body p{
+    word-wrap: break-word;
+    line-height: 1.5em;
+}
+.uk-panel-foot{
+    height:40px;
+    padding:0;
+    margin-top:30px;
+    border-top: 2px solid #EAEAEA;
+}
+.uk-panel-foot ul{
+    display: inline-block;
+    margin:10px 0;
+    padding:0;
+    width:100%;
+}
+
+.uk-panel-foot ul li{
+    float: left;
+    list-style: none;
+    width: 25%;
+    text-align: center;
+}
+.error-tips{
+    color:red;
+    font-size: 13px;
+    font-weight: bold;
+}
+#testContent{
+    font-size:17px;
+
+}
+#testContent:hover{
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+.colin-spider-btn{
+    height:40px;
+    margin:0 15px;
+    width:130px;
+    padding:0
+}
+.colin-spider-iframe{
+    min-height: 800px;
+}
+#UrlLinkBtns{
+    text-align: center
+;
+}

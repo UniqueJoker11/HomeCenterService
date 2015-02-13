@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="org.slf4j:com.springsource.slf4j.org.apache.log4j:1.6.1" type="repository">
+    <properties maven-id="org.slf4j:com.springsource.slf4j.org.apache.log4j:1.6.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.slf4j.org.apache.log4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.slf4j.api-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.slf4j.org.apache.log4j-1.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

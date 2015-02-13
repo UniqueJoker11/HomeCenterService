@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="org.aspectj:com.springsource.org.aspectj.weaver:1.7.1.RELEASE" type="repository">
+    <properties maven-id="org.aspectj:com.springsource.org.aspectj.weaver:1.7.1.RELEASE" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aspectj.weaver-1.7.1.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aspectj.weaver-1.7.1.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

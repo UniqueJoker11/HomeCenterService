@@ -1,0 +1,48 @@
+.blog-header{
+    width:100%;
+    height:85px;
+    background-color: #F8F8FF;
+}
+.blog-brand{
+    float: left;
+    color: #3D3D3D;
+    line-height: 85px;
+    font-weight: bold;
+    font-size: 22px!important;
+    margin: 0 35px;
+    width:13%;
+}
+.blog-brand:hover{
+    text-decoration: none;
+    color: #3D3D3D;
+}
+.blob-nav{
+    display:inline-block;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}
+.blob-nav ul{
+    margin: 0 10px 0 200px;
+    padding: 0;
+    width: 100%;
+
+}
+.blob-nav ul li{
+    float: left;
+    width: 13%;
+    margin:12px 10px;
+    text-align: center;
+    line-height: 85px;
+    margin: 0px;
+}
+.blob-nav ul li a{
+    color: #5CACEE!important;
+    font-size: 18px!important;
+}
+.blob-nav ul li a:hover{
+    color: #6495ED;
+    text-decoration: none;
+    font-size: 20px!important;
+    font-weight: bold;
+}

@@ -1,0 +1,40 @@
+
+.colin-aticles legend{
+    width: 100%;
+    font-size: 2.1em;
+    font-weight: bolder;
+    line-height: 30px;
+    padding:20px 0 14px 0;
+    margin-bottom: 10px;
+    border-bottom: 4px solid royalblue;
+}
+.colin-aticles ul{
+    margin:0px;
+    padding: 0;
+}
+.colin-aticles li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+.uk-panel-foot{
+    height:40px;
+    padding:0;
+    margin-top:25px;
+    background-color: #fafafa;
+    border-top: 2px solid #EAEAEA;
+}
+.uk-panel-foot ul{
+    display: inline-block;
+    margin:10px 0;
+    padding:0;
+    width:100%;
+}
+
+.uk-panel-foot ul li{
+    float: left;
+    list-style: none;
+    width: 25%;
+    text-align: center;
+
+
+}

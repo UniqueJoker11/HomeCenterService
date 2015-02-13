@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="org.aopalliance:com.springsource.org.aopalliance:1.0.0" type="repository">
+    <properties maven-id="org.aopalliance:com.springsource.org.aopalliance:1.0.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aopalliance-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aopalliance-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
