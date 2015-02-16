@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--定义一个PoJo类的配置内容-->
+<pojos>
+    <!--权限表-->
+    <pojo tableName="right" className="RightEntity" hasGenerate="false">
+        <field name="right_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="权限编号"/>
+        <field name="right_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限名称"/>
+        <field name="right_column_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="权限分栏号"/>
+        <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限编号"/>
+    </pojo>
+    <!--权限分栏表-->
+    <pojo tableName="rightColumn " className="RightColumnEntity" hasGenerate="false">
+        <field name="right_column_id" primaryKey="true" dataType="int" dataLength="11"
+               fieldDesc="权限分栏编号"/>
+        <field name="right_column_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="right_column_name"/>
+    </pojo>
+    <!--权限映射表-->
+    <pojo tableName="rightRole" className="RightRoleEntity" hasGenerate="false">
+        <field name="right_role_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="权限映射id"/>
+        <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限名称"/>
+        <field name="groupid" primaryKey="false" dataType="int" dataLength="11" fieldDesc="权限所属组编号，映射到groupmanager表，非空"/>
+        <field name="masterid" primaryKey="false" dataType="int" dataLength="11" fieldDesc="创建者编号"/>
+        <field name="mastername" primaryKey="false" dataType="String" dataLength="50" fieldDesc="创建者名称"/>
+        <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="创建者时间"/>
+    </pojo>
+</pojos>

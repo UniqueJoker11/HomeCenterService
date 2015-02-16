@@ -1,0 +1,36 @@
+package colin.app.core.pojo;
+import javax.persistence.*;
+
+/**
+ * Created by joker on 15-2-16.
+ * POJO类 ${className}
+ */
+@Entity
+@Entity
+@Table(name="${tableName}")
+public class ${className}{
+ <%for(fieldObj:fieldList){
+     var upperName=@fieldObj.getFiledName().subString(0,1).toUpperCase()+@fieldObj.getFiledName().subString(1);
+     if(fieldObj.primaryKey){
+     %>
+     /**
+     *${fieldObj.fieldDesc}
+     */
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "${fieldObj.filedName}")
+    private ${fieldObj.dataType} ${fieldObj.filedName};
+     <%}else{%>
+    @Column(name = "${fieldObj.filedName}")
+    private ${fieldObj.dataType} ${fieldObj.filedName};
+     <%}%>
+ <%}%>
+<%for(fieldObj:fieldList){%>
+public void set${upperName}(${fieldObj.dataType} ${fieldObj.filedName}){
+this.${fieldObj.filedName}=${fieldObj.filedName};
+}
+public ${fieldObj.dataType} get${upperName}(){
+return this.${fieldObj.filedName};
+}
+<%}
+}
