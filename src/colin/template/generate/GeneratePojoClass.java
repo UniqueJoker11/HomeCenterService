@@ -25,41 +25,40 @@ import java.util.List;
  * Created by ASUS on 2015/2/16.
  * 创建生成POJO的class
  */
-public class GeneratePojoClass{
+public class GeneratePojoClass {
 
-    Logger logger= Logger.getLogger(GeneratePojoClass.class);
+    Logger logger = Logger.getLogger(GeneratePojoClass.class);
     private File xmlFile;
 
     public GeneratePojoClass() {
-        ClassPathResource xmlFileResource=new ClassPathResource("/colin/template/configXml/pojo.xml");
+        ClassPathResource xmlFileResource = new ClassPathResource("/colin/template/configXml/pojo.xml");
         try {
-            xmlFile=xmlFileResource.getFile();
+            xmlFile = xmlFileResource.getFile();
         } catch (IOException e) {
             logger.error("获取xml文件出错！");
             e.printStackTrace();
         }
     }
+
     /**
      * 加载DOM文件
-     * */
+     */
     public void generatePojoResource() throws DocumentException, IOException {
         //从类路径加载文件资源
-        SAXReader saxReader=new SAXReader();
-        Document document=saxReader.read(xmlFile);
-
-        Element rootElement=document.getRootElement();//获取xml根元素pojos
-
-        Iterator elementIterator=rootElement.elementIterator();
-        List<Element> pojoEles=rootElement.elements("pojo");
-        List<PojoVo> pojoList=new ArrayList<PojoVo>();
-        for(Element currentEle:pojoEles){
-            PojoVo pojoVo=new PojoVo();
+        SAXReader saxReader = new SAXReader();
+        Document document = saxReader.read(xmlFile);
+        Element rootElement = document.getRootElement();//获取xml根元素pojos
+        //拼装循环的数据集合
+        List<Element> pojoEles = rootElement.elements("pojo");
+        List<PojoVo> pojoList = new ArrayList<PojoVo>();
+        for (Element currentEle : pojoEles) {
+            PojoVo pojoVo = new PojoVo();
             pojoVo.setTableName(currentEle.attributeValue("tableName"));
             pojoVo.setClassName(currentEle.attributeValue("className"));
-            List<Element> fieldsList=currentEle.elements("field");
-            List<PojoFieldVo> fieldVosList=new ArrayList<PojoFieldVo>();
-            for (Element currentFieldEle:fieldsList){
-                PojoFieldVo fieldVo=new PojoFieldVo();
+            List<Element> fieldsList = currentEle.elements("field");
+            List<PojoFieldVo> fieldVosList = new ArrayList<PojoFieldVo>();
+            for (Element currentFieldEle : fieldsList) {
+                PojoFieldVo fieldVo = new PojoFieldVo();
                 fieldVo.setFiledName(currentFieldEle.attributeValue("name"));
                 fieldVo.setPrimaryKey(Boolean.valueOf(currentFieldEle.attributeValue("primaryKey")));
                 fieldVo.setDataLength(Integer.valueOf(currentFieldEle.attributeValue("dataLength")));
@@ -67,37 +66,47 @@ public class GeneratePojoClass{
                 fieldVo.setFieldDesc(currentFieldEle.attributeValue("fieldDesc"));
                 fieldVosList.add(fieldVo);
             }
-
+            pojoVo.setFieldVoList(fieldVosList);
+            pojoList.add(pojoVo);
         }
+        generateClassFile(pojoList);
 
+    }
+
+    /**
+     * 自动生成代码文件
+     */
+    public void generateClassFile(List<PojoVo> pojoList) throws IOException {
         //模板加载器
         ClasspathResourceLoader resourceLoader = new ClasspathResourceLoader();
         Configuration cfg = Configuration.defaultConfiguration();
         GroupTemplate loadPojoTemplate = new GroupTemplate(resourceLoader, cfg);
-        Template template=loadPojoTemplate.getTemplate("/colin/template/pojoTemplate/PojoGenerateTemplate.template");
-        template.binding("className",pojoEles.get(0).attributeValue("className"));
-        //输出文件
-        FileSystemResource pojoFileResource=new FileSystemResource("D:\\WebstormProject\\HomeCenterService\\src\\colin\\app\\core\\pojo");
-        File entityFile=null;
-        entityFile=new File(pojoFileResource.getFile().getPath()+"/RightEntity.java");
-        if(!entityFile.exists()){
-            entityFile.createNewFile();
+        //自动生成文件
+        for (PojoVo pojoVo : pojoList) {
+            Template template = loadPojoTemplate.getTemplate("/colin/template/pojoTemplate/PojoGenerateTemplate.template");
+            template.binding("className", pojoVo.getClassName());
+            template.binding("tableName", pojoVo.getTableName());
+            template.binding("fieldList", pojoVo.getFieldVoList());
+            //输出文件
+            FileSystemResource pojoFileResource = new FileSystemResource("D:\\WebstormProject\\HomeCenterService\\src\\colin\\app\\core\\pojo");
+            File entityFile = new File(pojoFileResource.getFile().getPath() + File.separator + pojoVo.getClassName() + ".java");
+            if (!entityFile.exists()) {
+                entityFile.createNewFile();
+            }
+            FileOutputStream pojoClassFile = new FileOutputStream(entityFile);
+            template.renderTo(pojoClassFile);
+            System.out.println("模板文件生成成功!");
         }
-        FileOutputStream pojoClassFile=new FileOutputStream(entityFile);
-        template.renderTo(pojoClassFile);
-        System.out.println("模板文件生成成功!");
     }
-public void generateClassFile(String fileName){
 
-}
-     public static void main(String[] args){
-         GeneratePojoClass generatePojoClass=new GeneratePojoClass();
-         try {
-             generatePojoClass.generatePojoResource();
-         } catch (DocumentException e) {
-             e.printStackTrace();
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
-     }
+    public static void main(String[] args) {
+        GeneratePojoClass generatePojoClass = new GeneratePojoClass();
+        try {
+            generatePojoClass.generatePojoResource();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -58,8 +58,8 @@ public class UserManageService implements IUserManageService {
     public boolean validateUserInfo(Map<String, Object> paramsMap) {
         boolean result = true;
         if (paramsMap != null) {
-            List<UserEntity> resultList = userManageDao.selectUniqueObject(UserEntity.class,paramsMap);
-            if(resultList==null||resultList.isEmpty()){
+            UserEntity resultEntity = userManageDao.selectUniqueObject(UserEntity.class,paramsMap);
+            if(resultEntity==null){
                 result=false;
             }
         }

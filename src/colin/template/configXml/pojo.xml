@@ -9,18 +9,36 @@
         <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限编号"/>
     </pojo>
     <!--权限分栏表-->
-    <pojo tableName="rightColumn " className="RightColumnEntity" hasGenerate="false">
+    <pojo tableName="rightColumn" className="RightColumnEntity" hasGenerate="false">
         <field name="right_column_id" primaryKey="true" dataType="int" dataLength="11"
                fieldDesc="权限分栏编号"/>
-        <field name="right_column_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="right_column_name"/>
+        <field name="right_column_name" primaryKey="false" dataType="String" dataLength="100"
+               fieldDesc="right_column_name"/>
     </pojo>
     <!--权限映射表-->
     <pojo tableName="rightRole" className="RightRoleEntity" hasGenerate="false">
         <field name="right_role_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="权限映射id"/>
         <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限名称"/>
-        <field name="groupid" primaryKey="false" dataType="int" dataLength="11" fieldDesc="权限所属组编号，映射到groupmanager表，非空"/>
+        <field name="groupid" primaryKey="false" dataType="int" dataLength="11"
+               fieldDesc="权限所属组编号，映射到groupmanager表，非空"/>
         <field name="masterid" primaryKey="false" dataType="int" dataLength="11" fieldDesc="创建者编号"/>
         <field name="mastername" primaryKey="false" dataType="String" dataLength="50" fieldDesc="创建者名称"/>
         <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="创建者时间"/>
+    </pojo>
+    <pojo tableName="sysrole" className="SysRoleEntity" hasGenerate="false">
+        <field name="role_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="系统角色编号"/>
+        <field name="role_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="角色名称"/>
+        <field name="role_info" primaryKey="false" dataType="String" dataLength="100" fieldDesc="角色信息"/>
+        <field name="user_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="创建者编号"/>
+        <field name="user_name" primaryKey="false" dataType="String" dataLength="255" fieldDesc="创建者名称"/>
+        <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="角色创建时间"/>
+    </pojo>
+    <pojo tableName="userright" className="UserRightEntity" hasGenerate="false">
+        <field name="user_right_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户编号Id"/>
+        <field name="user_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="用户编号Id"/>
+        <field name="username" primaryKey="false" dataLength="100" dataType="String" fieldDesc="用户名称"/>
+        <field name="right_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="修改者编号"/>
+        <field name="user_name2" primaryKey="false" dataType="String" dataLength="50" fieldDesc="修改者名称"/>
+        <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="修改时间"/>
     </pojo>
 </pojos>
