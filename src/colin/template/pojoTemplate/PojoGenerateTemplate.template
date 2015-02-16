@@ -1,0 +1,49 @@
+package colin.app.core.pojo;
+import javax.persistence.*;
+
+/**
+ * Created by joker on 15-2-16.
+ * POJO类 ${className}
+ */
+<% println("@Entity");%>
+<% print("@Table(name=");%>"${tableName}")
+public class ${className}{
+    <%println("");%>
+<%/*开始生成属性内容*/%>
+    <%
+    for(field in fieldList){
+      if(field.primaryKey==true){
+           println("/*");
+           println(" * "+field.fieldDesc);
+           println("*/");
+           println("@Id");
+           println("@GeneratedValue(strategy= GenerationType.IDENTITY)");
+           print('@Column(name ="');
+           println(field.filedName+'")');
+           println("private "+field.dataType+" "+field.filedName+";");
+      }else{
+          println("/*");
+          println(" * "+field.fieldDesc);
+          println("*/");
+          println('@Column(name ="'+field.filedName+'")');
+          println('private '+field.dataType+" "+field.filedName+";");
+
+      }
+      println("");
+    }
+    %>
+
+    <%/*开始生成get和set方法*/%>
+    <% for(field in fieldList){
+      var upperName=strutil.toUpperCase(strutil.subStringTo(field.filedName,0,1))+strutil.subString(field.filedName,1);
+      /*set方法*/
+      println("public void set"+upperName+"("+field.dataType+" "+field.filedName+"){");
+      println("this."+field.filedName+"="+field.filedName+";");
+      println("}");
+      /*get方法*/
+      println("public "+field.dataType+" get"+upperName+"(){");
+      println("return this."+field.filedName+";");
+      println("}");
+      println("");
+    }%>
+}

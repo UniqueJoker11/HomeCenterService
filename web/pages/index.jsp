@@ -19,6 +19,14 @@
 <body>
 <div class="uk-grid">
     <div class="uk-width-1-1">
+        <header class="colin-top-nav">
+            <a href="#" class="header-brand">Orange</a>
+        </header>
+
+    </div>
+</div>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
         <div class="topHeader">
             <header>
                 <a href="#" class="header-brand">Orange</a>

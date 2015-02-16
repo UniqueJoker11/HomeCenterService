@@ -1,4 +1,8 @@
-
+.colin-top-nav{
+    height:30px;
+    background-color:#474747;
+    border-bottom: 2px solid #CD8C95;
+}
 .colin-aticles legend{
     width: 100%;
     font-size: 2.1em;
