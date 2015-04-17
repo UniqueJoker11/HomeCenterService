@@ -18,7 +18,11 @@
     <context:component-scan base-package="colin.app.aspect"></context:component-scan>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="pages/" p:suffix=".jsp"></bean>
     <!--据请求URL路径直接转化为逻辑视图名的支持基类-->
     <bean name="/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"></bean>
+    <bean id="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init"/>
+    <bean id="viewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver"  p:prefix="pages/" p:suffix=".html">
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+
 </beans>

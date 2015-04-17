@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="resources/images/favicon.ico" rel="shortcut icon"type="text/css">
+    <link rel="stylesheet" href="resources/css/uikit.min.css">
+    <link rel="stylesheet" href="pages/resources/css/header.css">
+    <link rel="stylesheet" href="pages/resources/css/login.css">
+    <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="resources/js/uikit.min.js"></script>
+    <script type="text/javascript" src="pages/resources/js/login.js"></script>
+    <title>Orange登录</title>
+</head>
+<body>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <header class="header_model">
+            <div class="logo">
+                <h1>Orange</h1>
+                <h2>cute<span class="f3">、</span>funny<span class="f3">、</span>geek<span class="f3">、</span>lovely</h2>
+            </div>
+            <div id="linkTab" class="form_model">
+                <a href="#registerForm" class="tabPanel tabTitle" onclick="return false;">注册&nbsp;&nbsp;|&nbsp;&nbsp;Regiter</a>
+                <a href="#loginForm" class="tabPanel tabTitle" onclick="return false;">登录&nbsp;&nbsp;|&nbsp;&nbsp;Login</a>
+            </div>
+            <div class="panelModel">
+                <div id="registerForm">
+                    <form class="uk-form uk-form-horizontal registerForm" id="registerFormModel" >
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">邮箱|Email</label>
+                            <div class="uk-form-controls">
+                                <input type="text" name="username" class="uk-form-width-large" placeholder="请输入注册邮箱"/>
+                            </div>
+                            <label class="uk-form-controls" style="display: none">*用户名错误</label>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">输入密码|Password</label>
+                            <div class="uk-form-controls">
+                                <input type="password" name="truePassword" class="uk-form-width-large" placeholder="请设置密码"/>
+                            </div>
+                            <label class="uk-form-controls" style="display: none">*密码错误</label>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">确认密码|Password</label>
+                            <div class="uk-form-controls">
+                                <input type="password" name="confirmPassword" class="uk-form-width-large" placeholder="请再次输入密码"/>
+                            </div>
+                            <label class="uk-form-controls" style="display: none">*密码错误</label>
+                        </div>
+                        <div class="uk-form-row">
+                            <div class="uk-form-controls loginbtn">
+                                <button class="uk-button uk-button-primary uk-button-large uk-width-1-3" type="submit">注册｜Register</button>
+                                <button class="uk-button uk-button-primary uk-button-large uk-width-1-3" type="reset" id="resetBtn">重置｜Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="loginForm" style="display: none">
+                    <form class="uk-form uk-form-horizontal registerForm" method="post" action="userLogin.html" id="loginFormModel">
+                        <div class="uk-form-row">
+                            <label class="uk-form-label" for="">邮箱|Email</label>
+                            <div class="uk-form-controls">
+                                <input type="text" class="uk-form-width-large" id="userLoginName" name="userLoginName" placeholder="请输入登录用户名"/>
+                            </div>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label" for="">密码|Password</label>
+                            <div class="uk-form-controls">
+                                <input type="password" class="uk-form-width-large" id="userLoginPassword" name="userLoginPassword" placeholder="请输入密码"/>
+                            </div>
+                        </div>
+                        <div class="uk-form-row">
+                            <div class="uk-form-controls loginbtn">
+                                <input class="uk-button uk-button-primary uk-button-large uk-width-1-3" type="submit" value="登录｜Login"/>
+                                <input class="uk-button uk-button-primary uk-button-large uk-width-1-3" type="reset" value="重置｜Reset"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+    </div>
+    <div class="uk-width-1-1">
+        <div class="footer-style">
+            <h1>随性的记录方式</h1>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

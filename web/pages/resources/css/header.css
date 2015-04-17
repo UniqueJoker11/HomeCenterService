@@ -25,21 +25,23 @@ html,body{
     padding-bottom: 30px;
 }
 .topHeader {
-    height: 90px;
+    height: 70px;
     background-color: #242424;
+    border-bottom: 3px solid #EE0000;
 }
 
 .topHeader header {
-    width: 1024px;
+    width: 100%;
     margin: 0 auto;
 }
 
 .header-brand {
-    font: normal bold 2.5em/90px sans-serif;
+    font: normal bold 2.5em/70px sans-serif;
     color: #ffffff;
     letter-spacing: 4px;
     float: left;
-    width: 30%;
+    padding: 0 50px;
+    width: 10%;
 }
 
 .header-brand:hover {
@@ -51,14 +53,14 @@ html,body{
     display: inline-block;
     margin: 0;
     padding: 0;
-    width: 70%;
-    height: 90px;
+    width: 50%;
+    height: 70px;
 }
 
 .header-nav li {
-    min-width: 14%;
-    height: 90px;
-    line-height: 90px;
+    min-width: 12%;
+    height: 70px;
+    line-height: 70px;
     float: left;
     text-align: center;
     list-style: none;
@@ -94,4 +96,36 @@ html,body{
 .link_active a {
     color: #ffffff !important;
     text-decoration: none;
+}
+.header-userinfo{
+ float:right;
+    width: 20%;
+    height:70px;
+    padding:0 10px;
+    text-align:right;
+    line-height: 70px;
+}
+.header-usertitle{
+    width:40px;
+    height:40px;
+    margin: 0 10px;
+}
+.header-username{
+    width: 150px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    overflow-x: hidden;
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+    color:#F8F8FF;
+    text-align: left;
+}
+.header-username:hover{
+    background-color: transparent;
+    border: none;
+    color:#F0F0F0 ;
+}
+.header-selectlist li{
+    line-height: 20px;
 }

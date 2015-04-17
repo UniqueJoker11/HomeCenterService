@@ -41,4 +41,28 @@
         <field name="user_name2" primaryKey="false" dataType="String" dataLength="50" fieldDesc="修改者名称"/>
         <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="修改时间"/>
     </pojo>
+    <pojo tableName="access" className="AccessEntity" hasGenerate="false">
+        <field name="access_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户访问Id"/>
+        <field name="access_date" primaryKey="false" dataType="String" dataLength="30" fieldDesc="访问日期"/>
+        <field name="access_time" primaryKey="false" dataType="int" dataLength="30" fieldDesc="访问次数"/>
+    </pojo>
+    <pojo tableName="comment" className="CommentEntity" hasGenerate="false">
+        <field name="comment_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户评论Id"/>
+        <field name="comment_content" primaryKey="false" dataType="String" dataLength="1000" fieldDesc="用户评论内容"/>
+        <field name="comment_author" primaryKey="false" dataType="String" dataLength="100" fieldDesc="评论作者"/>
+        <field name="comment_aticleId" primaryKey="false" dataType="int" dataLength="11" fieldDesc="评论作者id"/>
+        <field name="comment_date" primaryKey="false" dataType="String" dataLength="25" fieldDesc="评论日期"/>
+
+    </pojo>
+    <pojo tableName="browser" className="BrowserEntity" hasGenerate="false">
+        <field name="browser_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="浏览id"/>
+        <field name="browser_num" primaryKey="false" dataType="int" dataLength="20" fieldDesc="浏览文章数量"/>
+        <field name="browser_aticleId" primaryKey="false" dataType="int" dataLength="20" fieldDesc="浏览文章id"/>
+    </pojo>
+    <pojo tableName="banner" className="BannerEntity" hasGenerate="false">
+        <field name="banner_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="banner_id"/>
+        <field name="banner_index" primaryKey="false" dataType="int" dataLength="11" fieldDesc="图片序号"/>
+        <field name="banner_img" primaryKey="false" dataType="String" dataLength="100" fieldDesc="图片地址"/>
+        <field name="banner_modify_time" primaryKey="false" dataType="String" dataLength="30" fieldDesc="banner改变时间"/>
+    </pojo>
 </pojos>

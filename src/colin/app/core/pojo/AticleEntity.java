@@ -18,6 +18,9 @@ public class AticleEntity {
     private String aticleReadNum;
     private String aticleCrTime;
     private String aticleCrUser;
+    private String aticleCategory;
+    private String aticleCoverImg;
+    private String keyWords;
 
     public String getAticleCrTime() {
         return aticleCrTime;
@@ -73,5 +76,29 @@ public class AticleEntity {
 
     public void setAticleCrUser(String aticleCrUser) {
         this.aticleCrUser = aticleCrUser;
+    }
+
+    public String getAticleCategory() {
+        return aticleCategory;
+    }
+
+    public void setAticleCategory(String aticleCategory) {
+        this.aticleCategory = aticleCategory;
+    }
+
+    public String getAticleCoverImg() {
+        return aticleCoverImg;
+    }
+
+    public void setAticleCoverImg(String aticleCoverImg) {
+        this.aticleCoverImg = aticleCoverImg;
+    }
+
+    public String getKeyWords() {
+        return keyWords;
+    }
+
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords;
     }
 }

@@ -1,13 +1,22 @@
 package colin.app.service.impl;
 
 import colin.app.common.DateUtils;
+import colin.app.common.bean.AticleBean;
+import colin.app.common.bean.AticleDetailInfo;
 import colin.app.common.bean.Page;
 import colin.app.core.dao.AticleManageDao;
+import colin.app.core.dao.BrowserManageDao;
+import colin.app.core.dao.CommentManageDao;
 import colin.app.core.pojo.AticleEntity;
+import colin.app.core.pojo.BrowserEntity;
+import colin.app.core.pojo.CommentEntity;
 import colin.app.service.inter.IAticleManageService;
+import org.beetl.ext.fn.ParseInt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +26,15 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class AticleManageService implements IAticleManageService{
+public class AticleManageService implements IAticleManageService {
 
     @Resource
     private AticleManageDao aticleManageDao;
+    @Resource
+    private CommentManageDao commentManageDao;
+    @Resource
+    private BrowserManageDao browserManageDao;
+
     /**
      * @param params
      */
@@ -28,15 +42,16 @@ public class AticleManageService implements IAticleManageService{
 
     @Override
     public boolean saveAticleContent(Map<String, Object> params) {
-        AticleEntity aticleEntity=new AticleEntity();
+        AticleEntity aticleEntity = new AticleEntity();
         aticleEntity.setAticleName(params.get("aticleTitle").toString());
         aticleEntity.setAticleCrTime(DateUtils.getCurrentDate());
-        aticleEntity.setAticleCrUser(params.get("loginName").toString());
+        aticleEntity.setAticleCrUser(params.get("aticleCrUser").toString());
         aticleEntity.setAticleDigest(params.get("aticleDigest").toString());
-        System.out.println(params.get("aticleDigest").toString());
         aticleEntity.setAticleContent(params.get("aticleContent").toString());
+        aticleEntity.setAticleCategory(params.get("aticleCatagory").toString());
+        aticleEntity.setAticleCoverImg(params.get("aticleCoverImg").toString());
         aticleEntity.setAticleReadNum("0");
-        boolean result=aticleManageDao.addObjInfo(aticleEntity);
+        boolean result = aticleManageDao.addObjInfo(aticleEntity);
         return result;
     }
 
@@ -53,7 +68,12 @@ public class AticleManageService implements IAticleManageService{
      */
     @Override
     public boolean deleteAticleContent(Map<String, Object> params) {
-        return false;
+        AticleEntity aticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, params);
+        boolean result=false;
+        if(aticleEntity!=null){
+            result=aticleManageDao.deleteObjInfo(aticleEntity);
+        }
+        return result;
     }
 
     /**
@@ -65,15 +85,91 @@ public class AticleManageService implements IAticleManageService{
     }
 
     /**
-     * 分页查询所有的书籍
+     * 分页查询所有的文章，后台管理用
      *
      * @param params
      */
     @Override
-    public  Map<String,Object> searchAticlePageContent(Map<String, Object> params) {
-        Map<String,Object> resultMap=new HashMap<String,Object>();
-        Page<AticleEntity> pageContent=aticleManageDao.searchObjPageInfo(params);
-        resultMap.put("pageContent",pageContent);
+    public Map<String, Object> searchAticlePageContent(Map<String, Object> params) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        Page<AticleEntity> pageContent = aticleManageDao.searchObjPageInfo(params);
+        List<AticleEntity> aticleList = pageContent.getResultList();
+        Page<AticleBean> resultPage = new Page<AticleBean>();
+        List<AticleBean> aticleBeanList = new ArrayList<AticleBean>();
+        for (AticleEntity aticleEntity : aticleList) {
+            int aticleId = aticleEntity.getAticleId();
+
+            AticleBean aticleBean = new AticleBean();
+            aticleBean.setAticleId(aticleId);
+            aticleBean.setAticleTitle(aticleEntity.getAticleName());
+            aticleBean.setAticleAuthor(aticleEntity.getAticleCrUser());
+            aticleBean.setAticleCreateDate(aticleEntity.getAticleCrTime());
+            aticleBean.setAticleDigest(aticleEntity.getAticleDigest());
+            aticleBean.setAticleCoverImg(aticleEntity.getAticleCoverImg());
+            aticleBean.setAticleCategory(aticleEntity.getAticleCategory());
+            //查询出所有的评论数
+            Map<String, Object> commentParams = new HashMap<String, Object>();
+            commentParams.put("comment_aticleId", aticleId);
+            List<CommentEntity> commentList = commentManageDao.seletcObjectByMap(CommentEntity.class, commentParams);
+            aticleBean.setAticleCommentNum(commentList.size());
+            //查询出所有文章的浏览数目
+            Map<String, Object> browserParams = new HashMap<String, Object>();
+            browserParams.put("browser_aticleId", aticleId);
+            List<BrowserEntity> browserList = browserManageDao.seletcObjectByMap(BrowserEntity.class, browserParams);
+            aticleBean.setAticleBrowserNum(browserList.size());
+            aticleBeanList.add(aticleBean);
+        }
+        resultPage.setCurrentPage(pageContent.getCurrentPage());
+        resultPage.setPageSize(pageContent.getPageSize());
+        resultPage.setResultList(aticleBeanList);
+        resultPage.setTotalPage(pageContent.getTotalPage());
+        resultPage.setTotalRecord(pageContent.getTotalRecord());
+        resultMap.put("pageContent", resultPage);
         return resultMap;
     }
+
+    @Override
+    public AticleDetailInfo getAticleDetailInfo(String prevId,String id,String nextId) {
+        AticleDetailInfo aticleDetailInfo=new AticleDetailInfo();
+        boolean result=true;
+        if(!prevId.equals("0")){
+            Map<String,Object> prevParams=new HashMap<String,Object>();
+            prevParams.put("aticleId", Integer.valueOf(prevId));
+            AticleEntity preAticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, prevParams);
+            if(preAticleEntity!=null){
+                aticleDetailInfo.setPrevTitle(preAticleEntity.getAticleName());
+                aticleDetailInfo.setPreAticleId(preAticleEntity.getAticleId());
+            }
+        }
+        if(!nextId.equals("0")){
+            Map<String,Object> nextParams=new HashMap<String,Object>();
+            nextParams.put("aticleId", Integer.valueOf(nextId));
+            AticleEntity nextAticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, nextParams);
+            if(nextAticleEntity!=null){
+                aticleDetailInfo.setNextTitle(nextAticleEntity.getAticleName());
+                aticleDetailInfo.setNextAticleId(nextAticleEntity.getAticleId());
+            }
+        }
+        if(!id.equals("")){
+            Map<String,Object> params=new HashMap<String,Object>();
+            params.put("aticleId", Integer.valueOf(id));
+            AticleEntity aticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class,params);
+            aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
+            aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
+            aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
+            aticleDetailInfo.setAticleCreateDate(aticleEntity.getAticleCrTime());
+            aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
+            aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
+            aticleDetailInfo.setAticleId(aticleEntity.getAticleId());
+        }else{
+            result=false;
+        }
+        if(result){
+            return aticleDetailInfo;
+        }else{
+            return null;
+        }
+
+    }
+
 }

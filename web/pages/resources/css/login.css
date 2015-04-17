@@ -36,13 +36,14 @@
     margin:0;
     padding: 0;
     background-color: #ffffff;
-    height: 200px;
+    min-height: 200px;
 }
 .registerForm{
    padding: 20px;
  }
 .registerForm .uk-form-label{
-    letter-spacing: 8px;
+    letter-spacing: 3px;
+    font-size: 1.2em;
 }
 .footer-style{
     text-align: center;
@@ -51,4 +52,7 @@
 }
 .footer-style h1{
     font-size: 3.5em;
+}
+.loginbtn .uk-button{
+    color: #ffffff;
 }

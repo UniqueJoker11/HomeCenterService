@@ -1,5 +1,5 @@
-/*! UIkit 2.12.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-(function($, UI) {
+/*! UIkit 2.17.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+(function(UI) {
 
     "use strict";
 
@@ -11,13 +11,13 @@
 
         show: function(element) {
 
-            element = $(element);
+            element = UI.$(element);
 
             if (!element.length) return;
 
-            var $body     = $('body'),
+            var $body     = UI.$('body'),
                 bar       = element.find(".uk-offcanvas-bar:first"),
-                rtl       = ($.UIkit.langdirection == "right"),
+                rtl       = (UI.langdirection == "right"),
                 flip      = bar.hasClass("uk-offcanvas-bar-flip") ? -1:1,
                 dir       = flip * (rtl ? -1 : 1);
 
@@ -34,14 +34,14 @@
 
             this._initElement(element);
 
-            $doc.trigger('uk.offcanvas.show', [element, bar]);
+            $doc.trigger('show.uk.offcanvas', [element, bar]);
         },
 
         hide: function(force) {
 
-            var $body = $('body'),
-                panel = $(".uk-offcanvas.uk-active"),
-                rtl   = ($.UIkit.langdirection == "right"),
+            var $body = UI.$('body'),
+                panel = UI.$(".uk-offcanvas.uk-active"),
+                rtl   = (UI.langdirection == "right"),
                 bar   = panel.find(".uk-offcanvas-bar:first"),
                 finalize = function() {
                     $body.removeClass("uk-offcanvas-page").css({"width": "", "height": "", "margin-left": "", "margin-right": ""});
@@ -49,14 +49,14 @@
                     bar.removeClass("uk-offcanvas-bar-show");
                     $html.css('margin-top', '');
                     window.scrollTo(scrollpos.x, scrollpos.y);
-                    $doc.trigger('uk.offcanvas.hide', [panel, bar]);
+                    UI.$doc.trigger('hide.uk.offcanvas', [panel, bar]);
                 };
 
             if (!panel.length) return;
 
-            if ($.UIkit.support.transition && !force) {
+            if (UI.support.transition && !force) {
 
-                $body.one($.UIkit.support.transition.end, function() {
+                $body.one(UI.support.transition.end, function() {
                     finalize();
                 }).css((rtl ? "margin-right" : "margin-left"), "");
 
@@ -71,11 +71,11 @@
 
         _initElement: function(element) {
 
-            if (element.data("ukOffcanvasInit")) return;
+            if (element.data("OffcanvasInit")) return;
 
-            element.on("click.ukoffcanvas swipeRight.ukoffcanvas swipeLeft.ukoffcanvas", function(e) {
+            element.on("click.uk.offcanvas swipeRight.uk.offcanvas swipeLeft.uk.offcanvas", function(e) {
 
-                var target = $(e.target);
+                var target = UI.$(e.target);
 
                 if (!e.type.match(/swipe/)) {
 
@@ -91,19 +91,19 @@
 
             element.on("click", "a[href^='#']", function(e){
 
-                var element = $(this),
+                var element = UI.$(this),
                     href = element.attr("href");
 
                 if (href == "#") {
                     return;
                 }
 
-                $doc.one('uk.offcanvas.hide', function() {
+                UI.$doc.one('hide.uk.offcanvas', function() {
 
-                    var target = $(href);
+                    var target = UI.$(href);
 
                     if (!target.length) {
-                        target = $('[name="'+href.replace('#','')+'"]');
+                        target = UI.$('[name="'+href.replace('#','')+'"]');
                     }
 
                     if (UI.Utils.scrollToElement && target.length) {
@@ -116,17 +116,40 @@
                 Offcanvas.hide();
             });
 
-            element.data("ukOffcanvasInit", true);
+            element.data("OffcanvasInit", true);
         }
     };
 
     UI.component('offcanvasTrigger', {
 
+        boot: function() {
+
+            // init code
+            $html.on("click.offcanvas.uikit", "[data-uk-offcanvas]", function(e) {
+
+                e.preventDefault();
+
+                var ele = UI.$(this);
+
+                if (!ele.data("offcanvasTrigger")) {
+                    var obj = UI.offcanvasTrigger(ele, UI.Utils.options(ele.attr("data-uk-offcanvas")));
+                    ele.trigger("click");
+                }
+            });
+
+            $html.on('keydown.uk.offcanvas', function(e) {
+
+                if (e.keyCode === 27) { // ESC
+                    Offcanvas.hide();
+                }
+            });
+        },
+
         init: function() {
 
             var $this = this;
 
-            this.options = $.extend({
+            this.options = UI.$.extend({
                 "target": $this.element.is("a") ? $this.element.attr("href") : false
             }, this.options);
 
@@ -139,23 +162,4 @@
 
     UI.offcanvas = Offcanvas;
 
-    // init code
-    $html.on("click.offcanvas.uikit", "[data-uk-offcanvas]", function(e) {
-
-        e.preventDefault();
-
-        var ele = $(this);
-
-        if (!ele.data("offcanvasTrigger")) {
-            var obj = UI.offcanvasTrigger(ele, UI.Utils.options(ele.attr("data-uk-offcanvas")));
-            ele.trigger("click");
-        }
-    });
-
-    $html.on('keydown.ukoffcanvas', function(e) {
-        if (e.keyCode === 27) { // ESC
-            Offcanvas.hide();
-        }
-    });
-
-})(jQuery, jQuery.UIkit);
+})(UIkit);

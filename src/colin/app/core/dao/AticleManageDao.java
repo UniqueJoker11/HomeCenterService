@@ -26,15 +26,24 @@ public class AticleManageDao extends CommonDao<AticleEntity> {
         int pageSize = 10;
         //设定当前的其实页数
         int currentPage = 1;
+        int currentIndex=1;
         if (paramsMap.get("pageSize") != null && !paramsMap.get("pageSize").toString().equals("")) {
             pageSize = Integer.valueOf(paramsMap.get("pageSize").toString());
         }
         if (paramsMap.get("currentPage") != null && !paramsMap.get("currentPage").toString().equals("")) {
             currentPage = Integer.valueOf(paramsMap.get("currentPage").toString());
         }
+        if(paramsMap.get("currentIndex")!=null&&!paramsMap.get("currentIndex").toString().equals("")){
+            currentIndex=Integer.valueOf(paramsMap.get("currentIndex").toString());
+        }
         //获取到当前页的所有内容
-        List<AticleEntity> currentList=this.getOrderObjects(AticleEntity.class,paramsMap,null,currentPage,pageSize);
-
+        List<AticleEntity> currentList=null;
+        System.out.println(currentIndex);
+        if(!paramsMap.containsKey("aticleId")){
+            currentList=this.getOrderObjects(AticleEntity.class,null,null,currentIndex,pageSize);
+        }else{
+            currentList=this.getOrderObjects(AticleEntity.class,paramsMap,null,currentIndex,pageSize);
+        }
         Criteria criteria = this.getCurrentSession().createCriteria(AticleEntity.class);
         //获取到当前的所有对象数量
         List<AticleEntity> aticleList = super.getHibernateTemplate().loadAll(AticleEntity.class);

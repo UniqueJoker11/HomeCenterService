@@ -1,0 +1,19 @@
+package colin.app.service.inter;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by joker on 14-10-12.
+ */
+public interface ${}ManageService{
+
+<%for(int i=0;i<content.length;i++){}%>
+    /**
+     *${mthodAnnotaion}
+     * */
+    public boolean (Map<String,Object> params);
+
+
+
+}

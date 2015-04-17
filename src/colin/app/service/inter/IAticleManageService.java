@@ -1,5 +1,6 @@
 package colin.app.service.inter;
 
+import colin.app.common.bean.AticleDetailInfo;
 import colin.app.core.pojo.AticleEntity;
 
 import java.util.List;
@@ -33,5 +34,12 @@ public interface IAticleManageService{
      * 分页查询所有的书籍
      * */
     public Map<String,Object> searchAticlePageContent(Map<String,Object> params);
+
+    /**
+     * 获取文章的详情
+     * @param id
+     * @return
+     */
+    public AticleDetailInfo getAticleDetailInfo(String prevId,String id,String nextId);
 
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<services>
+<service classNamePrefix="Access" interfaceNamePrefix="IAccess">
+    <method type="normal" name="updateAccessTime"></method>
+    <method type="noraml" name="initAccessTime"></method>
+    <method type="normal" name="changeAccessTime">
+        <args>
+            <arg type="int" name="times"></arg>
+        </args>
+    </method>
+</service>
+</services>

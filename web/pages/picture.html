@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
+    <link rel="stylesheet" href="resources/css/uikit.min.css">
+    <link rel="stylesheet" href="pages/resources/css/header.css">
+    <link rel="stylesheet" href="pages/resources/css/common.css">
+    <link rel="stylesheet" href="pages/resources/css/music.css">
+    <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="resources/js/uikit.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/autocomplete.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/datepicker.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-password.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/notify.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/search.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sortable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sticky.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/upload.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/pagination.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-select.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="pages/resources/js/common.js"></script>
+    <script type="text/javascript" src="pages/resources/js/music.js"></script>
+    <title>Orange管理后台</title>
+</head>
+<body>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <div class="topHeader">
+            <header>
+                <a href="#" class="header-brand">Orange</a>
+                <ul class="header-nav" id="headerNav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="aticle.html">文章</a></li>
+                    <li class="link_active"><a href="picture.html">图片</a></li>
+                    <li><a href="music.html">音乐</a></li>
+                    <li><a href="video.html">视频</a></li>
+                </ul>
+                <div class="header-userinfo">
+                    <img class="uk-border-circle header-usertitle"
+                         src="pages/resources/images/title.jpg" alt="头像">
+
+                    <div class="uk-button-dropdown" data-uk-dropdown>
+                        <button class="uk-button header-username">${session.loginName} <i
+                                class="uk-icon-caret-down"></i></button>
+                        <div class="uk-dropdown uk-dropdown-center header-selectlist">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li><a href="#"><i class="uk-icon-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人中心</a></li>
+                                <li><a href="#"><i class="uk-icon-tag"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知消息</a></li>
+                                <li><a href="#"><i class="uk-icon-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;系统设定</a></li>
+                                <li><a href="#"><i class="uk-icon-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;退出系统</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+</div>
+</body>
+</html>

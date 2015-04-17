@@ -1,6 +1,7 @@
 package colin.app.core.dao.common;
 
 import colin.app.common.bean.Page;
+import colin.app.core.pojo.AticleEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,8 +46,7 @@ public abstract class CommonDao<T> extends HibernateDaoSupport {
         try {
             this.getHibernateTemplate().delete(t);
             this.getHibernateTemplate().flush();
-
-            return false;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -163,7 +163,6 @@ public abstract class CommonDao<T> extends HibernateDaoSupport {
         }
         return types;
     }
-
     /**
      * 查询某个类的全部对象
      *
@@ -273,7 +272,14 @@ public abstract class CommonDao<T> extends HibernateDaoSupport {
             }
         }
         return (List<E>) cri.list();
-
+    }
+    public <E> boolean existsSearchObj(Class clazz,Map<String,Object> params){
+        boolean result=true;
+        List<E> resultList=this.seletcObjectByMap(clazz,params);
+        if(resultList==null||resultList.isEmpty()){
+            result=false;
+        }
+        return result;
 
     }
 

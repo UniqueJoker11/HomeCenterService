@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
+    <link rel="stylesheet" href="resources/css/uikit.min.css">
+    <link rel="stylesheet" href="pages/resources/css/header.css">
+    <link rel="stylesheet" href="pages/resources/css/common.css">
+    <link rel="stylesheet" href="pages/resources/css/index.css">
+    <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="resources/js/uikit.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/autocomplete.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/datepicker.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-password.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/notify.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/search.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sortable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sticky.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/upload.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/pagination.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-select.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="pages/resources/js/common.js"></script>
+    <script type="text/javascript" src="pages/resources/js/index.js"></script>
+    <title>Orange管理后台</title>
+</head>
+<body>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <div class="topHeader">
+            <header>
+                <a href="#" class="header-brand">Orange</a>
+                <ul class="header-nav" id="headerNav">
+                    <li class="link_active"><a href="index.html">首页</a></li>
+                    <li><a href="aticle.html">文章</a></li>
+                    <li><a href="picture.html">图片</a></li>
+                    <li><a href="music.html">音乐</a></li>
+                    <li><a href="video.html">视频</a></li>
+                </ul>
+                <div class="header-userinfo">
+                    <img class="uk-border-circle header-usertitle"
+                         src="pages/resources/images/title.jpg" alt="头像">
+
+                    <div class="uk-button-dropdown" data-uk-dropdown>
+                        <button class="uk-button header-username">${session.loginName} <i
+                                class="uk-icon-caret-down"></i></button>
+                        <div class="uk-dropdown uk-dropdown-center header-selectlist">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li><a href="#"><i class="uk-icon-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人中心</a></li>
+                                <li><a href="#"><i class="uk-icon-tag"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知消息</a></li>
+                                <li><a href="#"><i class="uk-icon-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;系统设定</a></li>
+                                <li><a href="#"><i class="uk-icon-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;退出系统</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+</div>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <!--搜集信息，最近访问量，卖出做多的商品，最新上架的产品，月走量，群消息-->
+        <div class="colin_collect_info">
+            <ul>
+                <li>
+                    <div>
+                        <i class="uk-icon-info-circle"></i>
+
+                        <p>最近添加信息</p>
+                        <h4>20294984</h4>
+
+
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="uk-icon-home"></i>
+
+                        <p>最近访问量</p>
+                        <h4>20294984</h4>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="uk-icon-bullhorn"></i>
+
+                        <p>卖出商品总量</p>
+                        <h4>20294984</h4>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="uk-icon-bookmark"></i>
+
+                        <p>最近一月走量</p>
+                        <h4>20294984</h4>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="uk-icon-envelope-o"></i>
+
+                        <p>收到信息</p>
+                        <h4>20294984</h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="uk-width-1-1">
+        <div class="uk-grid colin-common-frame-grid">
+            <div class="uk-width-1-1">
+                <div class="uk-width-1-1 uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+                    <div class="colin-common-panel_head">首页管理<i class="uk-icon-caret-down"></i></div>
+                    <div class="uk-dropdown colin-common-panel—body">
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid colin-common-frame-grid">
+            <div class="uk-width-1-1">
+                <div class="uk-width-1-1 uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+                    <div class="colin-common-panel_head">悄悄话<i class="uk-icon-caret-down"></i></div>
+                    <div class="uk-dropdown colin-common-panel—body">
+                        <div>..Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor..</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

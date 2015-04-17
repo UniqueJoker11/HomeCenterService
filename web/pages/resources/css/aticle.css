@@ -77,6 +77,18 @@
     min-height: 800px;
 }
 #UrlLinkBtns{
-    text-align: center
-;
+    text-align: center;
+}
+.colin-aticle-loading-dialog{
+    background: transparent;
+}
+.colin-aticle-loading-dialog .uk-modal-spinner{
+    font-size: 80px;
+}
+#uploadSnapshot{
+    width: 300px;
+    height:200px;
+}
+.colin-upload-snapshot{
+    text-align: center;
 }
