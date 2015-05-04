@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+    <meta charset="UTF-8">
+    <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
+    <link rel="stylesheet" href="resources/css/uikit.min.css">
+    <link rel="stylesheet" href="resources/css/components/upload.min.css">
+    <link rel="stylesheet" href="resources/css/components/form-file.min.css">
+    <link rel="stylesheet" href="resources/css/components/notify.min.css">
+    <link rel="stylesheet" href="resources/css/components/progress.min.css">
+    <link rel="stylesheet" href="resources/css/components/upload.min.css">
+    <link rel="stylesheet" href="pages/resources/css/header.css">
+    <link rel="stylesheet" href="pages/resources/css/common.css">
+    <link rel="stylesheet" href="pages/resources/css/manage.css">
+    <link rel="stylesheet" href="pages/resources/css/blog_manage_masterInfo.css">
+    <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="resources/js/uikit.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/autocomplete.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/datepicker.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-password.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/notify.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/search.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sortable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/sticky.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/upload.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/pagination.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/form-select.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/slideshow.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="pages/resources/js/common.js"></script>
+    <script type="text/javascript" src="pages/resources/js/blog_manage_masterInfo.js"></script>
+    <title>Orange管理后台</title>
+</head>
+<body>
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <div class="topHeader">
+            <header>
+                <a href="#" class="header-brand">Orange</a>
+                <ul class="header-nav" id="headerNav">
+                    <li class="link_active"><a href="index.html">首页</a></li>
+                    <li><a href="aticle.html">文章</a></li>
+                    <li><a href="picture.html">图片</a></li>
+                    <li><a href="music.html">音乐</a></li>
+                    <li><a href="video.html">视频</a></li>
+                </ul>
+
+            </header>
+        </div>
+    </div>
+</div>
+<div class="uk-grid colin-main-frame">
+    <div class="uk-width-1-6 colin-left-nav">
+        <img class="uk-border-circle colin-headerpic"
+             src="pages/resources/images/title.jpg" alt="头像">
+        <ul>
+            <li><i class="uk-icon-folder-o"></i>
+
+                <p>901</p>
+
+                <p class="colin-collectInfo">+901</p></li>
+            <li><i class="uk-icon-envelope-o"></i>
+
+                <p>901</p>
+
+                <p class="colin-collectInfo">+901</p></li>
+            <li><i class="uk-icon-eye"></i>
+
+                <p>901</p>
+
+                <p class="colin-collectInfo">+901</p></li>
+        </ul>
+        <button  onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
+        </button>
+        <table id="functionNav" class="colin-function-nav">
+            <tbody>
+            <tr>
+                <td>
+                    <i class="uk-icon-home"></i>
+
+                    <p>博客首页</p>
+                </td>
+                <td>
+                    <i class="uk-icon-bar-chart"></i>
+
+                    <p>统计信息</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="uk-icon-group"></i>
+
+                    <p>用户管理</p></td>
+                <td class="nav-active">
+                    <i class="uk-icon-user"></i>
+
+                    <p>博主信息</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="uk-icon-trash-o"></i>
+
+                    <p>回收站</p></td>
+                <td>
+                    <i class="uk-icon-wrench"></i>
+
+                    <p>系统管理</p></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="uk-width-5-6 colin-right-model">
+        <div class="uk-width-1-1 uk-panel uk-panel-header colin_collect_model">
+            <h3 class="uk-panel-title">当前位置->博主信息</h3>
+            <div id="hasBlogMasterInfo" class="uk-width-1-1 uk-paneluk-panel-header">
+                <h4>当前博主信息</h4>
+                <dl class="uk-width-1-2 uk-description-list-horizontal colin-master-info">
+                    <dt>博主姓名</dt>
+                    <dd id="showMasterName"></dd>
+                    </dl>
+                <dl class="uk-width-1-2 uk-description-list-horizontal colin-master-info">
+                    <dt>博主职业</dt>
+                    <dd id="showMasterCarrer"></dd>
+                    </dl>
+                <dl class="uk-width-1-2 uk-description-list-horizontal colin-master-header-info">
+                    <dt>博主头像</dt>
+                    <dd id="showMasterHeader"><img src="" alt="头像"/></dd>
+                    </dl>
+                <dl class="uk-width-1-2 uk-description-list-horizontal colin-master-info">
+                    <dt>个人简介</dt>
+                    <dd id="showMasterIntroduce"></dd>
+                    </dl>
+                <dl class="uk-width-1-2 uk-description-list-horizontal colin-master-info">
+                    <dt>座右铭</dt>
+                    <dd id="showMasterWords"></dd>
+                    </dl>
+                <dl class="uk-width-1-2 uk-description-list-horizontal uk-text-center">
+                   <button id="editMasterInfoBtn" class="uk-button uk-button-primary uk-width-1-2">编辑博主信息</button>
+                </dl>
+                <form id="editMasterInfoForm" class="uk-form uk-form-horizontal">
+
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_mastername_edit">博主姓名</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-width-1-2" type="text" id="blog_mastername_edit" name="mastername" placeholder="4-6个字符，仅限中文">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_mastercarrer_edit">职业</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-width-1-2" type="text" id="blog_mastercarrer_edit" name="mastercarrer" placeholder="不多于50个字符">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterpic_edit">博主头像</label>
+                        <div class="uk-form-controls">
+                            <div id="blog_masterpic_edit" name="masterpic" class="uk-placeholder uk-text-center uk-width-1-2 colin-upload-pic">
+                                <a class="uk-form-file">选择一个图片<input id="upload-select_edit" type="file"></a>
+                                <p>
+                                    <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 可将上传的图片拖拽于此(不得超过1M)
+                                </p>
+                            </div>
+                            <div id="progressbar_edit" class="uk-width-1-2 uk-progress uk-hidden">
+                                <div class="uk-progress-bar" style="width: 0%;">...</div>
+                            </div>
+                            <div id="previewpic_edit" class="colin-preview" style="display: none">
+                                <img src="" alt="头像预览">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterintroduce_edit">个人简介</label>
+                        <div class="uk-form-controls">
+                            <textarea class="uk-width-1-2" id="blog_masterintroduce_edit" name="materintroduce" cols="30" rows="5" placeholder="最多300个字符"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterwords_edit">座右铭</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <input class="uk-width-1-2" type="text" id="blog_masterwords_edit" name="masterwords" placeholder="不多于50个字符">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <button type="submit" id="blogMasterSubmitBtnEdit" name="submitBtn" class="uk-width-1-5 uk-button uk-button-large uk-button-primary uk-button-expand">
+                                保存修改
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" id="blogMasterResetsBtnEdit" name="resetBtn"
+                                    class="uk-width-1-5 uk-button uk-button-large uk-button-danger">取消
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div id="hasNotBlogMasterInfo" class="uk-width-1-1 uk-paneluk-panel-header">
+                <h4>当前暂无博主信息，请添加博主信息</h4>
+                <!--<dl class="uk-description-list-horizontal">
+                    <dd><button id="addMasterInfoBtn" class="uk-button uk-button-success">添加博主信息</button></dd>
+                </dl>-->
+                <form class="uk-form uk-form-horizontal">
+
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_mastername_add">博主姓名</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-width-1-2" type="text" id="blog_mastername_add" name="mastername" placeholder="4-6个字符，仅限中文">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_mastercarrer_add">职业</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-width-1-2" type="text" id="blog_mastercarrer_add" name="mastercarrer" placeholder="不多于50个字符">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterpic_add">博主头像</label>
+                        <div class="uk-form-controls">
+                            <div id="blog_masterpic_add" class="uk-placeholder uk-text-center uk-width-1-2 colin-upload-pic">
+                                <a class="uk-form-file">选择一个图片<input id="upload-select_add" type="file"></a>
+                                <p>
+                                    <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 可将上传的图片拖拽于此(不得超过1M)
+                                </p>
+                            </div>
+                            <div id="progressbar_add" class="uk-width-1-2 uk-progress uk-hidden">
+                                <div class="uk-progress-bar" style="width: 0%;">...</div>
+                            </div>
+                            <div id="previewpic_add" class="uk-width-1-2 uk-text-center colin-preview" style="display: none">
+                                <img alt="头像预览">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterintroduce_add">个人简介</label>
+                        <div class="uk-form-controls">
+                            <textarea class="uk-width-1-2" id="blog_masterintroduce_add" name="masterintroduce" cols="30" rows="5" placeholder="最多300个字符"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="uk-form-row">
+                        <label class="uk-form-label" for="blog_masterwords_add">座右铭</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <input class="uk-width-1-2" type="text" id="blog_masterwords_add" name="masterwords" placeholder="不多于50个字符">
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <button type="submit" id="blogMasterSubmitBtnAdd" name="submitBtnAdd" class="uk-width-1-5 uk-button uk-button-large uk-button-primary uk-button-expand" disabled>
+                                添加信息
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" id="blogMasterResetsBtnAdd" name="resetBtnAdd"
+                                    class="uk-width-1-5 uk-button uk-button-large uk-button-danger">取消
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

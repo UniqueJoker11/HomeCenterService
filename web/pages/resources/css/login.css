@@ -9,15 +9,20 @@
 
 .form_model a:hover {
     text-decoration: none;
-    color: #B2DFEE;
+    color: #ffffff;
+    background-color: #1874CD;
 }
-
+ .formTabActive {
+    text-decoration: none;
+    color: #ffffff!important;
+    background-color: #1874CD!important;
+}
 .tabPanel {
     width: 49.7%;
     height: 60px;
     display: inline-block;
     text-align: center;
-    background-color: dimgrey;
+    background-color: #6495ED;
 
 }
 
@@ -36,14 +41,12 @@
     margin:0;
     padding: 0;
     background-color: #ffffff;
-    min-height: 200px;
 }
 .registerForm{
-   padding: 20px;
- }
+    padding: 20px;
+}
 .registerForm .uk-form-label{
-    letter-spacing: 3px;
-    font-size: 1.2em;
+    letter-spacing: 8px;
 }
 .footer-style{
     text-align: center;
@@ -53,6 +56,12 @@
 .footer-style h1{
     font-size: 3.5em;
 }
-.loginbtn .uk-button{
-    color: #ffffff;
+.loginbtn input{
+    color: #ffffff!important;
+    font-size: 16px!important;
+}
+#registerForm label,#loginFormModel label{
+    width: 260px;
+    font-size: 16px;
+    letter-spacing: 5px;
 }

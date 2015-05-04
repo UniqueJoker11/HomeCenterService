@@ -68,10 +68,10 @@ public class AticleManageService implements IAticleManageService {
      */
     @Override
     public boolean deleteAticleContent(Map<String, Object> params) {
-        AticleEntity aticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, params);
-        boolean result=false;
-        if(aticleEntity!=null){
-            result=aticleManageDao.deleteObjInfo(aticleEntity);
+        AticleEntity aticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, params);
+        boolean result = false;
+        if (aticleEntity != null) {
+            result = aticleManageDao.deleteObjInfo(aticleEntity);
         }
         return result;
     }
@@ -111,12 +111,22 @@ public class AticleManageService implements IAticleManageService {
             Map<String, Object> commentParams = new HashMap<String, Object>();
             commentParams.put("comment_aticleId", aticleId);
             List<CommentEntity> commentList = commentManageDao.seletcObjectByMap(CommentEntity.class, commentParams);
-            aticleBean.setAticleCommentNum(commentList.size());
+            if (commentList.isEmpty() || commentList.size() == 0) {
+                aticleBean.setAticleCommentNum(0);
+            } else {
+                aticleBean.setAticleCommentNum(commentList.size());
+            }
+
             //查询出所有文章的浏览数目
             Map<String, Object> browserParams = new HashMap<String, Object>();
             browserParams.put("browser_aticleId", aticleId);
             List<BrowserEntity> browserList = browserManageDao.seletcObjectByMap(BrowserEntity.class, browserParams);
-            aticleBean.setAticleBrowserNum(browserList.size());
+            if (browserList.isEmpty() || browserList.size() == 0) {
+                aticleBean.setAticleBrowserNum(0);
+            } else {
+                aticleBean.setAticleBrowserNum(browserList.size());
+            }
+
             aticleBeanList.add(aticleBean);
         }
         resultPage.setCurrentPage(pageContent.getCurrentPage());
@@ -129,31 +139,33 @@ public class AticleManageService implements IAticleManageService {
     }
 
     @Override
-    public AticleDetailInfo getAticleDetailInfo(String prevId,String id,String nextId) {
-        AticleDetailInfo aticleDetailInfo=new AticleDetailInfo();
-        boolean result=true;
-        if(!prevId.equals("0")){
-            Map<String,Object> prevParams=new HashMap<String,Object>();
+    public AticleDetailInfo getAticleDetailInfo(String prevId, String id, String nextId) {
+        AticleDetailInfo aticleDetailInfo = new AticleDetailInfo();
+        boolean result = true;
+        if (!prevId.equals("0")) {
+            Map<String, Object> prevParams = new HashMap<String, Object>();
             prevParams.put("aticleId", Integer.valueOf(prevId));
-            AticleEntity preAticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, prevParams);
-            if(preAticleEntity!=null){
+            AticleEntity preAticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, prevParams);
+            if (preAticleEntity != null) {
                 aticleDetailInfo.setPrevTitle(preAticleEntity.getAticleName());
                 aticleDetailInfo.setPreAticleId(preAticleEntity.getAticleId());
             }
         }
-        if(!nextId.equals("0")){
-            Map<String,Object> nextParams=new HashMap<String,Object>();
+        if (!nextId.equals("0")) {
+            Map<String, Object> nextParams = new HashMap<String, Object>();
             nextParams.put("aticleId", Integer.valueOf(nextId));
-            AticleEntity nextAticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class, nextParams);
-            if(nextAticleEntity!=null){
+            AticleEntity nextAticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, nextParams);
+            if (nextAticleEntity != null) {
                 aticleDetailInfo.setNextTitle(nextAticleEntity.getAticleName());
                 aticleDetailInfo.setNextAticleId(nextAticleEntity.getAticleId());
             }
         }
-        if(!id.equals("")){
-            Map<String,Object> params=new HashMap<String,Object>();
+        if (!id.equals("")) {
+            Map<String, Object> params = new HashMap<String, Object>();
             params.put("aticleId", Integer.valueOf(id));
-            AticleEntity aticleEntity=aticleManageDao.selectUniqueObject(AticleEntity.class,params);
+            AticleEntity aticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, params);
+            aticleEntity.setAticleReadNum(String.valueOf(Integer.valueOf(aticleEntity.getAticleReadNum()) + 1));
+            aticleManageDao.updateObjInfo(aticleEntity);
             aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
             aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
             aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
@@ -161,15 +173,30 @@ public class AticleManageService implements IAticleManageService {
             aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
             aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
             aticleDetailInfo.setAticleId(aticleEntity.getAticleId());
-        }else{
-            result=false;
+        } else {
+            result = false;
         }
-        if(result){
+        if (result) {
             return aticleDetailInfo;
-        }else{
+        } else {
             return null;
         }
 
     }
 
+    /**
+     * @return
+     */
+    public List<AticleEntity> getAticleClickRank() {
+        return aticleManageDao.getOrderObjects(AticleEntity.class, null, "aticleReadNum", 0, 5);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<AticleEntity> getAticlePublishTimeRank() {
+        return aticleManageDao.getOrderObjects(AticleEntity.class, null, "aticleCrTime", 0, 5);
+    }
 }

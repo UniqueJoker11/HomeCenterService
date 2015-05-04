@@ -1,0 +1,40 @@
+.nav-active{
+    background: #1E90FF repeat!important;
+}
+.colin-upload-pic{
+    border: 1px dashed #EEE5DE;
+    padding-top: 15px;
+}
+.colin-master-info{
+    border: 1px dashed #DEDEDE;
+    padding-left: 20px;
+}
+.colin-master-info dt,.colin-master-info dd{
+    height:70px;
+    line-height: 70px;
+}
+#editMasterInfoBtn{
+    margin: 20px;
+    height:70px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#editMasterInfoForm{
+    display: none;
+}
+#previewpic_add img{
+    margin:5px;
+    padding:20px;
+    width: 300px;
+    height:300px;
+    border-radius: 10px;
+    border: 1px dashed #E0EEEE;
+}
+.colin-master-header-info{
+    border: 1px dashed #DEDEDE;
+    padding-left: 20px;
+}
+.colin-master-header-info dt,.colin-master-header-info img{
+    height: 200px;
+    line-height: 200px;
+}

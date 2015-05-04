@@ -65,4 +65,18 @@
         <field name="banner_img" primaryKey="false" dataType="String" dataLength="100" fieldDesc="图片地址"/>
         <field name="banner_modify_time" primaryKey="false" dataType="String" dataLength="30" fieldDesc="banner改变时间"/>
     </pojo>
+    <pojo tableName="master" className="MasterEntity" hasGenerate="false">
+        <field name="master_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="master_id"/>
+        <field name="master_name" primaryKey="false" dataType="String" dataLength="20" fieldDesc="博主姓名"/>
+        <field name="master_header" primaryKey="false" dataType="String" dataLength="200" fieldDesc="博主头像"/>
+        <field name="master_introduce" primaryKey="false" dataType="String" dataLength="300" fieldDesc="博主介绍"/>
+        <field name="master_words" primaryKey="false" dataType="String" dataLength="300" fieldDesc="博主座右铭"/>
+        <field name="master_carrer" primaryKey="false" dataType="String" dataLength="200" fieldDesc="博主职业"/>
+    </pojo>
+    <pojo tableName="whisper" className="WhisperEntity" hasGenerate="false">
+        <field name="whisper_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="whisper_id"/>
+        <field name="whisper_content" primaryKey="false" dataType="String" dataLength="1000" fieldDesc="悄悄话"/>
+        <field name="create_time" primaryKey="false" dataType="String" dataLength="25" fieldDesc="创建时间"/>
+        <field name="create_user" primaryKey="false" dataType="String" dataLength="30" fieldDesc="创建人"/>
+    </pojo>
 </pojos>

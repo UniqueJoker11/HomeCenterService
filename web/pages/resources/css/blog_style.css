@@ -1,4 +1,4 @@
-@charset "gb2312";
+@charset "utf-8";
 /* CSS Document */
 h1.t_nav span{float:right; color:#999}
 h1.t_nav { border-bottom: #F1F1F1 1px solid; font-size: 12px; font-weight: normal; line-height: 40px; height: 40px; }
@@ -14,7 +14,7 @@ a.readmore { background: #f90; color: #fff; padding: 5px 10px; float: right; mar
 .rank li a { color: #333; }
 .paih { background: url(../images/ph.jpg) no-repeat left 8px; margin: 10px 0 }
 .paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom:1px dashed #CCC; }
-.news h3, .visitors h3 { font-size: 14px; repeat-x center; }
+.news h3, .visitors h3 { font-size: 14px;text-align: center;}
 .news h3 p, .visitors h3 p { background: #fff; width: 70px }
 .news h3 span { color: #65b020 }
 .news h3.ph span { color: #37ccca; }

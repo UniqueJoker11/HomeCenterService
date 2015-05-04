@@ -107,4 +107,29 @@ public ReturnContext validateUserLoginInfo(@RequestParam String username,@Reques
         returnContext.setRetsultData(this.userManageService.queryUserInfo(paramsMap));
         return returnContext;
     }
+    @ResponseBody
+    @RequestMapping(value = "/registerUserInfo.action",method = RequestMethod.POST)
+    public Object registerUsername(@RequestParam String username,@RequestParam String userpw){
+         ReturnContext returnContext=new ReturnContext();
+         if(!username.equals("")){
+           if(!userpw.equals("")){
+                Map<String,Object> params=new HashMap<String,Object>();
+               params.put("username",username);
+               params.put("userpw",userpw);
+               if(userManageService.registerUserInfo(params)){
+                   returnContext.setIsSuccess(true);
+               }else{
+                   returnContext.setIsSuccess(false);
+                   returnContext.setRetsultMsg("注册用户出现问题，请稍候重试！");
+               }
+           }else{
+               returnContext.setIsSuccess(false);
+               returnContext.setRetsultMsg("密码不能为空！");
+           }
+         }else{
+             returnContext.setIsSuccess(false);
+             returnContext.setRetsultMsg("用户名不能为空！");
+         }
+         return  returnContext;
+    }
 }

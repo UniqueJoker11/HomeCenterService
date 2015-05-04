@@ -100,8 +100,8 @@ $(function(){
                 $("#aticleContentContainer").html(showContent);
             }
         });
-
     }
+
 });
 function readAticle(prevAticleId,nextAticleId,idVal){
     window.open("getAticleDeatil.html?prevId="+prevAticleId+"&id="+idVal+"&nextId="+nextAticleId);

@@ -66,4 +66,19 @@ public class UserManageService implements IUserManageService {
         return result;
 
     }
+
+    /**
+     * 添加注册用户
+     *
+     * @param paramsMap
+     * @return
+     */
+    @Override
+    public boolean registerUserInfo(Map<String, Object> paramsMap) {
+        UserEntity userEntity=new UserEntity();
+        userEntity.setUsername(paramsMap.get("username").toString());
+        userEntity.setPassword(paramsMap.get("userpw").toString());
+        boolean result=userManageDao.addObjInfo(userEntity);
+        return result;
+    }
 }

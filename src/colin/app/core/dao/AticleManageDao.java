@@ -38,11 +38,10 @@ public class AticleManageDao extends CommonDao<AticleEntity> {
         }
         //获取到当前页的所有内容
         List<AticleEntity> currentList=null;
-        System.out.println(currentIndex);
         if(!paramsMap.containsKey("aticleId")){
-            currentList=this.getOrderObjects(AticleEntity.class,null,null,currentIndex,pageSize);
+            currentList=this.getOrderObjects(AticleEntity.class,null,null,(currentIndex-1),pageSize);
         }else{
-            currentList=this.getOrderObjects(AticleEntity.class,paramsMap,null,currentIndex,pageSize);
+            currentList=this.getOrderObjects(AticleEntity.class,paramsMap,null,(currentIndex-1),pageSize);
         }
         Criteria criteria = this.getCurrentSession().createCriteria(AticleEntity.class);
         //获取到当前的所有对象数量

@@ -5,7 +5,7 @@ html,body{
     margin:0;
 }
 .header_model {
-    background-color: #242424;
+    background-color: #F7F7F7;
     padding-top: 120px;
 }
 
@@ -26,18 +26,20 @@ html,body{
 }
 .topHeader {
     height: 70px;
-    background-color: #242424;
-    border-bottom: 3px solid #EE0000;
+    background-color: #F5FFFA;
 }
 
 .topHeader header {
     width: 100%;
     margin: 0 auto;
+    height: 70px;
+    border-bottom:1px solid #EDEDED;
+    background-color: #F5FFFA;
 }
 
 .header-brand {
     font: normal bold 2.5em/70px sans-serif;
-    color: #ffffff;
+    color: #39f;
     letter-spacing: 4px;
     float: left;
     padding: 0 50px;
@@ -46,7 +48,7 @@ html,body{
 
 .header-brand:hover {
     text-decoration: none;
-    color: #FFFAF0;
+    color: #4876FF;
 }
 
 .header-nav {
@@ -118,13 +120,13 @@ html,body{
     padding-right: 10px;
     background-color: transparent;
     border: none;
-    color:#F8F8FF;
+    color:#39f;
     text-align: left;
 }
 .header-username:hover{
     background-color: transparent;
     border: none;
-    color:#F0F0F0 ;
+    color:#3A5FCD ;
 }
 .header-selectlist li{
     line-height: 20px;

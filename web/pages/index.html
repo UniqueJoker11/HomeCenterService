@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
     <link rel="stylesheet" href="resources/css/uikit.min.css">
+    <link rel="stylesheet" href="resources/css/components/notify.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
+    <link rel="stylesheet" href="pages/resources/css/manage.css">
     <link rel="stylesheet" href="pages/resources/css/index.css">
     <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
@@ -21,8 +23,10 @@
     <script type="text/javascript" src="resources/js/components/pagination.min.js"></script>
     <script type="text/javascript" src="resources/js/components/form-select.min.js"></script>
     <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/slideshow.min.js"></script>
     <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
     <script type="text/javascript" src="pages/resources/js/common.js"></script>
+
     <script type="text/javascript" src="pages/resources/js/index.js"></script>
     <title>Orange管理后台</title>
 </head>
@@ -39,101 +43,195 @@
                     <li><a href="music.html">音乐</a></li>
                     <li><a href="video.html">视频</a></li>
                 </ul>
-                <div class="header-userinfo">
-                    <img class="uk-border-circle header-usertitle"
-                         src="pages/resources/images/title.jpg" alt="头像">
 
-                    <div class="uk-button-dropdown" data-uk-dropdown>
-                        <button class="uk-button header-username">${session.loginName} <i
-                                class="uk-icon-caret-down"></i></button>
-                        <div class="uk-dropdown uk-dropdown-center header-selectlist">
-                            <ul class="uk-nav uk-nav-dropdown">
-                                <li><a href="#"><i class="uk-icon-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人中心</a></li>
-                                <li><a href="#"><i class="uk-icon-tag"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知消息</a></li>
-                                <li><a href="#"><i class="uk-icon-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;系统设定</a></li>
-                                <li><a href="#"><i class="uk-icon-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;退出系统</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </header>
         </div>
     </div>
 </div>
-<div class="uk-grid">
-    <div class="uk-width-1-1">
-        <!--搜集信息，最近访问量，卖出做多的商品，最新上架的产品，月走量，群消息-->
-        <div class="colin_collect_info">
-            <ul>
-                <li>
-                    <div>
-                        <i class="uk-icon-info-circle"></i>
+<div class="uk-grid colin-main-frame">
+    <div class="uk-width-1-6 colin-left-nav">
+        <img class="uk-border-circle colin-headerpic"
+             src="pages/resources/images/title.jpg" alt="头像">
+        <ul>
+            <li><i class="uk-icon-folder-o"></i>
 
-                        <p>最近添加信息</p>
-                        <h4>20294984</h4>
+                <p>901</p>
 
+                <p class="colin-collectInfo">+901</p></li>
+            <li><i class="uk-icon-envelope-o"></i>
 
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <i class="uk-icon-home"></i>
+                <p>901</p>
 
-                        <p>最近访问量</p>
-                        <h4>20294984</h4>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <i class="uk-icon-bullhorn"></i>
+                <p class="colin-collectInfo">+901</p></li>
+            <li><i class="uk-icon-eye"></i>
 
-                        <p>卖出商品总量</p>
-                        <h4>20294984</h4>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <i class="uk-icon-bookmark"></i>
+                <p>901</p>
 
-                        <p>最近一月走量</p>
-                        <h4>20294984</h4>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <i class="uk-icon-envelope-o"></i>
+                <p class="colin-collectInfo">+901</p></li>
+        </ul>
+        <button id="logoffBtn" onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
+        </button>
+        <table id="functionNav" class="colin-function-nav">
+            <tbody>
+            <tr>
+                <td>
+                    <i class="uk-icon-home"></i>
 
-                        <p>收到信息</p>
-                        <h4>20294984</h4>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                    <p>博客首页</p>
+                </td>
+                <td>
+                    <i class="uk-icon-bar-chart"></i>
+
+                    <p>统计信息</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="uk-icon-group"></i>
+
+                    <p>用户管理</p></td>
+                <td>
+                    <i class="uk-icon-user"></i>
+
+                    <p>博主信息</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="uk-icon-trash-o"></i>
+
+                    <p>回收站</p></td>
+                <td>
+                    <i class="uk-icon-wrench"></i>
+
+                    <p>系统管理</p></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="uk-width-1-1">
-        <div class="uk-grid colin-common-frame-grid">
-            <div class="uk-width-1-1">
-                <div class="uk-width-1-1 uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
-                    <div class="colin-common-panel_head">首页管理<i class="uk-icon-caret-down"></i></div>
-                    <div class="uk-dropdown colin-common-panel—body">
+    <div class="uk-width-5-6 colin-right-model">
+        <div class="uk-grid">
+            <div class="uk-width-1-1 uk-panel uk-panel-header">
+                <h3 class="uk-panel-title">当前位置->首页</h3>
+                <ul>
+                    <li>
                         <div>
+                            <i class="uk-icon-info-circle"></i>
+
+                            <p>最近添加信息</p>
+                            <h4>20294984</h4>
+
 
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    <li>
+                        <div>
+                            <i class="uk-icon-home"></i>
+
+                            <p>最近访问量</p>
+                            <h4>20294984</h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <i class="uk-icon-bullhorn"></i>
+
+                            <p>卖出商品总量</p>
+                            <h4>20294984</h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <i class="uk-icon-bookmark"></i>
+
+                            <p>最近一月走量</p>
+                            <h4>20294984</h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <i class="uk-icon-envelope-o"></i>
+
+                            <p>收到信息</p>
+                            <h4>20294984</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--搜集信息，最近访问量，卖出做多的商品，最新上架的产品，月走量，群消息-->
+        </div>
+        <div class="uk-width-1-1">
+            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;博客轮播图片</h3>
+                图片的上传，预览，个数始终是五个。每次只取最后的五个。轮播图片数目为5个，绑定相应的文字，（精美语句）
             </div>
         </div>
-        <div class="uk-grid colin-common-frame-grid">
-            <div class="uk-width-1-1">
-                <div class="uk-width-1-1 uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
-                    <div class="colin-common-panel_head">悄悄话<i class="uk-icon-caret-down"></i></div>
-                    <div class="uk-dropdown colin-common-panel—body">
-                        <div>..Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor..</div>
-                    </div>
-                </div>
+        <div class="uk-width-1-1">
+            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;博客访问走势图</h3>
+                jfreechart
+            </div>
+        </div>
+        <div class="uk-width-1-1">
+            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;博客点击排行</h3>
+                <table class="uk-table uk-table-striped">
+                    <caption>...</caption>
+                    <thead>
+                    <tr>
+                        <th>...</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="uk-width-1-1">
+            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;博客关注排行</h3>
+                <table class="uk-table uk-table-striped">
+                    <caption>...</caption>
+                    <thead>
+                    <tr>
+                        <th>序号</th><th>博客标题</th><th>作者</th><th>关注人数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                    </tr>
+                    <tr>
+                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="uk-width-1-1">
+            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;悄悄话管理</h3>
+                <table class="uk-table uk-table-striped">
+                    <caption>...</caption>
+                    <thead>
+                    <tr>
+                        <th>序号</th><th>悄悄话内容</th><th>发布日期</th><th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                    </tr>
+                    <tr>
+                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

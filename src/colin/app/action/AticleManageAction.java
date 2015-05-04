@@ -3,6 +3,7 @@ package colin.app.action;
 import colin.app.common.CommonUtils;
 import colin.app.common.DateUtils;
 import colin.app.common.ReturnContext;
+import colin.app.core.pojo.AticleEntity;
 import colin.app.service.inter.IAticleManageService;
 import org.springframework.core.io.*;
 import org.springframework.stereotype.Controller;
@@ -10,14 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -123,10 +127,10 @@ public class AticleManageAction {
             StringBuilder imgName = new StringBuilder(DateUtils.getCurrentDateInfo());
             imgName.append(aticleCoverImg.getOriginalFilename().substring(aticleCoverImg.getOriginalFilename().lastIndexOf(".")));
             try {
-                File uploadImgFile = initImgSaveFile(imgName.toString());
+                File uploadImgFile = initImgSaveFile(request.getServletContext(),imgName.toString());
                 aticleCoverImg.transferTo(uploadImgFile);
                 returnContext.setIsSuccess(true);
-                returnContext.setRetsultMsg("/HomeCenterService/upload/images/" + imgName.toString());
+                returnContext.setRetsultMsg(request.getContextPath() + "/upload/images/" + imgName.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -153,13 +157,50 @@ public class AticleManageAction {
         return returnContext;
     }
 
-    private File initImgSaveFile(String fileName) throws IOException {
-        File imgFile = null;
-        FileSystemResource fileSystemResource = new FileSystemResource("D:\\WebstormProject\\HomeCenterService\\web\\upload\\images");
-        imgFile = new File(fileSystemResource.getPath() + File.separator + fileName);
-        if (!imgFile.exists()) {
-            imgFile.createNewFile();
+    private File initImgSaveFile(ServletContext servletContext,String fileName) throws IOException {
+        ServletContextResource fileSystemResource = new ServletContextResource(servletContext,"upload\\images"+File.separator + fileName);
+        System.out.println(fileSystemResource.getFile().getPath());
+        if (!fileSystemResource.exists()) {
+            fileSystemResource.getFile().createNewFile();
         }
-        return imgFile;
+        return fileSystemResource.getFile();
+    }
+
+    /**
+     * 按照点击量排序
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getAticleClickRank.action",method = RequestMethod.POST)
+    public Object getAticleClickRank(HttpServletRequest request){
+        ReturnContext returnContext=new ReturnContext();
+        List<AticleEntity> resultList=aticleManageService.getAticleClickRank();
+        if(resultList==null||resultList.isEmpty()){
+            returnContext.setIsSuccess(false);
+        }else{
+            returnContext.setIsSuccess(true);
+            returnContext.setRetsultData(resultList);
+        }
+        return  returnContext;
+    }
+
+    /**
+     * 按照发布顺序排序
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getAticlePublishRank.action",method = RequestMethod.POST)
+    public Object getAticlePublishRank(HttpServletRequest request){
+        ReturnContext returnContext=new ReturnContext();
+        List<AticleEntity> resultList=aticleManageService.getAticlePublishTimeRank();
+        if(resultList==null||resultList.isEmpty()){
+            returnContext.setIsSuccess(false);
+        }else{
+            returnContext.setIsSuccess(true);
+            returnContext.setRetsultData(resultList);
+        }
+        return  returnContext;
     }
 }

@@ -1,7 +1,8 @@
 .aticleMainContet{
-    width: 1024px;
     min-height:600px;
-    margin:0 auto;
+}
+#aticleContent{
+    padding-left:35px!important;
 }
 .colin-nav-header{
     background-color: #FCFCFC;
@@ -91,4 +92,18 @@
 }
 .colin-upload-snapshot{
     text-align: center;
+}
+.colin-publish-msg{
+    border:1px dashed #EEE5DE;
+    padding: 10px 0;
+}
+.colin-publish-msg textarea{
+    height: 60px;
+    float: left;
+    resize: none;
+}
+.colin-publish-msg button{
+    width:200px;
+    height: 60px;
+    line-height: 60px;
 }

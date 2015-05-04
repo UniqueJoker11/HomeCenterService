@@ -24,4 +24,11 @@ public interface IUserManageService {
      * validate userLogin
      * */
     public boolean validateUserInfo(Map<String,Object> paramsMap);
+
+    /**
+     * 添加注册用户
+     * @param paramsMap
+     * @return
+     */
+    public boolean registerUserInfo(Map<String,Object> paramsMap);
  }

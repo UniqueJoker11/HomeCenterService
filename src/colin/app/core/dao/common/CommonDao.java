@@ -52,7 +52,6 @@ public abstract class CommonDao<T> extends HibernateDaoSupport {
             return false;
         }
     }
-
     /**
      * 单一数据更新
      */
@@ -100,6 +99,51 @@ public abstract class CommonDao<T> extends HibernateDaoSupport {
         }
         if (orderstr != null) {
             cri.addOrder(Order.desc(orderstr));
+        }
+        if (beginpos != null) {
+            cri.setFirstResult(beginpos);
+        } else {
+            cri.setFirstResult(0);
+        }
+        if (count != null) {
+            cri.setMaxResults(count);
+        }
+        return (List<E>) cri.list();
+
+    }
+    /**
+     * 排序(升序)+分页功能+条件查询
+     *
+     * @param <E>
+     * @param cl       当前操作对象
+     * @param map      条件参数
+     * @param orderstr 排序字段 如果为null不排序
+     * @param beginpos 分页起点 如果为null不分页
+     * @param count    每页的记录总数 如果为null不分页
+     * @return 返回List集合
+     */
+    public <E> List<E> getOrderAscObjects(final Class cl, final Map map,
+                                       final String orderstr, final Integer beginpos, final Integer count) {
+
+        Criteria cri = this.getCurrentSession().createCriteria(cl);
+        if (map != null) {
+            Set keyset = map.keySet();
+            for (Object key : keyset) {
+                if (key == null || map.get(key) == null) {
+                    continue;
+                }
+                // 如果对应的值是字符串类型，我就是用like匹配
+                if (map.get(key).getClass() == String.class) {
+                    cri.add(Restrictions.like(key.toString(), map
+                            .get(key)));
+                } else {
+                    cri.add(Restrictions.eq(key.toString(), map
+                            .get(key)));
+                }
+            }
+        }
+        if (orderstr != null) {
+            cri.addOrder(Order.asc(orderstr));
         }
         if (beginpos != null) {
             cri.setFirstResult(beginpos);

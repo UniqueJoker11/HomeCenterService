@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="resources/css/uikit.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
-
+    <link rel="stylesheet" href="pages/resources/css/manage.css">
     <link rel="stylesheet" href="pages/resources/css/aticle.css">
     <link rel="stylesheet" href="resources/css/components/accordion.min.css">
     <link rel="stylesheet" href="resources/css/components/autocomplete.min.css">
@@ -43,6 +43,7 @@
     <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
     <script type="text/javascript" src="resources/js/components/slideshow.min.js"></script>
     <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="pages/resources/js/common.js"></script>
     <script type="text/javascript" charset="utf-8" src="pages/resources/js/aticle.js"></script>
     <script type="text/javascript" charset="utf-8" src="resources/editor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="resources/editor/ueditor.all.min.js"></script>
@@ -72,205 +73,262 @@
             </header>
         </div>
     </div>
-    <div class="uk-width-1-1">
-        <div class="aticleMainContet">
+    </div>
+    <div class="uk-grid colin-main-frame">
+        <div class="uk-width-1-6 colin-left-nav">
+            <img class="uk-border-circle colin-headerpic"
+                 src="pages/resources/images/title.jpg" alt="头像">
+            <ul>
+                <li><i class="uk-icon-folder-o"></i>
 
-            <ul class="uk-tab tab-nav colin-nav-banner" data-uk-switcher="{connect:'#switch-content'}">
-                <li><a class="tabStyle" href="#">网站爬取</a></li>
-                <li><a class="tabStyle" href="#">文章一览</a></li>
-                <li><a class="tabStyle" href="#">发表文章</a></li>
-                <li><a class="tabStyle" href="#">评论管理</a></li>
-                <li><a class="tabStyle" href="#">草稿箱</a></li>
+                    <p>901</p>
+
+                    <p class="colin-collectInfo">+901</p></li>
+                <li><i class="uk-icon-envelope-o"></i>
+
+                    <p>901</p>
+
+                    <p class="colin-collectInfo">+901</p></li>
+                <li><i class="uk-icon-eye"></i>
+
+                    <p>901</p>
+
+                    <p class="colin-collectInfo">+901</p></li>
             </ul>
+            <button id="logoffBtn" onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
+            </button>
+            <table id="functionNav" class="colin-function-nav">
+                <tbody>
+                <tr>
+                    <td>
+                        <i class="uk-icon-home"></i>
 
-            <!-- 这是内容项的容器 -->
-            <ul id="switch-content" class="uk-switcher uk-margin">
-                <li>
-                    <div class="uk-form-row">
+                        <p>博客首页</p>
+                    </td>
+                    <td>
+                        <i class="uk-icon-bar-chart"></i>
 
-                        <input type="text" name="spiderUrl" class="uk-width-5-6 uk-form-large"
-                               id="spiderUrl" placeholder="请输入爬取文章URL">
-                        <button id="spiderBtn" type="button" class="uk-button uk-button-primary colin-spider-btn">爬取
-                        </button>
+                        <p>统计信息</p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="uk-icon-group"></i>
 
-                    </div>
-                    <hr/>
-                    <iframe id="urlContent" class="uk-width-1-1 colin-spider-iframe"></iframe>
-                    <div class="uk-width-1-1 uk-button-group" id="UrlLinkBtns">
-                        <button class="uk-button uk-button-danger uk-button-large uk-width-1-3">收藏网页</button>
-                        <button class="uk-button uk-button-success uk-button-large uk-width-1-3">网页编辑</button>
+                        <p>用户管理</p></td>
+                    <td>
+                        <i class="uk-icon-user"></i>
 
-                    </div>
-                </li>
-                <li>
-                    <div class="colin-tab-panel">
-                        <div class="uk-grid" id="aticleContent">
+                        <p>博主信息</p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="uk-icon-trash-o"></i>
+
+                        <p>回收站</p></td>
+                    <td>
+                        <i class="uk-icon-wrench"></i>
+
+                        <p>系统管理</p></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="uk-width-5-6 colin-right-model">
+            <div class="aticleMainContet">
+
+                <ul class="uk-tab tab-nav colin-nav-banner" data-uk-switcher="{connect:'#switch-content'}">
+                    <li><a class="tabStyle" href="#">网站爬取</a></li>
+                    <li><a class="tabStyle" href="#">文章一览</a></li>
+                    <li><a class="tabStyle" href="#">发表文章</a></li>
+                    <li><a class="tabStyle" href="#">评论管理</a></li>
+                    <li><a class="tabStyle" href="#">悄悄话</a></li>
+                </ul>
+
+                <!-- 这是内容项的容器 -->
+                <ul id="switch-content" class="uk-switcher uk-margin">
+                    <li>
+                        <div class="uk-form-row">
+
+                            <input type="text" name="spiderUrl" class="uk-width-5-6 uk-form-large"
+                                   id="spiderUrl" placeholder="请输入爬取文章URL">
+                            <button id="spiderBtn" type="button" class="uk-button uk-button-primary colin-spider-btn">爬取
+                            </button>
+
+                        </div>
+                        <hr/>
+                        <iframe id="urlContent" class="uk-width-1-1 colin-spider-iframe"></iframe>
+                        <div class="uk-width-1-1 uk-button-group" id="UrlLinkBtns">
+                            <button class="uk-button uk-button-danger uk-button-large uk-width-1-3">收藏网页</button>
+                            <button class="uk-button uk-button-success uk-button-large uk-width-1-3">网页编辑</button>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="colin-tab-panel">
+                            <div class="uk-grid" id="aticleContent">
+                                <table class="uk-width-1-1 uk-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="uk-width-3-10">文章标题</th>
+                                        <th class="uk-width-1-10">作者</th>
+                                        <th class="uk-width-1-10">评论</th>
+                                        <th class="uk-width-1-10">浏览</th>
+                                        <th class="uk-width-1-10">创建日期</th>
+                                        <th class="uk-width-3-10 uk-text-center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="aticleContentContainer">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="uk-grid">
+                                <div class="uk-width-1-1" id="aticlePagnation">
+                                    <ul id="aticlePagination" class="uk-pagination">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="colin-tab-panel">
+                            <div class="uk-form uk-form-horizontal" id="aticleContentForm">
+                                <div class="uk-form-row">
+                                    <span>文章标题</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <input type="text" name="aticleTitle" class="uk-width-1-1 uk-form-large"
+                                           id="aticleTitle" placeholder="请输入文章标题">
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>文章摘要</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <span class="error-tips"></span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <input type="text" name="aticleDigest" class="uk-width-1-1 uk-form-large"
+                                           id="aticleDigest" placeholder="请输入文章备注（可不填）">
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>文章作者</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <input type="text" name="aticleAuthor" class="uk-width-1-1 uk-form-large"
+                                           id="aticleAuthor" placeholder="请输入文章作者">
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>文章分类</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <div  class="uk-button uk-form-select uk-width-2-10" data-uk-form-select="">
+                                        <span>>文章分类</span>
+                                        <i class="uk-icon-caret-down"></i>
+                                        <select  name="aticleCategory" id="aticleCategory">
+                                            <option value="个人日记">个人日记</option>
+                                            <option value="网络转载">网络转载</option>
+                                            <option value="技术分享">技术分享</option>
+                                            <option value="其它">其它</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>博客封面图</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <div id="upload-drop" class="uk-placeholder uk-text-center">
+                                        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" name="aticleCoverImg" type="file"></a>.
+                                    </div>
+                                    <div id="progressbar" class="uk-progress uk-hidden">
+                                        <div class="uk-progress-bar" style="width: 0%;">0%</div>
+                                    </div>
+                                </div>
+                                <div class="uk-form-row colin-upload-snapshot">
+                                    <img id="uploadSnapshot" class="uk-thumbnail">
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>文章关键字（“,”号隔开）</span>
+                                </div>
+                                <div class="uk-form-row">
+                                    <input type="text" name="aticleKeywords" class="uk-width-1-1 uk-form-large"
+                                           id="aticleKeywords" placeholder="请输入文章关键字">
+                                </div>
+                                <div class="uk-form-row">
+                                    <span>文章内容</span>
+                                </div>
+                                <div class="uk-form-row">
+
+                                    <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+                                </div>
+
+                                <div class="uk-form-row">
+
+                                    <div class="uk-form-controls uk-form-controls-text">
+
+                                    </div>
+                                </div>
+
+                                <div class="uk-form-row" style="text-align: center">
+                                    <button type="submit" id="aticleSubmitBtn" name="submitBtn" class="uk-width-1-5 uk-button uk-button-large uk-button-primary uk-button-expand">
+                                        提交
+                                    </button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="reset" id="aticleResetsBtn" name="resetBtn"
+                                            class="uk-width-1-5 uk-button uk-button-large uk-button-danger">取消
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="colin-tab-panel">
                             <table class="uk-width-1-1 uk-table">
                                 <thead>
                                 <tr>
-                                    <th class="uk-width-3-10">文章标题</th>
-                                    <th class="uk-width-1-10">作者</th>
-                                    <th class="uk-width-1-10">评论</th>
-                                    <th class="uk-width-1-10">浏览</th>
-                                    <th class="uk-width-1-10">创建日期</th>
-                                    <th class="uk-width-3-10 uk-text-center">操作</th>
+                                    <th>文章标题</th>
+                                    <th>文章摘要</th>
+                                    <th>文章阅读次数</th>
+                                    <th>评论次数</th>
                                 </tr>
                                 </thead>
-                                <tbody id="aticleContentContainer">
+                                <tbody>
 
                                 </tbody>
                             </table>
+                            <ul class="uk-nav uk-nav-parent-icon">
+                                <li class="uk-parent"><a href="">...</a>
+                                    <ul class="uk-nav-sub">
+                                        <li><a href="">...</a>
+                                            <ul>...</ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="uk-grid">
-                            <div class="uk-width-1-1" id="aticlePagnation">
-                                <ul id="aticlePagination" class="uk-pagination">
-
-                                </ul>
-                            </div>
+                    </li>
+                    <li>
+                        <div class="colin-tab-panel">
+                           <div class="uk-panel uk-panel-header">
+                               <h3 class="uk-panel-title">发表悄悄话</h3>
+                               <div class="colin-publish-msg">
+                                   <textarea id="publishStaticContent" class="uk-width-5-6 uk-scrollable-text"></textarea>
+                                   <button id="publishStaticWords" class="uk-button uk-button-primary">发布</button>
+                               </div>
+                           </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="colin-tab-panel">
-                        <div class="uk-form uk-form-horizontal" id="aticleContentForm">
-                            <div class="uk-form-row">
-                                <span>文章标题</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <input type="text" name="aticleTitle" class="uk-width-1-1 uk-form-large"
-                                       id="aticleTitle" placeholder="请输入文章标题">
-                            </div>
-                            <div class="uk-form-row">
-                                <span>文章摘要</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <span class="error-tips"></span>
-                            </div>
-                            <div class="uk-form-row">
-                                <input type="text" name="aticleDigest" class="uk-width-1-1 uk-form-large"
-                                       id="aticleDigest" placeholder="请输入文章备注（可不填）">
-                            </div>
-                            <div class="uk-form-row">
-                                <span>文章作者</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <input type="text" name="aticleAuthor" class="uk-width-1-1 uk-form-large"
-                                       id="aticleAuthor" placeholder="请输入文章作者">
-                            </div>
-                            <div class="uk-form-row">
-                                <span>文章分类</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <div  class="uk-button uk-form-select uk-width-2-10" data-uk-form-select="">
-                                    <span>>文章分类</span>
-                                    <i class="uk-icon-caret-down"></i>
-                                    <select  name="aticleCategory" id="aticleCategory">
-                                        <option value="个人日记">个人日记</option>
-                                        <option value="网络转载">网络转载</option>
-                                        <option value="技术分享">技术分享</option>
-                                        <option value="其它">其它</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="uk-form-row">
-                               <span>博客封面图</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <div id="upload-drop" class="uk-placeholder uk-text-center">
-                                    <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" name="aticleCoverImg" type="file"></a>.
-                                </div>
-                                <div id="progressbar" class="uk-progress uk-hidden">
-                                    <div class="uk-progress-bar" style="width: 0%;">0%</div>
-                                </div>
-                            </div>
-                            <div class="uk-form-row colin-upload-snapshot">
-                                <img id="uploadSnapshot" class="uk-thumbnail">
-                            </div>
-                            <div class="uk-form-row">
-                                <span>文章关键字（“,”号隔开）</span>
-                            </div>
-                            <div class="uk-form-row">
-                                <input type="text" name="aticleKeywords" class="uk-width-1-1 uk-form-large"
-                                       id="aticleKeywords" placeholder="请输入文章关键字">
-                            </div>
-                            <div class="uk-form-row">
-                                <span>文章内容</span>
-                            </div>
-                            <div class="uk-form-row">
+                    </li>
+                </ul>
 
-                                <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
-                            </div>
-
-                            <div class="uk-form-row">
-
-                                <div class="uk-form-controls uk-form-controls-text">
-
-                                </div>
-                            </div>
-
-                            <div class="uk-form-row" style="text-align: center">
-                                <button type="submit" id="aticleSubmitBtn" name="submitBtn" class="uk-width-1-5 uk-button uk-button-large uk-button-primary uk-button-expand">
-                                    提交
-                                </button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button type="reset" id="aticleResetsBtn" name="resetBtn"
-                                        class="uk-width-1-5 uk-button uk-button-large uk-button-danger">取消
-                                </button>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="colin-tab-panel">
-                        <table class="uk-width-1-1 uk-table">
-                            <thead>
-                            <tr>
-                                <th>文章标题</th>
-                                <th>文章摘要</th>
-                                <th>文章阅读次数</th>
-                                <th>评论次数</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                        <ul class="uk-nav uk-nav-parent-icon">
-                            <li class="uk-parent"><a href="">...</a>
-                                <ul class="uk-nav-sub">
-                                    <li><a href="">...</a>
-                                        <ul>...</ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="colin-tab-panel">
-                        <p id="testContent">Contntifesafiejfei</p>
-                        <ul class="uk-pagination">
-                            <li><a href="">...</a></li>
-                            <li class="uk-active"><span>...</span></li>
-                            <li class="uk-disabled"><span>...</span></li>
-                            <li><span>...</span></li>
-                        </ul>
-                        <div>
-                            <p id="tese1">fewofjoiajiaw</p>
-
-                            <p id="test2">knvseklfnisnlvnsifhgieowjfiowjriow</p>
-
-                            <p id="test3">fnELIfjeliwnfkwenflwenfelwiflw</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
+            </div>
+            </div>
         </div>
+<!--    <div class="uk-width-1-1">
+
     </div>
-</div>
+</div>-->
 <div id="checkDetailDialog" class="uk-modal">
     <div class="uk-modal-dialog">
         <a class="uk-modal-close uk-close"></a>

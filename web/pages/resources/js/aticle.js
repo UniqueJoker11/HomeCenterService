@@ -37,32 +37,35 @@ $(function () {
             dataType: 'json',
             success: function (data) {
                 var showContent = "";
-                for (var i = 0; i < data.pageContent.resultList.length; i++) {
-                    var currentAticle = data.pageContent.resultList[i];
-                    showContent += "<tr id=\'aticleId"+i+"\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
-                    + "<div class=\"uk-button-group\">"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">更新</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">删除</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">评论</button>"
-                    + "</div>"
-                    + "</td>";
-                }
-                $("#aticleContentContainer").html(showContent);
-                pagination = $.UIkit.pagination("#aticlePagination", {
-                    items: data.pageContent.totalRecord,
-                    itemsOnPage: data.pageContent.pageSize,
-                    displayedPages: 3,
-                    currentPage: data.pageContent.currentPage,
-                    lblPrev: "上一页",
-                    lblNext: "下一页",
-                    onSelectPage: function (pageIndex, pages) {
-                        initAticlePageContent(pageIndex + 1, data.pageContent.resultList.length);
+                if (data.pageContent.resultList.length == 0) {
+                    showContent = "还没新文章发布，请稍候再试~~~~";
+                } else {
+                    for (var i = 0; i < data.pageContent.resultList.length; i++) {
+                        var currentAticle = data.pageContent.resultList[i];
+                        showContent += "<tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
+                        + "<div class=\"uk-button-group\">"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">删除</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">评论</button>"
+                        + "</div>"
+                        + "</td>";
                     }
-                });
+                    pagination = $.UIkit.pagination("#aticlePagination", {
+                        items: data.pageContent.totalRecord,
+                        itemsOnPage: data.pageContent.pageSize,
+                        displayedPages: 3,
+                        currentPage: data.pageContent.currentPage,
+                        lblPrev: "上一页",
+                        lblNext: "下一页",
+                        onSelectPage: function (pageIndex, pages) {
+                            initAticlePageContent(pageIndex + 1, data.pageContent.resultList.length);
+                        }
+                    });
+                }
 
-                // $("#aticlePagnation").html(aticlePagination(data.pageContent.currentPage, data.pageContent.totalPage));
+                $("#aticleContentContainer").html(showContent);
             }
 
         });
@@ -86,18 +89,21 @@ $(function () {
             dataType: 'json',
             success: function (data) {
                 var showContent = "";
-                for (var i = 0; i < data.pageContent.resultList.length; i++) {
-                    var currentAticle = data.pageContent.resultList[i];
-                    showContent += " <tr id=\'aticleId"+i+"\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
-                    + "<div class=\"uk-button-group\">"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">更新</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">删除</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
-                    + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId +  ",\'aticleId"+i+"\')\">评论</button>"
-                    + "</div>"
-                    + "</td>";
-
+                if (data.pageContent.resultList.length == 0) {
+                    showContent = "还没新文章发布，请稍候再试~~~~";
+                } else {
+                    for (var i = 0; i < data.pageContent.resultList.length; i++) {
+                        var currentAticle = data.pageContent.resultList[i];
+                        showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
+                        + "<div class=\"uk-button-group\">"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">删除</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">评论</button>"
+                        + "</div>"
+                        + "</td>";
+                    }
                 }
                 $("#aticleContentContainer").html(showContent);
             }
@@ -146,7 +152,7 @@ $(function () {
                 },
                 200: function () {
                     $("#uploadSnapshot").attr("src", src).show();
-                    $("#aticleSubmitBtn").attr("disabled",false);
+                    $("#aticleSubmitBtn").attr("disabled", false);
                 }
             }
         });
@@ -165,10 +171,10 @@ $(function () {
                 params.aticleCategory = $("#aticleCategory option:selected").val();
                 params.aticleTitle = $("#aticleTitle").val();
                 params.aticleDigest = $("#aticleDigest").val();
-                params.aticleCoverImg=$("#uploadSnapshot").attr("src");
+                params.aticleCoverImg = $("#uploadSnapshot").attr("src");
                 params.aticleContent = aticleContent;
-                params.keyWords=$("#aticleKeywords").val();
-                params.aticleAuthor=$("#aticleAuthor").val();
+                params.keyWords = $("#aticleKeywords").val();
+                params.aticleAuthor = $("#aticleAuthor").val();
                 $.post("saveAticleContet.action", params, function (data) {
                     if (data.isSuccess) {
                         $.UIkit.notify({
@@ -209,7 +215,7 @@ $(function () {
         $("#aticleDigest").val("");
         ue.setContent("");
         $("#uploadSnapshot").attr("src", "").hide();
-        $("#aticleSubmitBtn").attr("disabled",true);
+        $("#aticleSubmitBtn").attr("disabled", true);
     }
 
     //union all of the  error info show
@@ -266,6 +272,33 @@ $(function () {
             return (false);
         }
     }
+
+    //提交悄悄话的内容
+    $("#publishStaticWords").bind("click", function (e) {
+        var publishContent = $.trim($("#publishStaticContent").val());
+        if (publishContent == "") {
+            $.UIkit.notify({
+                message: '悄悄话内容不能为空！',
+                status: "danger",
+                timeout: 2000
+            });
+        } else {
+            var params = new Object();
+            params.whisperContent = publishContent;
+            $.post("addWhisperInfo.action", params, function (data) {
+                if (data.isSuccess) {
+                    $.UIkit.notify({
+                        message: '更新悄悄话成功！',
+                        status: "info",
+                        timeout: 2000
+                    });
+                    $("#publishStaticContent").val("");
+                }
+            });
+        }
+
+        e.preventDefault();
+    });
 });
 function showAticleContent() {
     var params = new Object();
@@ -287,35 +320,35 @@ function browserAticle(idVal) {
 
 }
 //编辑文章内容
-function updateAticle(idVal,currentObj){
+function updateAticle(idVal, currentObj) {
 
 }
 //文章置顶
-function setTopAticle(idVal){
+function setTopAticle(idVal) {
 
 }
 //评论文章
-function commentAticle(idVal,currentObj){
+function commentAticle(idVal, currentObj) {
 
 
 }
 //删除文章
-function deleteAticle(idVal,currentObj){
+function deleteAticle(idVal, currentObj) {
     //弹出删除确认框
-    var result=window.confirm("确认要删除该数据吗？");
-    if(result){
-        var params=new Object();
-        params.aticleId=idVal;
+    var result = window.confirm("确认要删除该数据吗？");
+    if (result) {
+        var params = new Object();
+        params.aticleId = idVal;
         $.ajax({
-            url:'deleteAticleInfo.action',
-            data:params,
-            type:'post',
-            dataType:'json',
-            success:function(data){
-                if(data.isSuccess){
+            url: 'deleteAticleInfo.action',
+            data: params,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.isSuccess) {
                     alert("删除文章成功！");
-                    $("#"+currentObj).empty();
-                }else{
+                    $("#" + currentObj).empty();
+                } else {
                     alert("删除文章失败！");
                 }
             }
