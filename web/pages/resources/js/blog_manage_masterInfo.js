@@ -32,7 +32,7 @@ $(function () {
 
                     setTimeout(function () {
                         progressbar.addClass("uk-hidden");
-                    }, 450);
+                    }, 1200);
                     if (response.isSuccess) {
                         if (progressObj == "progressbar_add") {
                             $("#blogMasterSubmitBtnAdd").removeAttr("disabled");
@@ -40,8 +40,6 @@ $(function () {
                             var headerPic = response.retsultMsg;
                             $("#previewpic_add >img").attr("src", headerPic);
                             $("#previewpic_add").show();
-                        } else {
-
                         }
                     } else {
                         $.UIkit.notify({

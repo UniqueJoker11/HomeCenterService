@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="MySQL - spring@localhost" uuid="dd6a6f80-87f1-4694-9712-4260b9e792f9">
-    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
-      <extra-name-characters>#@</extra-name-characters>
-      <identifier-quote-string>`</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
-    <schema name="" catalog="spring"/>
-    <table name="user" schema="" catalog="spring" type="TABLE">
-      <column name="userid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="username" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="userid"/>
-    </table>
+  <data-source name="MySQL - spring@localhost" uuid="dd6a6f80-87f1-4694-9712-4260b9e792f9">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

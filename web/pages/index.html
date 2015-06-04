@@ -5,6 +5,14 @@
     <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
     <link rel="stylesheet" href="resources/css/uikit.min.css">
     <link rel="stylesheet" href="resources/css/components/notify.min.css">
+    <link rel="stylesheet" href="resources/css/components/dotnav.gradient.min.css">
+    <link rel="stylesheet" href="resources/css/components/slidenav.min.css">
+    <link rel="stylesheet" href="resources/css/components/slideshow.min.css">
+    <link rel="stylesheet" href="resources/css/components/progress.min.css">
+    <link rel="stylesheet" href="resources/css/components/upload.min.css">
+    <link rel="stylesheet" href="resources/css/components/placeholder.min.css">
+    <link rel="stylesheet" href="resources/css/components/form-file.min.css">
+    <link rel="stylesheet" href="resources/css/components/form-advanced.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
     <link rel="stylesheet" href="pages/resources/css/manage.css">
@@ -111,7 +119,7 @@
         <div class="uk-grid">
             <div class="uk-width-1-1 uk-panel uk-panel-header">
                 <h3 class="uk-panel-title">当前位置->首页</h3>
-                <ul>
+                <ul class="colin-right-info-sumary">
                     <li>
                         <div>
                             <i class="uk-icon-info-circle"></i>
@@ -158,10 +166,33 @@
             </div>
             <!--搜集信息，最近访问量，卖出做多的商品，最新上架的产品，月走量，群消息-->
         </div>
+
         <div class="uk-width-1-1">
             <div class="uk-panel uk-panel-box uk-panel-box-secondary">
                 <h3 class="uk-panel-title"><i class="uk-icon-tag"></i>&nbsp;博客轮播图片</h3>
                 图片的上传，预览，个数始终是五个。每次只取最后的五个。轮播图片数目为5个，绑定相应的文字，（精美语句）
+
+            </div>
+            <div class="uk-slidenav-position" data-uk-slideshow>
+                <ul class="uk-slideshow">
+                    <li><img src="upload/images/image1.jpg" width="800" height="400" alt=""></li>
+                    <li><img src="upload/images/image2.jpg" width="800" height="400" alt=""></li>
+                    <li><img src="upload/images/image3.jpg" width="800" height="400" alt=""></li>
+                    <li><img src="upload/images/image3.jpg" width="800" height="400" alt=""></li>
+                    <li><img src="upload/images/image3.jpg" width="800" height="400" alt=""></li>
+                </ul>
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+                <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                    <li data-uk-slideshow-item="0"><a href="#">Item 1</a></li>
+                    <li data-uk-slideshow-item="1"><a href="#">Item 2</a></li>
+                    <li data-uk-slideshow-item="2"><a href="#">Item 3</a></li>
+                    <li data-uk-slideshow-item="3"><a href="#">Item 2</a></li>
+                    <li data-uk-slideshow-item="4"><a href="#">Item 3</a></li>
+                </ul>
+            </div>
+            <div id="upload-drop" class="uk-placeholder uk-text-center">
+                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将图片拖拽至此 或 <a class="uk-form-file">选择图片（最多5个）<input id="upload-select" type="file"></a>.
             </div>
         </div>
         <div class="uk-width-1-1">

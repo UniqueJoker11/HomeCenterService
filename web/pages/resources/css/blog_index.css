@@ -706,8 +706,11 @@ aside .news ul li a:hover {
  * Active
  */
 .uk-pagination > .uk-active > span {
-    background: #00a8e6;
+    background: #fd8a61;
     color: #ffffff;
+    font-size:12px;
+    padding:4px 8px;
+    border-radius: 2px;
 }
 /*
  * Disabled

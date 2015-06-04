@@ -2,6 +2,13 @@
  * Created by joker on 14-10-23.
  */
 $(function () {
+    //tab导航页切换的事件绑定
+    $("[data-uk-tab]").on("change.uk.tab", function(event,item){
+        var tabTitle=$(item).find("a").text();
+        if(tabTitle=="文章一览"){
+            initAticleContent();
+        }
+    });
     //隐藏缩略图显示
     $("#uploadSnapshot").hide();
     //定义分页的全局变量
@@ -41,8 +48,22 @@ $(function () {
                     showContent = "还没新文章发布，请稍候再试~~~~";
                 } else {
                     for (var i = 0; i < data.pageContent.resultList.length; i++) {
+                        var prevAticleId = 0;
+                        var nextAticleId = 0;
+                        if (i == 0) {
+                            if (data.pageContent.resultList.length > 1) {
+                                nextAticleId = data.pageContent.resultList[i + 1].aticleId;
+                            }
+                        } else if (i > 0 && i < data.pageContent.resultList.length - 1) {
+                            prevAticleId = data.pageContent.resultList[i - 1].aticleId;
+                            nextAticleId = data.pageContent.resultList[i + 1].aticleId;
+                        } else if (i = (data.pageContent.resultList.length - 1)) {
+                            if (data.pageContent.resultList.length > 1) {
+                                prevAticleId = data.pageContent.resultList[i - 1].aticleId;
+                            }
+                        }
                         var currentAticle = data.pageContent.resultList[i];
-                        showContent += "<tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
+                        showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\" onclick=\"readAticle("+prevAticleId+","+nextAticleId+","+currentAticle.aticleId+")\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
                         + "<div class=\"uk-button-group\">"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
@@ -93,8 +114,22 @@ $(function () {
                     showContent = "还没新文章发布，请稍候再试~~~~";
                 } else {
                     for (var i = 0; i < data.pageContent.resultList.length; i++) {
+                        var prevAticleId = 0;
+                        var nextAticleId = 0;
+                        if (i == 0) {
+                            if (data.pageContent.resultList.length > 1) {
+                                nextAticleId = data.pageContent.resultList[i + 1].aticleId;
+                            }
+                        } else if (i > 0 && i < data.pageContent.resultList.length - 1) {
+                            prevAticleId = data.pageContent.resultList[i - 1].aticleId;
+                            nextAticleId = data.pageContent.resultList[i + 1].aticleId;
+                        } else if (i = (data.pageContent.resultList.length - 1)) {
+                            if (data.pageContent.resultList.length > 1) {
+                                prevAticleId = data.pageContent.resultList[i - 1].aticleId;
+                            }
+                        }
                         var currentAticle = data.pageContent.resultList[i];
-                        showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
+                        showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\" onclick=\"readAticle("+prevAticleId+","+nextAticleId+","+currentAticle.aticleId+")\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
                         + "<div class=\"uk-button-group\">"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
@@ -138,7 +173,7 @@ $(function () {
                 }
                 setTimeout(function () {
                     progressbar.addClass("uk-hidden");
-                }, 250);
+                }, 1200);
             }
         };
 //检测上传文件是否已经完成，否则继续检测。
@@ -148,7 +183,7 @@ $(function () {
             method: 'get',
             statusCode: {
                 404: function () {
-                    setTimeout(showUploadFile(src), 1500);
+                    setTimeout(showUploadFile(src), 2500);
                 },
                 200: function () {
                     $("#uploadSnapshot").attr("src", src).show();
@@ -214,6 +249,8 @@ $(function () {
         $("#aticleTitle").val("");
         $("#aticleDigest").val("");
         ue.setContent("");
+        $("#aticleKeywords").val("");
+        $("#aticleAuthor").val("");
         $("#uploadSnapshot").attr("src", "").hide();
         $("#aticleSubmitBtn").attr("disabled", true);
     }
@@ -300,6 +337,7 @@ $(function () {
         e.preventDefault();
     });
 });
+
 function showAticleContent() {
     var params = new Object();
     params.pageSize = 3;
@@ -317,11 +355,11 @@ function showAticleContent() {
 }
 //浏览文章详情
 function browserAticle(idVal) {
-
+    window.open("getAticleDeatil.html?prevId=" + prevAticleId + "&id=" + idVal + "&nextId=" + nextAticleId);
 }
 //编辑文章内容
 function updateAticle(idVal, currentObj) {
-
+//弹出对话框
 }
 //文章置顶
 function setTopAticle(idVal) {
@@ -355,4 +393,7 @@ function deleteAticle(idVal, currentObj) {
 
         });
     }
+}
+function readAticle(prevAticleId, nextAticleId, idVal) {
+    window.open("getAticleDeatil.html?prevId=" + prevAticleId + "&id=" + idVal + "&nextId=" + nextAticleId);
 }

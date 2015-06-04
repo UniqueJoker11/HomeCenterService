@@ -20,7 +20,7 @@ public interface IAticleManageService {
     /**
      *
      * */
-    public boolean editAticleContent(Map<String, Object> params);
+    public boolean editAticleContent(Map<String, String[]>  params);
 
     /**
      *

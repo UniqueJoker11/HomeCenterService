@@ -63,7 +63,7 @@ public class MasterManageAction {
         try {
             masterheaderpic.transferTo(saveUploadFile(request.getServletContext()));
             returnContext.setIsSuccess(true);
-            returnContext.setRetsultMsg("upload\\header\\header.jpg");
+            returnContext.setRetsultMsg("upload/header/header.jpg");
         } catch (IOException e) {
             e.printStackTrace();
             returnContext.setIsSuccess(false);

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,8 +48,9 @@ public class AticleManageService implements IAticleManageService {
         aticleEntity.setAticleCrTime(DateUtils.getCurrentDate());
         aticleEntity.setAticleCrUser(params.get("aticleCrUser").toString());
         aticleEntity.setAticleDigest(params.get("aticleDigest").toString());
-        aticleEntity.setAticleContent(params.get("aticleContent").toString());
+        aticleEntity.setAticleContent(params.get("aticleContent").toString().getBytes());
         aticleEntity.setAticleCategory(params.get("aticleCatagory").toString());
+        aticleEntity.setKeyWords(params.get("keyWords").toString());
         aticleEntity.setAticleCoverImg(params.get("aticleCoverImg").toString());
         aticleEntity.setAticleReadNum("0");
         boolean result = aticleManageDao.addObjInfo(aticleEntity);
@@ -59,8 +61,32 @@ public class AticleManageService implements IAticleManageService {
      * @param params
      */
     @Override
-    public boolean editAticleContent(Map<String, Object> params) {
-        return false;
+    public boolean editAticleContent(Map<String, String[]> params) {
+        Map<String,Object> queryParams=new HashMap<>();
+        queryParams.put("aticleId", params.get("aticleId")[0]);
+        AticleEntity aticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, queryParams);
+        if (params.containsKey("aticleCategory")) {
+            aticleEntity.setAticleCategory(params.get("aticleCategory")[0].toString());
+        }
+        if (params.containsKey("aticleContent")) {
+            aticleEntity.setAticleContent(params.get("aticleContent")[0].toString().getBytes());
+        }
+        if (params.containsKey("aticleCoverImg")) {
+            aticleEntity.setAticleCoverImg(params.get("aticleCoverImg")[0].toString());
+        }
+        if (params.containsKey("aticleDigest")) {
+            aticleEntity.setAticleDigest(params.get("aticleDigest")[0].toString());
+        }
+        if (params.containsKey("aticleName")) {
+            aticleEntity.setAticleName(params.get("aticleName")[0].toString());
+        }
+        if (params.containsKey("aticleReadNum")) {
+            aticleEntity.setAticleReadNum(aticleEntity.getAticleReadNum()+1);
+        }
+        if (params.containsKey("keyWords")) {
+            aticleEntity.setKeyWords(params.get("keyWords")[0].toString());
+        }
+        return this.aticleManageDao.updateObjInfo(aticleEntity);
     }
 
     /**
@@ -168,7 +194,8 @@ public class AticleManageService implements IAticleManageService {
             aticleManageDao.updateObjInfo(aticleEntity);
             aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
             aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
-            aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
+            String aticleContent = new String(aticleEntity.getAticleContent(), Charset.forName("UTF-8"));
+            aticleDetailInfo.setAticleContent(aticleContent);
             aticleDetailInfo.setAticleCreateDate(aticleEntity.getAticleCrTime());
             aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
             aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
@@ -192,7 +219,6 @@ public class AticleManageService implements IAticleManageService {
     }
 
     /**
-     *
      * @return
      */
     @Override

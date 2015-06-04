@@ -22,6 +22,7 @@ $(function () {
             type: 'post',
             dataType: 'json',
             success: function (data) {
+                console.log(data)
                 if (data.isSuccess) {
                     var masterInfo = data.retsultData[0];
                     $("#masterHeader").attr("src", masterInfo.master_header);
@@ -29,6 +30,7 @@ $(function () {
                     $("#masterCarrer").html("职业：" + masterInfo.master_carrer);
                     $("#masterIntroduce").html("个人介绍：" + masterInfo.master_introduce);
                     $("#masterWords").html("座右铭：" + masterInfo.master_words);
+                    $("#masterHeader").attr("src","/HomeCenterService/upload/header/header.jpg");
                 }
             }
         });
@@ -62,7 +64,7 @@ $(function () {
         })
     }
 
-//初始化用户关注
+   //初始化用户关注
     function initBlogUserFocus() {
 
     }
@@ -101,7 +103,7 @@ $(function () {
                         }
                         var currentAticle = data.pageContent.resultList[i];
                         showContent += "<div class=\"wz\"> <h3 data-aticleId=\"" + currentAticle.aticleId + "\">" + currentAticle.aticleTitle + "</h3>"
-                        + "<p class=\"dateview\"><span>" + currentAticle.aticleCreateDate.substring(0, 10) + "</span><span>作者：" + currentAticle.aticleAuthor + "</span><span>分类：[<a href=\"#\">" + currentAticle.aticleCategory + "</a>]</span></p>"
+                        + "<p class=\"dateview\"><span>" + currentAticle.aticleCreateDate.substring(0, 10) + "</span><span>作者：" + currentAticle.aticleAuthor + "</span><span><span>阅读：" + currentAticle.aticleBrowserNum + "</span><span>分类：[<a href=\"#\">" + currentAticle.aticleCategory + "</a>]</span></p>"
                         + "<figure><img src=\"" + currentAticle.aticleCoverImg + "\"></figure>"
                         + "<ul>"
                         + "<p>" + currentAticle.aticleDigest + "</p>"
@@ -173,11 +175,8 @@ $(function () {
                         + "</ul>"
                         + "<div class=\"clear\"></div>"
                         + "</div>";
-
-
                     }
                 }
-
                 $("#aticleContentContainer").html(showContent);
             }
         });
@@ -186,6 +185,10 @@ $(function () {
 });
 //阅读全文
 function readAticle(prevAticleId, nextAticleId, idVal) {
-
+    //更新当前的文章内容
+    var params=new Object();
+    params.aticleId=idVal;
+    params.aticleReadNum=1;
+    //跳转到文章的详情
     window.open("getAticleDeatil.html?prevId=" + prevAticleId + "&id=" + idVal + "&nextId=" + nextAticleId);
 }

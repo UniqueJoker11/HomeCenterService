@@ -2,21 +2,21 @@
 <!--定义一个PoJo类的配置内容-->
 <pojos>
     <!--权限表-->
-    <pojo tableName="right" className="RightEntity" hasGenerate="false">
+    <pojo tableName="right" className="RightEntity" hasGenerate="true">
         <field name="right_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="权限编号"/>
         <field name="right_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限名称"/>
         <field name="right_column_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="权限分栏号"/>
         <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限编号"/>
     </pojo>
     <!--权限分栏表-->
-    <pojo tableName="rightColumn" className="RightColumnEntity" hasGenerate="false">
+    <pojo tableName="rightColumn" className="RightColumnEntity" hasGenerate="true">
         <field name="right_column_id" primaryKey="true" dataType="int" dataLength="11"
                fieldDesc="权限分栏编号"/>
         <field name="right_column_name" primaryKey="false" dataType="String" dataLength="100"
                fieldDesc="right_column_name"/>
     </pojo>
     <!--权限映射表-->
-    <pojo tableName="rightRole" className="RightRoleEntity" hasGenerate="false">
+    <pojo tableName="rightRole" className="RightRoleEntity" hasGenerate="true">
         <field name="right_role_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="权限映射id"/>
         <field name="right" primaryKey="false" dataType="String" dataLength="100" fieldDesc="权限名称"/>
         <field name="groupid" primaryKey="false" dataType="int" dataLength="11"
@@ -25,7 +25,7 @@
         <field name="mastername" primaryKey="false" dataType="String" dataLength="50" fieldDesc="创建者名称"/>
         <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="创建者时间"/>
     </pojo>
-    <pojo tableName="sysrole" className="SysRoleEntity" hasGenerate="false">
+    <pojo tableName="sysrole" className="SysRoleEntity" hasGenerate="true">
         <field name="role_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="系统角色编号"/>
         <field name="role_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="角色名称"/>
         <field name="role_info" primaryKey="false" dataType="String" dataLength="100" fieldDesc="角色信息"/>
@@ -33,7 +33,7 @@
         <field name="user_name" primaryKey="false" dataType="String" dataLength="255" fieldDesc="创建者名称"/>
         <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="角色创建时间"/>
     </pojo>
-    <pojo tableName="userright" className="UserRightEntity" hasGenerate="false">
+    <pojo tableName="userright" className="UserRightEntity" hasGenerate="true">
         <field name="user_right_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户编号Id"/>
         <field name="user_id" primaryKey="false" dataType="int" dataLength="11" fieldDesc="用户编号Id"/>
         <field name="username" primaryKey="false" dataLength="100" dataType="String" fieldDesc="用户名称"/>
@@ -41,12 +41,12 @@
         <field name="user_name2" primaryKey="false" dataType="String" dataLength="50" fieldDesc="修改者名称"/>
         <field name="createdate" primaryKey="false" dataType="String" dataLength="25" fieldDesc="修改时间"/>
     </pojo>
-    <pojo tableName="access" className="AccessEntity" hasGenerate="false">
+    <pojo tableName="access" className="AccessEntity" hasGenerate="true">
         <field name="access_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户访问Id"/>
         <field name="access_date" primaryKey="false" dataType="String" dataLength="30" fieldDesc="访问日期"/>
         <field name="access_time" primaryKey="false" dataType="int" dataLength="30" fieldDesc="访问次数"/>
     </pojo>
-    <pojo tableName="comment" className="CommentEntity" hasGenerate="false">
+    <pojo tableName="comment" className="CommentEntity" hasGenerate="true">
         <field name="comment_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="用户评论Id"/>
         <field name="comment_content" primaryKey="false" dataType="String" dataLength="1000" fieldDesc="用户评论内容"/>
         <field name="comment_author" primaryKey="false" dataType="String" dataLength="100" fieldDesc="评论作者"/>
@@ -54,18 +54,18 @@
         <field name="comment_date" primaryKey="false" dataType="String" dataLength="25" fieldDesc="评论日期"/>
 
     </pojo>
-    <pojo tableName="browser" className="BrowserEntity" hasGenerate="false">
+    <pojo tableName="browser" className="BrowserEntity" hasGenerate="true">
         <field name="browser_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="浏览id"/>
         <field name="browser_num" primaryKey="false" dataType="int" dataLength="20" fieldDesc="浏览文章数量"/>
         <field name="browser_aticleId" primaryKey="false" dataType="int" dataLength="20" fieldDesc="浏览文章id"/>
     </pojo>
-    <pojo tableName="banner" className="BannerEntity" hasGenerate="false">
+    <pojo tableName="banner" className="BannerEntity" hasGenerate="true">
         <field name="banner_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="banner_id"/>
         <field name="banner_index" primaryKey="false" dataType="int" dataLength="11" fieldDesc="图片序号"/>
         <field name="banner_img" primaryKey="false" dataType="String" dataLength="100" fieldDesc="图片地址"/>
         <field name="banner_modify_time" primaryKey="false" dataType="String" dataLength="30" fieldDesc="banner改变时间"/>
     </pojo>
-    <pojo tableName="master" className="MasterEntity" hasGenerate="false">
+    <pojo tableName="master" className="MasterEntity" hasGenerate="true">
         <field name="master_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="master_id"/>
         <field name="master_name" primaryKey="false" dataType="String" dataLength="20" fieldDesc="博主姓名"/>
         <field name="master_header" primaryKey="false" dataType="String" dataLength="200" fieldDesc="博主头像"/>
@@ -73,10 +73,22 @@
         <field name="master_words" primaryKey="false" dataType="String" dataLength="300" fieldDesc="博主座右铭"/>
         <field name="master_carrer" primaryKey="false" dataType="String" dataLength="200" fieldDesc="博主职业"/>
     </pojo>
-    <pojo tableName="whisper" className="WhisperEntity" hasGenerate="false">
+    <pojo tableName="whisper" className="WhisperEntity" hasGenerate="true">
         <field name="whisper_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="whisper_id"/>
         <field name="whisper_content" primaryKey="false" dataType="String" dataLength="1000" fieldDesc="悄悄话"/>
         <field name="create_time" primaryKey="false" dataType="String" dataLength="25" fieldDesc="创建时间"/>
         <field name="create_user" primaryKey="false" dataType="String" dataLength="30" fieldDesc="创建人"/>
+    </pojo>
+    <pojo tableName="music" className="MusicEntity" hasGenerate="false">
+        <field name="music_id" primaryKey="true" dataType="int" dataLength="11" fieldDesc="whisper_id"/>
+        <field name="music_name" primaryKey="false" dataType="String" dataLength="100" fieldDesc="歌曲名"/>
+        <field name="music_author" primaryKey="false" dataType="String" dataLength="30" fieldDesc="演唱者"/>
+        <field name="music_cover" primaryKey="false" dataType="String" dataLength="50" fieldDesc="歌曲封面"/>
+        <field name="music_play_num" primaryKey="false" dataType="int" dataLength="11" fieldDesc="播放次数"/>
+        <field name="music_link" primaryKey="false" dataType="String" dataLength="100" fieldDesc="音乐播放链接"/>
+        <field name="music_category" primaryKey="false" dataType="String" dataLength="50" fieldDesc="音乐分类"/>
+        <field name="music_describe" primaryKey="false" dataType="String" dataLength="250" fieldDesc="音乐描述"/>
+        <field name="music_time" primaryKey="false" dataType="String" dataLength="25" fieldDesc="歌曲创建时间"/>
+        <field name="create_user" primaryKey="false" dataType="String" dataLength="30" fieldDesc="歌曲创建人"/>
     </pojo>
 </pojos>

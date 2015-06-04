@@ -70,15 +70,15 @@
         //,customDomain:false
 
         //常用配置项目
-        //,isShow : true    //默认显示编辑器
+        ,isShow : true    //默认显示编辑器
 
-        //,textarea:'editorValue' // 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值
+        ,textarea:'aticleContent' // 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值
 
         //,initialContent:'欢迎使用ueditor!'    //初始化编辑器的内容,也可以通过textarea/script给值，看官网例子
 
         //,autoClearinitialContent:true //是否自动清除编辑器初始内容，注意：如果focus属性设置为true,这个也为真，那么编辑器一上来就会触发导致初始化的内容看不到了
 
-        //,focus:false //初始化时，是否让编辑器获得焦点true或false
+        ,focus:false //初始化时，是否让编辑器获得焦点true或false
 
         //如果自定义，最好给p标签如下的行高，要不输入中文时，会有跳动感
         //,initialStyle:'p{line-height:1em}'//编辑器层级的基数,可以用来改变字体等
@@ -113,34 +113,34 @@
 
         //,pasteplain:false  //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
         //纯文本粘贴模式下的过滤规则
-        //'filterTxtRules' : function(){
-        //    function transP(node){
-        //        node.tagName = 'p';
-        //        node.setStyle();
-        //    }
-        //    return {
-        //        //直接删除及其字节点内容
-        //        '-' : 'script style object iframe embed input select',
-        //        'p': {$:{}},
-        //        'br':{$:{}},
-        //        'div':{'$':{}},
-        //        'li':{'$':{}},
-        //        'caption':transP,
-        //        'th':transP,
-        //        'tr':transP,
-        //        'h1':transP,'h2':transP,'h3':transP,'h4':transP,'h5':transP,'h6':transP,
-        //        'td':function(node){
-        //            //没有内容的td直接删掉
-        //            var txt = !!node.innerText();
-        //            if(txt){
-        //                node.parentNode.insertAfter(UE.uNode.createText(' &nbsp; &nbsp;'),node);
-        //            }
-        //            node.parentNode.removeChild(node,node.innerText())
-        //        }
-        //    }
-        //}()
+        ,'filterTxtRules' : function(){
+            function transP(node){
+                node.tagName = 'p';
+                node.setStyle();
+            }
+            return {
+                //直接删除及其字节点内容
+                '-' : 'script style object iframe embed input select',
+                'p': {$:{}},
+                'br':{$:{}},
+                'div':{'$':{}},
+                'li':{'$':{}},
+                'caption':transP,
+                'th':transP,
+                'tr':transP,
+                'h1':transP,'h2':transP,'h3':transP,'h4':transP,'h5':transP,'h6':transP,
+               'td':function(node){
+                    //没有内容的td直接删掉
+                    var txt = !!node.innerText();
+                   if(txt){
+                        node.parentNode.insertAfter(UE.uNode.createText(' &nbsp; &nbsp;'),node);
+                    }
+                    node.parentNode.removeChild(node,node.innerText())
+                }
+            }
+        }()
 
-        //,allHtmlEnabled:false //提交到后台的数据是否包含整个html字符串
+        ,allHtmlEnabled:false //提交到后台的数据是否包含整个html字符串
 
         //insertorderedlist
         //有序列表的下拉配置,值留空时支持多语言自动识别，若配置值，则以此值为准
@@ -162,38 +162,38 @@
 
         //insertunorderedlist
         //无序列表的下拉配置，值留空时支持多语言自动识别，若配置值，则以此值为准
-        //,insertunorderedlist : { //自定的样式
-        //    'dash' :'— 破折号', //-破折号
-        //    'dot':' 。 小圆圈', //系统自带
-        //    'circle' : '',  // '○ 小圆圈'
-        //    'disc' : '',    // '● 小圆点'
-        //    'square' : ''   //'■ 小方块'
-        //}
-        //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
-        //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
-        //,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
+        ,insertunorderedlist : { //自定的样式
+            'dash' :'— 破折号', //-破折号
+            'dot':' 。 小圆圈', //系统自带
+            'circle' : '',  // '○ 小圆圈'
+            'disc' : '',    // '● 小圆点'
+            'square' : ''   //'■ 小方块
+        }
+        ,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
+        ,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
+        ,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
 
-        //,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签
+        ,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签
 
         //fontfamily
         //字体设置 label留空支持多语言自动切换，若配置，则以配置值为准
-        //,'fontfamily':[
-        //    { label:'',name:'songti',val:'宋体,SimSun'},
-        //    { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
-        //    { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
-        //    { label:'',name:'heiti',val:'黑体, SimHei'},
-        //    { label:'',name:'lishu',val:'隶书, SimLi'},
-        //    { label:'',name:'andaleMono',val:'andale mono'},
-        //    { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
-        //    { label:'',name:'arialBlack',val:'arial black,avant garde'},
-        //    { label:'',name:'comicSansMs',val:'comic sans ms'},
-        //    { label:'',name:'impact',val:'impact,chicago'},
-        //    { label:'',name:'timesNewRoman',val:'times new roman'}
-        //]
+        ,'fontfamily':[
+            { label:'',name:'songti',val:'宋体,SimSun'},
+            { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
+            { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
+            { label:'',name:'heiti',val:'黑体, SimHei'},
+            { label:'',name:'lishu',val:'隶书, SimLi'},
+            { label:'',name:'andaleMono',val:'andale mono'},
+            { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
+            { label:'',name:'arialBlack',val:'arial black,avant garde'},
+            { label:'',name:'comicSansMs',val:'comic sans ms'},
+            { label:'',name:'impact',val:'impact,chicago'},
+            { label:'',name:'timesNewRoman',val:'times new roman'}
+        ]
 
         //fontsize
         //字号
-        //,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
+        ,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
 
         //paragraph
         //段落格式 值留空时支持多语言自动识别，若配置，则以配置值为准
@@ -230,27 +230,27 @@
         //打开右键菜单功能
         //,enableContextMenu: true
         //右键菜单的内容，可以参考plugins/contextmenu.js里边的默认菜单的例子，label留空支持国际化，否则以此配置为准
-        //,contextMenu:[
-        //    {
-        //        label:'',       //显示的名称
-        //        cmdName:'selectall',//执行的command命令，当点击这个右键菜单时
-        //        //exec可选，有了exec就会在点击时执行这个function，优先级高于cmdName
-        //        exec:function () {
-        //            //this是当前编辑器的实例
-        //            //this.ui._dialogs['inserttableDialog'].open();
-        //        }
-        //    }
-        //]
+        ,contextMenu:[
+            {
+                label:'',       //显示的名称
+               cmdName:'selectall',//执行的command命令，当点击这个右键菜单时
+                //exec可选，有了exec就会在点击时执行这个function，优先级高于cmdName
+                exec:function () {
+                    //this是当前编辑器的实例
+                    //this.ui._dialogs['inserttableDialog'].open();
+                }
+            }
+        ]
 
         //快捷菜单
-        //,shortcutMenu:["fontfamily", "fontsize", "bold", "italic", "underline", "forecolor", "backcolor", "insertorderedlist", "insertunorderedlist"]
+        ,shortcutMenu:["fontfamily", "fontsize", "bold", "italic", "underline", "forecolor", "backcolor", "insertorderedlist", "insertunorderedlist"]
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : true
 
         //wordCount
-        //,wordCount:true          //是否开启字数统计
+        ,wordCount:true          //是否开启字数统计
         //,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
@@ -259,8 +259,8 @@
 
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位
-        //,tabSize:4
-        //,tabNode:'&nbsp;'
+        ,tabSize:4
+        ,tabNode:'&nbsp;'
 
         //removeFormat
         //清除格式时可以删除的标签和属性
@@ -299,23 +299,23 @@
 
         //autotypeset
         //自动排版参数
-        //,autotypeset: {
-        //    mergeEmptyline: true,           //合并空行
-        //    removeClass: true,              //去掉冗余的class
-        //    removeEmptyline: false,         //去掉空行
-        //    textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
-        //    imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
-        //    pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
-        //    clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
-        //    clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
-        //    removeEmptyNode: false,         // 去掉空节点
-        //    //可以去掉的标签
-        //    removeTagNames: {标签名字:1},
-        //    indent: false,                  // 行首缩进
-        //    indentValue : '2em',            //行首缩进的大小
-        //    bdc2sb: false,
-        //    tobdc: false
-        //}
+        ,autotypeset: {
+            mergeEmptyline: true,           //合并空行
+            removeClass: true,              //去掉冗余的class
+            removeEmptyline: false,         //去掉空行
+            textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+            imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+            pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
+            clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+            clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
+            removeEmptyNode: false,         // 去掉空节点
+            //可以去掉的标签
+            removeTagNames: {标签名字:1},
+            indent: false,                  // 行首缩进
+            indentValue : '2em',            //行首缩进的大小
+            bdc2sb: false,
+            tobdc: false
+        }
 
         //tableDragable
         //表格是否可以拖拽

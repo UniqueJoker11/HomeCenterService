@@ -14,7 +14,7 @@ public class AticleEntity {
     private int aticleId;
     private String aticleName;
     private String aticleDigest;
-    private String aticleContent;
+    private byte[] aticleContent;
     private String aticleReadNum;
     private String aticleCrTime;
     private String aticleCrUser;
@@ -54,11 +54,11 @@ public class AticleEntity {
         this.aticleName = aticleName;
     }
 
-    public String getAticleContent() {
+    public byte[] getAticleContent() {
         return aticleContent;
     }
 
-    public void setAticleContent(String aticleContent) {
+    public void setAticleContent(byte[] aticleContent) {
         this.aticleContent = aticleContent;
     }
 

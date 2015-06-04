@@ -52,22 +52,27 @@ public class GeneratePojoClass {
         List<Element> pojoEles = rootElement.elements("pojo");
         List<PojoVo> pojoList = new ArrayList<PojoVo>();
         for (Element currentEle : pojoEles) {
-            PojoVo pojoVo = new PojoVo();
-            pojoVo.setTableName(currentEle.attributeValue("tableName"));
-            pojoVo.setClassName(currentEle.attributeValue("className"));
-            List<Element> fieldsList = currentEle.elements("field");
-            List<PojoFieldVo> fieldVosList = new ArrayList<PojoFieldVo>();
-            for (Element currentFieldEle : fieldsList) {
-                PojoFieldVo fieldVo = new PojoFieldVo();
-                fieldVo.setFiledName(currentFieldEle.attributeValue("name"));
-                fieldVo.setPrimaryKey(Boolean.valueOf(currentFieldEle.attributeValue("primaryKey")));
-                fieldVo.setDataLength(Integer.valueOf(currentFieldEle.attributeValue("dataLength")));
-                fieldVo.setDataType(currentFieldEle.attributeValue("dataType"));
-                fieldVo.setFieldDesc(currentFieldEle.attributeValue("fieldDesc"));
-                fieldVosList.add(fieldVo);
+            if(!Boolean.valueOf(currentEle.attributeValue("hasGenerate"))){
+                PojoVo pojoVo = new PojoVo();
+                pojoVo.setTableName(currentEle.attributeValue("tableName"));
+                pojoVo.setClassName(currentEle.attributeValue("className"));
+                List<Element> fieldsList = currentEle.elements("field");
+                List<PojoFieldVo> fieldVosList = new ArrayList<PojoFieldVo>();
+                for (Element currentFieldEle : fieldsList) {
+                    PojoFieldVo fieldVo = new PojoFieldVo();
+                    fieldVo.setFiledName(currentFieldEle.attributeValue("name"));
+                    fieldVo.setPrimaryKey(Boolean.valueOf(currentFieldEle.attributeValue("primaryKey")));
+                    fieldVo.setDataLength(Integer.valueOf(currentFieldEle.attributeValue("dataLength")));
+                    fieldVo.setDataType(currentFieldEle.attributeValue("dataType"));
+                    fieldVo.setFieldDesc(currentFieldEle.attributeValue("fieldDesc"));
+                    fieldVosList.add(fieldVo);
+                }
+                pojoVo.setFieldVoList(fieldVosList);
+                pojoList.add(pojoVo);
+            }else{
+                continue;
             }
-            pojoVo.setFieldVoList(fieldVosList);
-            pojoList.add(pojoVo);
+
         }
         generateClassFile(pojoList);
 
@@ -88,7 +93,7 @@ public class GeneratePojoClass {
             template.binding("tableName", pojoVo.getTableName());
             template.binding("fieldList", pojoVo.getFieldVoList());
             //输出文件
-            FileSystemResource pojoFileResource = new FileSystemResource("D:\\WebstormProject\\HomeCenterService\\src\\colin\\app\\core\\pojo");
+            FileSystemResource pojoFileResource = new FileSystemResource("D:\\Dev_Intellij_Program\\HomeCenterService\\src\\colin\\app\\core\\pojo");
             File entityFile = new File(pojoFileResource.getFile().getPath() + File.separator + pojoVo.getClassName() + ".java");
             if (!entityFile.exists()) {
                 entityFile.createNewFile();

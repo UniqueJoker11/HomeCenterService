@@ -58,28 +58,30 @@ public class AticleManageAction {
                 String aticleContent = "";
                 try {
                     aticleContent = URLDecoder.decode(request.getParameter("aticleContent"), "UTF-8");
+                    System.out.println(aticleContent);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
                 //文章分类
-                String aticleCatagory=request.getParameter("aticleCategory");
+                String aticleCatagory = request.getParameter("aticleCategory");
                 //文章封面图
-                String aticleCoverImg=request.getParameter("aticleCoverImg");
+                String aticleCoverImg = request.getParameter("aticleCoverImg");
                 //文章关键字
-                String keyWords=request.getParameter("keyWords");
+                String keyWords = request.getParameter("keyWords");
                 //文章作者
-                String aticleAuthor=request.getParameter("aticleAuthor");
+                String aticleAuthor = request.getParameter("aticleAuthor");
                 //保存内容
                 Map<String, Object> paramsMap = new HashMap<String, Object>();
 
                 paramsMap.put("aticleTitle", aticleTitle);
                 paramsMap.put("aticleDigest", aticleDigest);
                 paramsMap.put("aticleContent", aticleContent);
+
                 paramsMap.put("loginName", session.getAttribute("loginName"));
-                paramsMap.put("aticleCatagory",aticleCatagory);
-                paramsMap.put("aticleCoverImg",aticleCoverImg);
-                paramsMap.put("keyWords",keyWords);
-                paramsMap.put("aticleCrUser",aticleAuthor);
+                paramsMap.put("aticleCatagory", aticleCatagory);
+                paramsMap.put("aticleCoverImg", aticleCoverImg);
+                paramsMap.put("keyWords", keyWords);
+                paramsMap.put("aticleCrUser", aticleAuthor);
                 boolean result = aticleManageService.saveAticleContent(paramsMap);
                 returnContext.setIsSuccess(result);
                 return returnContext;
@@ -127,7 +129,7 @@ public class AticleManageAction {
             StringBuilder imgName = new StringBuilder(DateUtils.getCurrentDateInfo());
             imgName.append(aticleCoverImg.getOriginalFilename().substring(aticleCoverImg.getOriginalFilename().lastIndexOf(".")));
             try {
-                File uploadImgFile = initImgSaveFile(request.getServletContext(),imgName.toString());
+                File uploadImgFile = initImgSaveFile(request.getServletContext(), imgName.toString());
                 aticleCoverImg.transferTo(uploadImgFile);
                 returnContext.setIsSuccess(true);
                 returnContext.setRetsultMsg(request.getContextPath() + "/upload/images/" + imgName.toString());
@@ -157,8 +159,8 @@ public class AticleManageAction {
         return returnContext;
     }
 
-    private File initImgSaveFile(ServletContext servletContext,String fileName) throws IOException {
-        ServletContextResource fileSystemResource = new ServletContextResource(servletContext,"upload\\images"+File.separator + fileName);
+    private File initImgSaveFile(ServletContext servletContext, String fileName) throws IOException {
+        ServletContextResource fileSystemResource = new ServletContextResource(servletContext, "upload\\images" + File.separator + fileName);
         System.out.println(fileSystemResource.getFile().getPath());
         if (!fileSystemResource.exists()) {
             fileSystemResource.getFile().createNewFile();
@@ -168,39 +170,57 @@ public class AticleManageAction {
 
     /**
      * 按照点击量排序
+     *
      * @param request
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/getAticleClickRank.action",method = RequestMethod.POST)
-    public Object getAticleClickRank(HttpServletRequest request){
-        ReturnContext returnContext=new ReturnContext();
-        List<AticleEntity> resultList=aticleManageService.getAticleClickRank();
-        if(resultList==null||resultList.isEmpty()){
+    @RequestMapping(value = "/getAticleClickRank.action", method = RequestMethod.POST)
+    public Object getAticleClickRank(HttpServletRequest request) {
+        ReturnContext returnContext = new ReturnContext();
+        List<AticleEntity> resultList = aticleManageService.getAticleClickRank();
+        if (resultList == null || resultList.isEmpty()) {
             returnContext.setIsSuccess(false);
-        }else{
+        } else {
             returnContext.setIsSuccess(true);
             returnContext.setRetsultData(resultList);
         }
-        return  returnContext;
+        return returnContext;
     }
 
     /**
      * 按照发布顺序排序
+     *
      * @param request
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/getAticlePublishRank.action",method = RequestMethod.POST)
-    public Object getAticlePublishRank(HttpServletRequest request){
-        ReturnContext returnContext=new ReturnContext();
-        List<AticleEntity> resultList=aticleManageService.getAticlePublishTimeRank();
-        if(resultList==null||resultList.isEmpty()){
+    @RequestMapping(value = "/getAticlePublishRank.action", method = RequestMethod.POST)
+    public Object getAticlePublishRank(HttpServletRequest request) {
+        ReturnContext returnContext = new ReturnContext();
+        List<AticleEntity> resultList = aticleManageService.getAticlePublishTimeRank();
+        if (resultList == null || resultList.isEmpty()) {
             returnContext.setIsSuccess(false);
-        }else{
+        } else {
             returnContext.setIsSuccess(true);
             returnContext.setRetsultData(resultList);
         }
-        return  returnContext;
+        return returnContext;
+    }
+
+    /**
+     * 更新文章的具体内容信息
+     * 备注：获取更新选项，
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/upadteAticleInfo.action",method = RequestMethod.POST)
+    public Object updateAticleContent(HttpServletRequest request) {
+        Map<String, String[]> parametersMap = request.getParameterMap();
+        boolean result=this.aticleManageService.editAticleContent(parametersMap);
+        ReturnContext returnContext=new ReturnContext();
+        return returnContext;
     }
 }
