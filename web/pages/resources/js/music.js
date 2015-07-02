@@ -39,3 +39,6 @@ player.on('playing pause', function() {
 }).on('ended', reset).on('timeupdate', function() {
     $time.text(player.curPos(true) + ' / ' + player.duration(true));
 });
+$(function(){
+    $("#headerNav").children("li:eq(3)").addClass("link_active");
+});

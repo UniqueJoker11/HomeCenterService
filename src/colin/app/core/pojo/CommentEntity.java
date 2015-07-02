@@ -13,9 +13,8 @@ public class CommentEntity{
  * 用户评论Id
 */
 @Id
-@GeneratedValue(strategy= GenerationType.IDENTITY)
 @Column(name ="comment_id")
-private int comment_id;
+private String comment_id;
 
 /*
  * 用户评论内容
@@ -33,7 +32,7 @@ private String comment_author;
  * 评论作者id
 */
 @Column(name ="comment_aticleId")
-private int comment_aticleId;
+private String comment_aticleId;
 
 /*
  * 评论日期
@@ -42,10 +41,10 @@ private int comment_aticleId;
 private String comment_date;
 
 
-public void setComment_id(int comment_id){
+public void setComment_id(String comment_id){
 this.comment_id=comment_id;
 }
-public int getComment_id(){
+public String getComment_id(){
 return this.comment_id;
 }
 
@@ -63,10 +62,10 @@ public String getComment_author(){
 return this.comment_author;
 }
 
-public void setComment_aticleId(int comment_aticleId){
+public void setComment_aticleId(String comment_aticleId){
 this.comment_aticleId=comment_aticleId;
 }
-public int getComment_aticleId(){
+public String getComment_aticleId(){
 return this.comment_aticleId;
 }
 

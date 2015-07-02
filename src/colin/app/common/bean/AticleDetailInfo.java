@@ -4,9 +4,9 @@ package colin.app.common.bean;
  * Created by ASUS on 2015/4/7.
  */
 public class AticleDetailInfo {
-    private int aticleId;
-    private int preAticleId;
-    private int nextAticleId;
+    private String aticleId;
+    private String preAticleId;
+    private String nextAticleId;
     private String aticleTitle;
     private String aticleAuthor;
     private String aticleCreateDate;
@@ -80,27 +80,27 @@ public class AticleDetailInfo {
         this.nextTitle = nextTitle;
     }
 
-    public int getAticleId() {
+    public String getAticleId() {
         return aticleId;
     }
 
-    public void setAticleId(int aticleId) {
+    public void setAticleId(String aticleId) {
         this.aticleId = aticleId;
     }
 
-    public int getPreAticleId() {
+    public String getPreAticleId() {
         return preAticleId;
     }
 
-    public void setPreAticleId(int preAticleId) {
+    public void setPreAticleId(String preAticleId) {
         this.preAticleId = preAticleId;
     }
 
-    public int getNextAticleId() {
+    public String getNextAticleId() {
         return nextAticleId;
     }
 
-    public void setNextAticleId(int nextAticleId) {
+    public void setNextAticleId(String nextAticleId) {
         this.nextAticleId = nextAticleId;
     }
 }

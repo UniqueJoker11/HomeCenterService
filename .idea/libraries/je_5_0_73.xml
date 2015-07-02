@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="je-5.0.73">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/je-5.0.73.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsoup-1.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/juniversalchardet-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/WebCollector-2.09.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

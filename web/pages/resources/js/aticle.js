@@ -2,6 +2,7 @@
  * Created by joker on 14-10-23.
  */
 $(function () {
+    $("#headerNav").children("li:eq(1)").addClass("link_active");
     //tab导航页切换的事件绑定
     $("[data-uk-tab]").on("change.uk.tab", function(event,item){
         var tabTitle=$(item).find("a").text();
@@ -65,11 +66,11 @@ $(function () {
                         var currentAticle = data.pageContent.resultList[i];
                         showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\" onclick=\"readAticle("+prevAticleId+","+nextAticleId+","+currentAticle.aticleId+")\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
                         + "<div class=\"uk-button-group\">"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">删除</button>"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">评论</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle('" + currentAticle.aticleId + "')\">浏览</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle('" + currentAticle.aticleId + ",'aticleId" + i + "\')\">更新</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle('" + currentAticle.aticleId + ",'aticleId" + i + "\')\">删除</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle('" + currentAticle.aticleId + "')\">置顶</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle('" + currentAticle.aticleId + ",'aticleId" + i + "\')\">评论</button>"
                         + "</div>"
                         + "</td>";
                     }
@@ -355,7 +356,30 @@ function showAticleContent() {
 }
 //浏览文章详情
 function browserAticle(idVal) {
-    window.open("getAticleDeatil.html?prevId=" + prevAticleId + "&id=" + idVal + "&nextId=" + nextAticleId);
+    //发送ajax请求获取文章的具体信息
+    var params=new Object();
+    params.aticleId=idVal;
+    $.post("fetchSingleAticleInfo.action",params,function(data)
+    {
+        if (data.success) {
+            //填充数据
+            $("#colin-browser-aticle-title").html(data.aticle.aticleName);
+            $("#colin-browser-aticle-publishtime").html(data.aticle.aticleCrTime);
+            $("#colin-browser-aticle-author").html(data.aticle.aticleCrUser);
+            $("#colin-browser-aticle-readnum").html(data.aticle.aticleReadNum);
+            $("#colin-browser-aticle-content").html(data.aticle.aticleContent);
+            //弹出浏览对话框
+            var browserDailog = $.UIkit.modal("#colin-browser-aticle-dialog", {center: true});
+            browserDailog.show();
+        }
+    });
+}
+/**
+ * 关闭浏览文章对话框
+ */
+function browserAticleConfirm(){
+    var browserDailog = $.UIkit.modal("#colin-browser-aticle-dialog", {center: true});
+    browserDailog.hide();
 }
 //编辑文章内容
 function updateAticle(idVal, currentObj) {
@@ -394,6 +418,12 @@ function deleteAticle(idVal, currentObj) {
         });
     }
 }
+/**
+ * 查看全文
+ * @param prevAticleId
+ * @param nextAticleId
+ * @param idVal
+ */
 function readAticle(prevAticleId, nextAticleId, idVal) {
     window.open("getAticleDeatil.html?prevId=" + prevAticleId + "&id=" + idVal + "&nextId=" + nextAticleId);
 }

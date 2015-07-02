@@ -27,7 +27,7 @@ private int browser_num;
  * 浏览文章id
 */
 @Column(name ="browser_aticleId")
-private int browser_aticleId;
+private String browser_aticleId;
 
 
 public void setBrowser_id(int browser_id){
@@ -44,10 +44,10 @@ public int getBrowser_num(){
 return this.browser_num;
 }
 
-public void setBrowser_aticleId(int browser_aticleId){
+public void setBrowser_aticleId(String browser_aticleId){
 this.browser_aticleId=browser_aticleId;
 }
-public int getBrowser_aticleId(){
+public String getBrowser_aticleId(){
 return this.browser_aticleId;
 }
 

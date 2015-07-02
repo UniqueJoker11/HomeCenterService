@@ -1,6 +1,7 @@
 package colin.app.core.pojo;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -12,6 +13,7 @@ public class VisitorEntity {
     /**
      * 用户Id
      */
+    @Id
     private String visitorId;
     /**
      * 用户注册姓名

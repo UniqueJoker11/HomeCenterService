@@ -88,6 +88,7 @@ public ReturnContext validateUserLoginInfo(@RequestParam String username,@Reques
     }
 
     /**
+     * 查询用户信息
      * hasParams 0没有参数，1有参数
      */
     @ResponseBody
@@ -107,6 +108,13 @@ public ReturnContext validateUserLoginInfo(@RequestParam String username,@Reques
         returnContext.setRetsultData(this.userManageService.queryUserInfo(paramsMap));
         return returnContext;
     }
+
+    /**
+     * 用户信息注册
+     * @param username
+     * @param userpw
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/registerUserInfo.action",method = RequestMethod.POST)
     public Object registerUsername(@RequestParam String username,@RequestParam String userpw){

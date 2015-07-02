@@ -57,4 +57,11 @@ public interface IAticleManageService {
      * @return
      */
     public List<AticleEntity> getAticlePublishTimeRank();
+
+    /**
+     * 根绝ID获取文章具体信息
+     * @param aticleEntity
+     * @return
+     */
+    public AticleEntity fetchSingleAticleService(Map<String,Object> params);
 }

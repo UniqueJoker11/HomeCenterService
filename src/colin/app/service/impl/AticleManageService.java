@@ -17,10 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by joker on 14-10-12.
@@ -44,11 +41,12 @@ public class AticleManageService implements IAticleManageService {
     @Override
     public boolean saveAticleContent(Map<String, Object> params) {
         AticleEntity aticleEntity = new AticleEntity();
+        aticleEntity.setAticleId(UUID.randomUUID().toString());
         aticleEntity.setAticleName(params.get("aticleTitle").toString());
         aticleEntity.setAticleCrTime(DateUtils.getCurrentDate());
         aticleEntity.setAticleCrUser(params.get("aticleCrUser").toString());
         aticleEntity.setAticleDigest(params.get("aticleDigest").toString());
-        aticleEntity.setAticleContent(params.get("aticleContent").toString().getBytes());
+        aticleEntity.setAticleContent(params.get("aticleContent").toString());
         aticleEntity.setAticleCategory(params.get("aticleCatagory").toString());
         aticleEntity.setKeyWords(params.get("keyWords").toString());
         aticleEntity.setAticleCoverImg(params.get("aticleCoverImg").toString());
@@ -69,7 +67,7 @@ public class AticleManageService implements IAticleManageService {
             aticleEntity.setAticleCategory(params.get("aticleCategory")[0].toString());
         }
         if (params.containsKey("aticleContent")) {
-            aticleEntity.setAticleContent(params.get("aticleContent")[0].toString().getBytes());
+            aticleEntity.setAticleContent(params.get("aticleContent")[0].toString());
         }
         if (params.containsKey("aticleCoverImg")) {
             aticleEntity.setAticleCoverImg(params.get("aticleCoverImg")[0].toString());
@@ -123,7 +121,7 @@ public class AticleManageService implements IAticleManageService {
         Page<AticleBean> resultPage = new Page<AticleBean>();
         List<AticleBean> aticleBeanList = new ArrayList<AticleBean>();
         for (AticleEntity aticleEntity : aticleList) {
-            int aticleId = aticleEntity.getAticleId();
+            String aticleId = aticleEntity.getAticleId();
 
             AticleBean aticleBean = new AticleBean();
             aticleBean.setAticleId(aticleId);
@@ -164,6 +162,13 @@ public class AticleManageService implements IAticleManageService {
         return resultMap;
     }
 
+    /**
+     * 获取文章详细内容
+     * @param prevId
+     * @param id
+     * @param nextId
+     * @return
+     */
     @Override
     public AticleDetailInfo getAticleDetailInfo(String prevId, String id, String nextId) {
         AticleDetailInfo aticleDetailInfo = new AticleDetailInfo();
@@ -188,14 +193,13 @@ public class AticleManageService implements IAticleManageService {
         }
         if (!id.equals("")) {
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("aticleId", Integer.valueOf(id));
+            params.put("aticleId", id);
             AticleEntity aticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, params);
             aticleEntity.setAticleReadNum(String.valueOf(Integer.valueOf(aticleEntity.getAticleReadNum()) + 1));
             aticleManageDao.updateObjInfo(aticleEntity);
             aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
             aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
-            String aticleContent = new String(aticleEntity.getAticleContent(), Charset.forName("UTF-8"));
-            aticleDetailInfo.setAticleContent(aticleContent);
+            aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
             aticleDetailInfo.setAticleCreateDate(aticleEntity.getAticleCrTime());
             aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
             aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
@@ -212,6 +216,7 @@ public class AticleManageService implements IAticleManageService {
     }
 
     /**
+     * 获取文章排名
      * @return
      */
     public List<AticleEntity> getAticleClickRank() {
@@ -224,5 +229,16 @@ public class AticleManageService implements IAticleManageService {
     @Override
     public List<AticleEntity> getAticlePublishTimeRank() {
         return aticleManageDao.getOrderObjects(AticleEntity.class, null, "aticleCrTime", 0, 5);
+    }
+
+    /**
+     * 根绝ID获取文章具体信息
+     *
+     * @param aticleEntity
+     * @return
+     */
+    @Override
+    public AticleEntity fetchSingleAticleService(Map<String,Object> params) {
+        return this.aticleManageDao.selectUniqueObject(AticleEntity.class,params);
     }
 }

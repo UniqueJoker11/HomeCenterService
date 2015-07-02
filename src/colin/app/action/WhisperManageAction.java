@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Created by ASUS on 2015/4/23.
+ * 悄悄话JSON请求
  */
 @Controller
 public class WhisperManageAction {
@@ -25,6 +26,12 @@ public class WhisperManageAction {
     @Resource
     private IWhisperManageService whisperManageService;
 
+    /**
+     * 添加悄悄话
+     * @param whisperContent
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/addWhisperInfo.action", method = RequestMethod.POST)
     public Object addWhisperInfo(@RequestParam String whisperContent, HttpServletRequest request) {

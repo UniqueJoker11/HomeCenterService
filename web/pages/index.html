@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
-    <link rel="stylesheet" href="resources/css/uikit.min.css">
-    <link rel="stylesheet" href="resources/css/components/notify.min.css">
+    <link rel="stylesheet" href="resources/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/notify.almost-flat.min.css">
     <link rel="stylesheet" href="resources/css/components/dotnav.gradient.min.css">
-    <link rel="stylesheet" href="resources/css/components/slidenav.min.css">
-    <link rel="stylesheet" href="resources/css/components/slideshow.min.css">
-    <link rel="stylesheet" href="resources/css/components/progress.min.css">
-    <link rel="stylesheet" href="resources/css/components/upload.min.css">
-    <link rel="stylesheet" href="resources/css/components/placeholder.min.css">
-    <link rel="stylesheet" href="resources/css/components/form-file.min.css">
-    <link rel="stylesheet" href="resources/css/components/form-advanced.min.css">
+    <link rel="stylesheet" href="resources/css/components/progress.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/placeholder.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/form-file.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/form-advanced.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/slideshow.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/slidenav.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/tooltip.almost-flat.min.css">
+    <link rel="stylesheet" href="resources/css/components/upload.almost-flat.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
     <link rel="stylesheet" href="pages/resources/css/manage.css">
@@ -33,88 +34,20 @@
     <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
     <script type="text/javascript" src="resources/js/components/slideshow.min.js"></script>
     <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/tooltip.min.js"></script>
+    <script type="text/javascript" src="resources/js/components/upload.min.js"></script>
     <script type="text/javascript" src="pages/resources/js/common.js"></script>
-
     <script type="text/javascript" src="pages/resources/js/index.js"></script>
     <title>Orange管理后台</title>
 </head>
 <body>
-<div class="uk-grid">
-    <div class="uk-width-1-1">
-        <div class="topHeader">
-            <header>
-                <a href="#" class="header-brand">Orange</a>
-                <ul class="header-nav" id="headerNav">
-                    <li class="link_active"><a href="index.html">首页</a></li>
-                    <li><a href="aticle.html">文章</a></li>
-                    <li><a href="picture.html">图片</a></li>
-                    <li><a href="music.html">音乐</a></li>
-                    <li><a href="video.html">视频</a></li>
-                </ul>
-
-            </header>
-        </div>
-    </div>
-</div>
+<!--引入头部导航-->
+<%include("./common/header.html"){}%>
+<!--引入头部导航结束-->
 <div class="uk-grid colin-main-frame">
-    <div class="uk-width-1-6 colin-left-nav">
-        <img class="uk-border-circle colin-headerpic"
-             src="pages/resources/images/title.jpg" alt="头像">
-        <ul>
-            <li><i class="uk-icon-folder-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-envelope-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-eye"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-        </ul>
-        <button id="logoffBtn" onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
-        </button>
-        <table id="functionNav" class="colin-function-nav">
-            <tbody>
-            <tr>
-                <td>
-                    <i class="uk-icon-home"></i>
-
-                    <p>博客首页</p>
-                </td>
-                <td>
-                    <i class="uk-icon-bar-chart"></i>
-
-                    <p>统计信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-group"></i>
-
-                    <p>用户管理</p></td>
-                <td>
-                    <i class="uk-icon-user"></i>
-
-                    <p>博主信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-trash-o"></i>
-
-                    <p>回收站</p></td>
-                <td>
-                    <i class="uk-icon-wrench"></i>
-
-                    <p>系统管理</p></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <!--左侧导航内容引入-->
+    <%include("./common/left_nav.html"){}%>
+    <!--左侧导航内容引入结束-->
     <div class="uk-width-5-6 colin-right-model">
         <div class="uk-grid">
             <div class="uk-width-1-1 uk-panel uk-panel-header">
@@ -181,8 +114,10 @@
                     <li><img src="upload/images/image3.jpg" width="800" height="400" alt=""></li>
                     <li><img src="upload/images/image3.jpg" width="800" height="400" alt=""></li>
                 </ul>
-                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
-                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous"
+                   data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"
+                   style="color: rgba(255,255,255,0.4)"></a>
                 <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
                     <li data-uk-slideshow-item="0"><a href="#">Item 1</a></li>
                     <li data-uk-slideshow-item="1"><a href="#">Item 2</a></li>
@@ -192,7 +127,8 @@
                 </ul>
             </div>
             <div id="upload-drop" class="uk-placeholder uk-text-center">
-                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将图片拖拽至此 或 <a class="uk-form-file">选择图片（最多5个）<input id="upload-select" type="file"></a>.
+                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将图片拖拽至此 或 <a
+                    class="uk-form-file">选择图片（最多5个）<input id="upload-select" type="file"></a>.
             </div>
         </div>
         <div class="uk-width-1-1">
@@ -226,15 +162,24 @@
                     <caption>...</caption>
                     <thead>
                     <tr>
-                        <th>序号</th><th>博客标题</th><th>作者</th><th>关注人数</th>
+                        <th>序号</th>
+                        <th>博客标题</th>
+                        <th>作者</th>
+                        <th>关注人数</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
                     </tr>
                     <tr>
-                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
                     </tr>
                     </tbody>
                 </table>
@@ -247,15 +192,24 @@
                     <caption>...</caption>
                     <thead>
                     <tr>
-                        <th>序号</th><th>悄悄话内容</th><th>发布日期</th><th>操作</th>
+                        <th>序号</th>
+                        <th>悄悄话内容</th>
+                        <th>发布日期</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
                     </tr>
                     <tr>
-                        <td>...</td><td>...</td><td>...</td><td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
                     </tr>
                     </tbody>
                 </table>

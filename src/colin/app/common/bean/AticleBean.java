@@ -5,7 +5,7 @@ package colin.app.common.bean;
  * 后台显示文章的一览列表
  */
 public class AticleBean {
-    private int aticleId;
+    private String aticleId;
     private String aticleTitle;
     private String aticleAuthor;
     private int aticleCommentNum;
@@ -15,11 +15,11 @@ public class AticleBean {
     private String aticleCategory;
     private String aticleCoverImg;
 
-    public int getAticleId() {
+    public String getAticleId() {
         return aticleId;
     }
 
-    public void setAticleId(int aticleId) {
+    public void setAticleId(String aticleId) {
         this.aticleId = aticleId;
     }
 

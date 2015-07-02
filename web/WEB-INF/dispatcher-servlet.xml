@@ -22,6 +22,7 @@
     <bean name="/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"></bean>
     <bean name="/community/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" p:prefix="community/">
     </bean>
+    <bean name="/resources/editor/dialogs/*/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" p:prefix="resources/editor/dialogs/"></bean>
     <bean id="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init"/>
     <bean id="viewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver"  p:prefix="pages/" p:suffix=".html">
         <property name="contentType" value="text/html;charset=UTF-8"/>

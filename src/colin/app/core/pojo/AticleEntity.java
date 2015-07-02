@@ -1,6 +1,7 @@
 package colin.app.core.pojo;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * Created by joker on 14-9-26.
@@ -9,12 +10,10 @@ import javax.persistence.*;
 @Table(name = "aticle")
 public class AticleEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "aticleId")
-    private int aticleId;
+    private String aticleId;
     private String aticleName;
     private String aticleDigest;
-    private byte[] aticleContent;
+    private String aticleContent;
     private String aticleReadNum;
     private String aticleCrTime;
     private String aticleCrUser;
@@ -38,12 +37,16 @@ public class AticleEntity {
         this.aticleDigest = aticleDigest;
     }
 
-    public int getAticleId() {
+    public String getAticleId() {
         return aticleId;
     }
 
-    public void setAticleId(int aticleId) {
-        this.aticleId = aticleId;
+    public void setAticleId(String aticleId) {
+        if (aticleId == null) {
+            this.aticleId = UUID.randomUUID().toString();
+        } else {
+            this.aticleId = aticleId;
+        }
     }
 
     public String getAticleName() {
@@ -54,11 +57,11 @@ public class AticleEntity {
         this.aticleName = aticleName;
     }
 
-    public byte[] getAticleContent() {
+    public String getAticleContent() {
         return aticleContent;
     }
 
-    public void setAticleContent(byte[] aticleContent) {
+    public void setAticleContent(String aticleContent) {
         this.aticleContent = aticleContent;
     }
 

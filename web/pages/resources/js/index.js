@@ -2,6 +2,8 @@
  * Created by joker on 14-9-19.
  */
 $(function(){
+    //初始化导航
+        $("#headerNav").children("li:eq(0)").addClass("link_active");
     //初始化页面的高度
     initPageEffect();
     function initPageEffect(){

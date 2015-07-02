@@ -7,105 +7,17 @@
     <link rel="stylesheet" href="resources/css/uikit.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
-    <link rel="stylesheet" href="pages/resources/css/manage.css">
     <link rel="stylesheet" href="pages/resources/css/music.css">
 
     <title>Orange管理后台</title>
 </head>
 <body>
-<div class="uk-grid">
-    <div class="uk-width-1-1">
-        <div class="topHeader">
-            <header>
-                <a href="#" class="header-brand">Orange</a>
-                <ul class="header-nav" id="headerNav">
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="aticle.html">文章</a></li>
-                    <li><a href="picture.html">图片</a></li>
-                    <li class="link_active"><a href="music.html">音乐</a></li>
-                    <li><a href="video.html">视频</a></li>
-                </ul>
-                <div class="header-userinfo">
-                    <img class="uk-border-circle header-usertitle"
-                         src="pages/resources/images/title.jpg" alt="头像">
-
-                    <div class="uk-button-dropdown" data-uk-dropdown>
-                        <button class="uk-button header-username">${session.loginName} <i
-                                class="uk-icon-caret-down"></i></button>
-                        <div class="uk-dropdown uk-dropdown-center header-selectlist">
-                            <ul class="uk-nav uk-nav-dropdown">
-                                <li><a href="#"><i class="uk-icon-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人中心</a></li>
-                                <li><a href="#"><i class="uk-icon-tag"></i>&nbsp;&nbsp;&nbsp;&nbsp;通知消息</a></li>
-                                <li><a href="#"><i class="uk-icon-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;系统设定</a></li>
-                                <li><a href="#"><i class="uk-icon-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;退出系统</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
-    </div>
-</div>
+<!--引入头部导航-->
+<%include("./common/header.html"){}%>
+<!--引入头部导航结束-->
 <div class="uk-grid colin-main-frame">
-    <div class="uk-width-1-6 colin-left-nav">
-        <img class="uk-border-circle colin-headerpic"
-             src="pages/resources/images/title.jpg" alt="头像">
-        <ul>
-            <li><i class="uk-icon-folder-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-envelope-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-eye"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-        </ul>
-        <button id="logoffBtn" onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn"
-                type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
-        </button>
-        <table id="functionNav" class="colin-function-nav">
-            <tbody>
-            <tr>
-                <td>
-                    <i class="uk-icon-home"></i>
-
-                    <p>博客首页</p>
-                </td>
-                <td>
-                    <i class="uk-icon-bar-chart"></i>
-
-                    <p>统计信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-group"></i>
-
-                    <p>用户管理</p></td>
-                <td>
-                    <i class="uk-icon-user"></i>
-
-                    <p>博主信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-trash-o"></i>
-
-                    <p>回收站</p></td>
-                <td>
-                    http://music.baidu.com/ <i class="uk-icon-wrench"></i>
-
-                    <p>系统管理</p></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <!--左侧导航内容引入-->
+    <%include("./common/left_nav.html"){}%>
     <div class="uk-width-5-6 colin-right-model">
         <div class="aticleMainContet">
 

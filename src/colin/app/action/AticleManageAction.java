@@ -90,7 +90,7 @@ public class AticleManageAction {
     }
 
     /**
-     * 获取文章内容具体信息
+     * 获取所有文章内容具体信息
      *
      * @param currentPage
      * @param pageSize
@@ -99,7 +99,7 @@ public class AticleManageAction {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/fetchAticlePageInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/fetchAticlePageInfo.action", method = RequestMethod.POST)
     public Map<String, Object> fetchAticlePageInfo(@RequestParam String currentPage, @RequestParam String pageSize, @RequestParam String currentIndex, HttpServletRequest request) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("currentPage", currentPage);
@@ -109,6 +109,17 @@ public class AticleManageAction {
         return resultMap;
     }
 
+    @ResponseBody
+    @RequestMapping(name = "/fetchSingleAticleInfo.action",method = RequestMethod.POST)
+    public Map<String,Object> fetchSingleAticleInfo(@RequestParam(value = "aticleId")String aticleId){
+        Map<String,Object> params=new HashMap<>();
+        params.put("aticleId",aticleId);
+        AticleEntity aticle=this.aticleManageService.fetchSingleAticleService(params);
+        Map<String,Object> resultMap=new HashMap<>();
+        resultMap.put("success",true);
+        resultMap.put("aticle",aticle);
+        return  resultMap;
+    }
     /**
      * 上查文章封面图片
      *

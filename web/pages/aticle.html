@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="resources/css/uikit.min.css">
     <link rel="stylesheet" href="pages/resources/css/header.css">
     <link rel="stylesheet" href="pages/resources/css/common.css">
-    <link rel="stylesheet" href="pages/resources/css/manage.css">
     <link rel="stylesheet" href="pages/resources/css/aticle.css">
     <link rel="stylesheet" href="resources/css/components/accordion.min.css">
     <link rel="stylesheet" href="resources/css/components/autocomplete.min.css">
@@ -31,81 +30,12 @@
     <title>Orange管理后台</title>
 </head>
 <body>
-<div class="uk-grid">
-    <div class="uk-width-1-1">
-        <div class="topHeader">
-            <header>
-                <a href="#" class="header-brand">Orange</a>
-                <ul class="header-nav" id="headerNav">
-                    <li><a href="index.html">首页</a></li>
-                    <li class="link_active"><a href="aticle.html">文章</a></li>
-                    <li><a href="picture.html">图片</a></li>
-                    <li><a href="music.html">音乐</a></li>
-                    <li><a href="video.html">视频</a></li>
-                </ul>
-            </header>
-        </div>
-    </div>
-    </div>
-    <div class="uk-grid colin-main-frame">
-        <div class="uk-width-1-6 colin-left-nav">
-            <img class="uk-border-circle colin-headerpic"
-                 src="pages/resources/images/title.jpg" alt="头像">
-            <ul>
-                <li><i class="uk-icon-folder-o"></i>
-
-                    <p>901</p>
-
-                    <p class="colin-collectInfo">+901</p></li>
-                <li><i class="uk-icon-envelope-o"></i>
-
-                    <p>901</p>
-
-                    <p class="colin-collectInfo">+901</p></li>
-                <li><i class="uk-icon-eye"></i>
-
-                    <p>901</p>
-
-                    <p class="colin-collectInfo">+901</p></li>
-            </ul>
-            <button id="logoffBtn" onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
-            </button>
-            <table id="functionNav" class="colin-function-nav">
-                <tbody>
-                <tr>
-                    <td>
-                        <i class="uk-icon-home"></i>
-
-                        <p>博客首页</p>
-                    </td>
-                    <td>
-                        <i class="uk-icon-bar-chart"></i>
-
-                        <p>统计信息</p></td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="uk-icon-group"></i>
-
-                        <p>用户管理</p></td>
-                    <td>
-                        <i class="uk-icon-user"></i>
-
-                        <p>博主信息</p></td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="uk-icon-trash-o"></i>
-
-                        <p>回收站</p></td>
-                    <td>
-                        <i class="uk-icon-wrench"></i>
-
-                        <p>系统管理</p></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+<!--引入头部导航-->
+<%include("./common/header.html"){}%>
+<!--引入头部导航结束-->
+<div class="uk-grid colin-main-frame">
+    <!--左侧导航内容引入-->
+    <%include("./common/left_nav.html"){}%>
         <div class="uk-width-5-6 colin-right-model">
             <div class="aticleMainContet">
 
@@ -232,12 +162,10 @@
                                         <span>文章内容</span>
                                     </div>
                                     <div class="uk-form-row">
-
-                                        <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+                                        <script id="editor" type="text/plain"></script>
                                     </div>
 
                                     <div class="uk-form-row">
-
                                         <div class="uk-form-controls uk-form-controls-text">
 
                                         </div>
@@ -351,6 +279,22 @@
 <div id="loadingDailog" class="uk-modal">
     <div class="uk-modal-dialog colin-aticle-loading-dialog">
         <div class="uk-modal-spinner"><i class="spinner"></i></div>
+    </div>
+</div>
+<!--浏览文章对话框-->
+<div class="uk-modal" id="colin-browser-aticle-dialog">
+    <div class="uk-modal-dialog">
+        <article class="uk-article">
+            <a class="uk-modal-close uk-close"></a>
+            <h3 class="uk-article-title" id="colin-browser-aticle-title"></h3>
+            <p class="uk-article-meta">发布时间：<em id="colin-browser-aticle-publishtime"></em>&nbsp;&nbsp;文章作者：<em id="colin-browser-aticle-author"></em>&nbsp;&nbsp;阅读次数：<em id="colin-browser-aticle-readnum"></em></p>
+            <p class="uk-article-lead"  id="colin-browser-aticle-content"></p>
+        </article>
+        <div class="uk-modal-footer">
+            <div class="uk-text-center">
+                <button class="uk-button uk-button-primary" onclick="browserAticleConfirm()">确定</button>
+            </div>
+        </div>
     </div>
 </div>
 <!--开始加载文件-->

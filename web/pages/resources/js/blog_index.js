@@ -49,12 +49,17 @@ $(function () {
                 var showContent = "";
                 var aticleData = data.retsultData;
                 for (var i = 0; i < aticleData.length; i++) {
+
                     if (i == 0) {
-                        showContent += "<li><a href=\"#\" onclick=\"readAticle(0," + aticleData[i + 1].aticleId + "," + aticleData[i].aticleId + ")\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
+                        if(aticleData.length==1){
+                            showContent += "<li><a href=\"#\" onclick=\"readAticle('0','0','" + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
+                        }else{
+                            showContent += "<li><a href=\"#\" onclick=\"readAticle('0','" + aticleData[i + 1].aticleId + "," + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
+                        }
                     } else if (i == aticleData.length - 1) {
-                        showContent += "<li><a href=\"#\" onclick=\"readAticle(" + aticleData[i - 1].aticleId + ",0," + aticleData[i].aticleId + ")\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
+                        showContent += "<li><a href=\"#\" onclick=\"readAticle('" + aticleData[i - 1].aticleId + "','0'," + aticleData[i].aticleId + ")\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
                     } else {
-                        showContent += "<li><a href=\"#\" onclick=\"readAticle(" + aticleData[i - 1].aticleId + "," + aticleData[i + 1].aticleId + "," + aticleData[i].aticleId + ")\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
+                        showContent += "<li><a href=\"#\" onclick=\"readAticle('" + aticleData[i - 1].aticleId + "','" + aticleData[i + 1].aticleId + "','" + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
                     }
                 }
                 $("#rankList").html(showContent);
@@ -107,7 +112,7 @@ $(function () {
                         + "<figure><img src=\"" + currentAticle.aticleCoverImg + "\"></figure>"
                         + "<ul>"
                         + "<p>" + currentAticle.aticleDigest + "</p>"
-                        + "<a title=\"阅读全文\" href=\"#\" onclick=\"readAticle(" + prevAticleId + "," + nextAticleId + "," + currentAticle.aticleId + ")\" target=\"_blank\" class=\"readmore\">阅读全文>></a>"
+                        + "<a title=\"阅读全文\" href=\"#\" onclick=\"readAticle('" + prevAticleId + "','" + nextAticleId + "','" + currentAticle.aticleId + "')\" target=\"_blank\" class=\"readmore\">阅读全文>></a>"
                         + "</ul>"
                         + "<div class=\"clear\"></div>"
                         + "</div>";
