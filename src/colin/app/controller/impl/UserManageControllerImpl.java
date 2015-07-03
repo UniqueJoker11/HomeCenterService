@@ -1,5 +1,6 @@
 package colin.app.controller.impl;
 
+import colin.app.core.pojo.UserEntity;
 import colin.app.service.inter.IUserManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +32,12 @@ public class UserManageControllerImpl {
         Map<String,Object> paramsMap=new HashMap<String, Object>();
         paramsMap.put("username",request.getParameter("userLoginName"));
         paramsMap.put("password",request.getParameter("userLoginPassword"));
-        boolean resturnResult=iUserManageService.validateUserInfo(paramsMap);
-        if(resturnResult){
+        Map<String,Object> userValidateResult=iUserManageService.validateUserInfo(paramsMap);
+        if((Boolean)userValidateResult.get("isExist")){
+            UserEntity userEntity= (UserEntity) userValidateResult.get("userEntity");
             HttpSession session=request.getSession();
-            session.setAttribute("loginName",request.getParameter("userLoginName"));
+            session.setAttribute("loginName",userEntity.getUsername());
+            session.setAttribute("loginId",userEntity.getUserId());
             return "index";
         }else{
             request.setAttribute("isError",true);

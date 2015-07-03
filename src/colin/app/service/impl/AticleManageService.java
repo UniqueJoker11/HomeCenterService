@@ -114,36 +114,31 @@ public class AticleManageService implements IAticleManageService {
      * @param params
      */
     @Override
-    public Map<String, Object> searchAticlePageContent(Map<String, Object> params) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Page<AticleBean> searchAticlePageContent(Map<String, Object> params) {
+        //获取分页的查询对象
         Page<AticleEntity> pageContent = aticleManageDao.searchObjPageInfo(params);
-        List<AticleEntity> aticleList = pageContent.getResultList();
-        Page<AticleBean> resultPage = new Page<AticleBean>();
-        List<AticleBean> aticleBeanList = new ArrayList<AticleBean>();
-        for (AticleEntity aticleEntity : aticleList) {
-            String aticleId = aticleEntity.getAticleId();
 
-            AticleBean aticleBean = new AticleBean();
-            aticleBean.setAticleId(aticleId);
-            aticleBean.setAticleTitle(aticleEntity.getAticleName());
-            aticleBean.setAticleAuthor(aticleEntity.getAticleCrUser());
-            aticleBean.setAticleCreateDate(aticleEntity.getAticleCrTime());
-            aticleBean.setAticleDigest(aticleEntity.getAticleDigest());
-            aticleBean.setAticleCoverImg(aticleEntity.getAticleCoverImg());
-            aticleBean.setAticleCategory(aticleEntity.getAticleCategory());
+        List<AticleEntity> aticleList = pageContent.getResultList();
+
+        Page<AticleBean> resultPage = new Page<AticleBean>();
+
+        List<AticleBean> aticleBeanList = new ArrayList<AticleBean>();
+
+        for (AticleEntity aticleEntity : aticleList) {
+           //获取文章实体类的转换Bean
+            AticleBean aticleBean=this.transferAticleEntity(aticleEntity);
             //查询出所有的评论数
             Map<String, Object> commentParams = new HashMap<String, Object>();
-            commentParams.put("comment_aticleId", aticleId);
+            commentParams.put("comment_aticleId", aticleEntity.getAticleId());
             List<CommentEntity> commentList = commentManageDao.seletcObjectByMap(CommentEntity.class, commentParams);
             if (commentList.isEmpty() || commentList.size() == 0) {
                 aticleBean.setAticleCommentNum(0);
             } else {
                 aticleBean.setAticleCommentNum(commentList.size());
             }
-
             //查询出所有文章的浏览数目
             Map<String, Object> browserParams = new HashMap<String, Object>();
-            browserParams.put("browser_aticleId", aticleId);
+            browserParams.put("browser_aticleId", aticleEntity.getAticleId());
             List<BrowserEntity> browserList = browserManageDao.seletcObjectByMap(BrowserEntity.class, browserParams);
             if (browserList.isEmpty() || browserList.size() == 0) {
                 aticleBean.setAticleBrowserNum(0);
@@ -158,10 +153,25 @@ public class AticleManageService implements IAticleManageService {
         resultPage.setResultList(aticleBeanList);
         resultPage.setTotalPage(pageContent.getTotalPage());
         resultPage.setTotalRecord(pageContent.getTotalRecord());
-        resultMap.put("pageContent", resultPage);
-        return resultMap;
+        return resultPage;
     }
 
+    /**
+     * 获取文章实体类的转换Bean
+     * @param aticleEntity
+     * @return
+     */
+    private AticleBean transferAticleEntity(AticleEntity aticleEntity){
+        AticleBean aticleBean = new AticleBean();
+        aticleBean.setAticleId(aticleEntity.getAticleId());
+        aticleBean.setAticleTitle(aticleEntity.getAticleName());
+        aticleBean.setAticleAuthor(aticleEntity.getAticleCrUser());
+        aticleBean.setAticleCreateDate(aticleEntity.getAticleCrTime());
+        aticleBean.setAticleDigest(aticleEntity.getAticleDigest());
+        aticleBean.setAticleCoverImg(aticleEntity.getAticleCoverImg());
+        aticleBean.setAticleCategory(aticleEntity.getAticleCategory());
+        return aticleBean;
+    }
     /**
      * 获取文章详细内容
      * @param prevId
@@ -175,7 +185,7 @@ public class AticleManageService implements IAticleManageService {
         boolean result = true;
         if (!prevId.equals("0")) {
             Map<String, Object> prevParams = new HashMap<String, Object>();
-            prevParams.put("aticleId", Integer.valueOf(prevId));
+            prevParams.put("aticleId",prevId);
             AticleEntity preAticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, prevParams);
             if (preAticleEntity != null) {
                 aticleDetailInfo.setPrevTitle(preAticleEntity.getAticleName());
@@ -184,7 +194,7 @@ public class AticleManageService implements IAticleManageService {
         }
         if (!nextId.equals("0")) {
             Map<String, Object> nextParams = new HashMap<String, Object>();
-            nextParams.put("aticleId", Integer.valueOf(nextId));
+            nextParams.put("aticleId",nextId);
             AticleEntity nextAticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, nextParams);
             if (nextAticleEntity != null) {
                 aticleDetailInfo.setNextTitle(nextAticleEntity.getAticleName());
@@ -234,7 +244,7 @@ public class AticleManageService implements IAticleManageService {
     /**
      * 根绝ID获取文章具体信息
      *
-     * @param aticleEntity
+     * @param params
      * @return
      */
     @Override

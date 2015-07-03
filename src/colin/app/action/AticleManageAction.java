@@ -3,6 +3,8 @@ package colin.app.action;
 import colin.app.common.CommonUtils;
 import colin.app.common.DateUtils;
 import colin.app.common.ReturnContext;
+import colin.app.common.bean.AticleBean;
+import colin.app.common.bean.Page;
 import colin.app.core.pojo.AticleEntity;
 import colin.app.service.inter.IAticleManageService;
 import org.springframework.core.io.*;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -56,12 +59,7 @@ public class AticleManageAction {
                 return returnContext;
             } else {
                 String aticleContent = "";
-                try {
-                    aticleContent = URLDecoder.decode(request.getParameter("aticleContent"), "UTF-8");
-                    System.out.println(aticleContent);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                aticleContent =request.getParameter("aticleContent");
                 //文章分类
                 String aticleCatagory = request.getParameter("aticleCategory");
                 //文章封面图
@@ -105,7 +103,9 @@ public class AticleManageAction {
         params.put("currentPage", currentPage);
         params.put("pageSize", pageSize);
         params.put("currentIndex", currentIndex);
-        Map<String, Object> resultMap = aticleManageService.searchAticlePageContent(params);
+        Page<AticleBean> aticlePageContent = aticleManageService.searchAticlePageContent(params);
+        Map<String,Object> resultMap=new HashMap<>();
+        resultMap.put("pageContent",aticlePageContent);
         return resultMap;
     }
 
@@ -194,7 +194,14 @@ public class AticleManageAction {
             returnContext.setIsSuccess(false);
         } else {
             returnContext.setIsSuccess(true);
-            returnContext.setRetsultData(resultList);
+            List<AticleEntity> resultData=new LinkedList<AticleEntity>();
+            for(AticleEntity entity:resultList){
+                entity.setAticleContent("");
+                entity.setAticleDigest("");
+                entity.setAticleCoverImg("");
+                resultData.add(entity);
+            }
+            returnContext.setRetsultData(resultData);
         }
         return returnContext;
     }

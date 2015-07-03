@@ -23,7 +23,7 @@ public interface IUserManageService {
     /**
      * validate userLogin
      * */
-    public boolean validateUserInfo(Map<String,Object> paramsMap);
+    public Map<String,Object> validateUserInfo(Map<String,Object> paramsMap);
 
     /**
      * 添加注册用户

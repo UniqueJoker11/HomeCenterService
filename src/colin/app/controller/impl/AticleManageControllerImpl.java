@@ -1,8 +1,11 @@
 package colin.app.controller.impl;
 
 import colin.app.common.ReturnContext;
+import colin.app.common.bean.AticleBean;
 import colin.app.common.bean.AticleDetailInfo;
+import colin.app.common.bean.Page;
 import colin.app.service.inter.IAticleManageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +24,11 @@ import java.util.Map;
 @Controller
 public class AticleManageControllerImpl {
 
-    @Resource
-    public IAticleManageService aticleManageService;
+    /**
+     * 文章管理service
+     */
+    @Autowired
+    private IAticleManageService aticleManageService;
 
     @RequestMapping(value="/aticleSaveContent.html")
     public String saveAticleContent(HttpServletRequest request){
@@ -50,6 +57,15 @@ public class AticleManageControllerImpl {
         }else{
             return "blog_index";
         }
-
+    }
+    @RequestMapping(value = "/getAticlePageInfo.html",method = RequestMethod.GET)
+    public String getAticlePageInfo(@RequestParam(value = "pageSize")String pageSize,@RequestParam(value = "currentPage") String currentPage,HttpServletRequest request){
+        //获取首页的文章内容
+        Map<String,Object> params=new HashMap<>();
+        params.put("pageSize",pageSize);
+        params.put("currentPage",currentPage);
+        Page<AticleBean> aticleResultInfo = aticleManageService.searchAticlePageContent(params);
+        request.setAttribute("aticleResultInfo", aticleResultInfo);
+       return "blog_page_aticle";
     }
 }
