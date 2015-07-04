@@ -205,15 +205,19 @@ public class AticleManageService implements IAticleManageService {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("aticleId", id);
             AticleEntity aticleEntity = aticleManageDao.selectUniqueObject(AticleEntity.class, params);
-            aticleEntity.setAticleReadNum(String.valueOf(Integer.valueOf(aticleEntity.getAticleReadNum()) + 1));
-            aticleManageDao.updateObjInfo(aticleEntity);
-            aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
-            aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
-            aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
-            aticleDetailInfo.setAticleCreateDate(aticleEntity.getAticleCrTime());
-            aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
-            aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
-            aticleDetailInfo.setAticleId(aticleEntity.getAticleId());
+            if(aticleEntity!=null){
+                aticleEntity.setAticleReadNum(String.valueOf(Integer.valueOf(aticleEntity.getAticleReadNum()) + 1));
+                aticleManageDao.updateObjInfo(aticleEntity);
+                aticleDetailInfo.setAticleCategory(aticleEntity.getAticleCategory());
+                aticleDetailInfo.setAticleAuthor(aticleEntity.getAticleCrUser());
+                aticleDetailInfo.setAticleContent(aticleEntity.getAticleContent());
+                aticleDetailInfo.setAticleCreateDate(aticleEntity.getAticleCrTime());
+                aticleDetailInfo.setAticleTitle(aticleEntity.getAticleName());
+                aticleDetailInfo.setKeyWords(aticleEntity.getKeyWords());
+                aticleDetailInfo.setAticleId(aticleEntity.getAticleId());
+            }else{
+                result=false;
+            }
         } else {
             result = false;
         }

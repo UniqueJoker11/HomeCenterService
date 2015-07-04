@@ -3,114 +3,44 @@
 <head>
 <head>
     <meta charset="UTF-8">
-    <link href="resources/images/favicon.ico" rel="shortcut icon" type="text/css">
-    <link rel="stylesheet" href="resources/css/uikit.min.css">
-    <link rel="stylesheet" href="resources/css/components/upload.min.css">
-    <link rel="stylesheet" href="resources/css/components/form-file.min.css">
-    <link rel="stylesheet" href="resources/css/components/notify.min.css">
-    <link rel="stylesheet" href="resources/css/components/progress.min.css">
-    <link rel="stylesheet" href="resources/css/components/upload.min.css">
-    <link rel="stylesheet" href="pages/resources/css/header.css">
-    <link rel="stylesheet" href="pages/resources/css/common.css">
-    <link rel="stylesheet" href="pages/resources/css/manage.css">
-    <link rel="stylesheet" href="pages/resources/css/blog_manage_masterInfo.css">
-    <script type="text/javascript" src="resources/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="resources/js/uikit.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/autocomplete.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/datepicker.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/form-password.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/notify.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/search.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/sortable.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/sticky.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/upload.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/pagination.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/form-select.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/nestable.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/slideshow.min.js"></script>
-    <script type="text/javascript" src="resources/js/components/slideshow-fx.min.js"></script>
-    <script type="text/javascript" src="pages/resources/js/common.js"></script>
-    <script type="text/javascript" src="pages/resources/js/blog_manage_masterInfo.js"></script>
+    <link href="${ctxPath}/resources/images/favicon.ico" rel="shortcut icon" type="text/css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/uikit.min.css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/components/upload.min.css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/components/form-file.min.css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/components/notify.min.css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/components/progress.min.css">
+    <link rel="stylesheet" href="${ctxPath}/resources/css/components/upload.min.css">
+    <link rel="stylesheet" href="${ctxPath}/pages/resources/css/header.css">
+    <link rel="stylesheet" href="${ctxPath}/pages/resources/css/common.css">
+    <link rel="stylesheet" href="${ctxPath}/pages/resources/css/manage.css">
+    <link rel="stylesheet" href="${ctxPath}/pages/resources/css/blog_manage_masterInfo.css">
+    <script type="text/javascript" src="${ctxPath}/resources/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/uikit.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/autocomplete.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/datepicker.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/form-password.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/notify.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/search.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/sortable.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/sticky.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/upload.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/pagination.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/form-select.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/nestable.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/slideshow.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/js/components/slideshow-fx.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/pages/resources/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/pages/resources/js/blog_manage_masterInfo.js"></script>
     <title>Orange管理后台</title>
 </head>
 <body>
-<div class="uk-grid">
-    <div class="uk-width-1-1">
-        <div class="topHeader">
-            <header>
-                <a href="#" class="header-brand">Orange</a>
-                <ul class="header-nav" id="headerNav">
-                    <li class="link_active"><a href="index.html">首页</a></li>
-                    <li><a href="aticle.html">文章</a></li>
-                    <li><a href="picture.html">图片</a></li>
-                    <li><a href="music.html">音乐</a></li>
-                    <li><a href="video.html">视频</a></li>
-                </ul>
-
-            </header>
-        </div>
-    </div>
-</div>
+<!--引入头部导航-->
+<%include("./common/header.html"){}%>
+<!--引入头部导航结束-->
 <div class="uk-grid colin-main-frame">
-    <div class="uk-width-1-6 colin-left-nav">
-        <img class="uk-border-circle colin-headerpic"
-             src="pages/resources/images/title.jpg" alt="头像">
-        <ul>
-            <li><i class="uk-icon-folder-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-envelope-o"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-            <li><i class="uk-icon-eye"></i>
-
-                <p>901</p>
-
-                <p class="colin-collectInfo">+901</p></li>
-        </ul>
-        <button  onclick="logOffSystem()" class="uk-button uk-button-danger colin-logoff-btn" type="button"><i class="uk-icon-sign-out"></i>&nbsp;&nbsp;退出登录
-        </button>
-        <table id="functionNav" class="colin-function-nav">
-            <tbody>
-            <tr>
-                <td>
-                    <i class="uk-icon-home"></i>
-
-                    <p>博客首页</p>
-                </td>
-                <td>
-                    <i class="uk-icon-bar-chart"></i>
-
-                    <p>统计信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-group"></i>
-
-                    <p>用户管理</p></td>
-                <td class="nav-active">
-                    <i class="uk-icon-user"></i>
-
-                    <p>博主信息</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <i class="uk-icon-trash-o"></i>
-
-                    <p>回收站</p></td>
-                <td>
-                    <i class="uk-icon-wrench"></i>
-
-                    <p>系统管理</p></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <!--左侧导航内容引入-->
+    <%include("./common/left_nav.html"){}%>
     <div class="uk-width-5-6 colin-right-model">
         <div class="uk-width-1-1 uk-panel uk-panel-header colin_collect_model">
             <h3 class="uk-panel-title">当前位置->博主信息</h3>

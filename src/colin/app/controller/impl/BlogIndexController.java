@@ -46,7 +46,7 @@ public class BlogIndexController {
         Page<AticleBean> aticleResultInfo = aticleManageService.searchAticlePageContent(null);
         //获取首页的博主信息
         Map<String, Object> params = new HashMap<>();
-        params.put("user_id", request.getSession().getAttribute("loginId").toString());
+        params.put("master_id","1");
         Map<String, Object> masterResultInfo = masterManageService.searchMasterInfo(params);
         //获取首页的文章排名
         List<AticleEntity> aticleRankResultInfo = aticleManageService.getAticleClickRank();

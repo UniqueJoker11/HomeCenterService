@@ -45,19 +45,28 @@
             <div class="uk-width-1-1" id="aticlePagnation">
                 <div id="colin-aticle-page-info">
                     <% for(aticleBean in aticleResultInfo.resultList){ %>
-                    <div class="wz"> <h3 data-aticleId="${aticleBean.aticleId}"> ${aticleBean.aticleTitle} </h3>
-                        <p class="dateview"><span>${strutil.subStringTo(aticleBean.aticleCreateDate,0,10)}</span><span>作者：${aticleBean.aticleAuthor} </span><span><span>阅读： ${aticleBean.aticleBrowserNum} </span><span>分类：[<a href="#"> + ${aticleBean.aticleCategory} </a>]</span></p>
+                    <div class="wz"><h3 data-aticleId="${aticleBean.aticleId}">${aticleBean.aticleTitle}</h3>
+
+                        <p class="dateview"><span>${strutil.subStringTo(aticleBean.aticleCreateDate,0,10)}</span><span>作者：${aticleBean.aticleAuthor} </span><span><span>阅读： ${aticleBean.aticleBrowserNum} </span><span>分类：[<a
+                                href="#"> + ${aticleBean.aticleCategory} </a>]</span></p>
                         <figure><img src="${aticleBean.aticleCoverImg}"></figure>
                         <ul>
                             <p> ${aticleBean.aticleDigest} </p>
                             <%if(aticleBeanLP.first&&aticleBeanLP.size==1){%>
-                            <a title="阅读全文" href="#" onclick="readAticle('0','0','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <a title="阅读全文" href="#" onclick="readAticle('0','0','${aticleBean.aticleId}')"
+                               target="_blank" class="readmore">阅读全文>></a>
                             <%}else if(aticleBeanLP.first&&aticleBeanLP.size>1){%>
-                            <a title="阅读全文" href="#" onclick="readAticle('0','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <a title="阅读全文" href="#"
+                               onclick="readAticle('0','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')"
+                               target="_blank" class="readmore">阅读全文>></a>
                             <%}else if(aticleBeanLP.last){%>
-                            <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' 0 ',' ${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <a title="阅读全文" href="#"
+                               onclick="readAticle('${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId}','0','${aticleBean.aticleId}')"
+                               target="_blank" class="readmore">阅读全文>></a>
                             <%}else{%>
-                            <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' ${aticleResultInfo.resultList[aticleBeanLP.index].aticleId} ',' ${aticleBean.aticleId} ')" target="_blank" class="readmore">阅读全文>></a>
+                            <a title="阅读全文" href="#"
+                               onclick="readAticle('${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId}','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')"
+                               target="_blank" class="readmore">阅读全文>></a>
                             <%}%>
                         </ul>
                         <div class="clear"></div>
@@ -67,7 +76,8 @@
 
                 </div>
 
-                <ul id="aticlePagination" class="uk-pagination" data-uk-pagination="{items:${aticleResultInfo.totalRecord}, itemsOnPage:${aticleResultInfo.pageSize},currentPage:${aticleResultInfo.currentPage}}"></ul>
+                <ul id="aticlePagination" class="uk-pagination"
+                    data-uk-pagination="{items:${aticleResultInfo.totalRecord}, itemsOnPage:${aticleResultInfo.pageSize},currentPage:${aticleResultInfo.currentPage}}"></ul>
             </div>
         </div>
     </div>
@@ -76,12 +86,12 @@
     <aside class="right">
         <div class="my">
             <h2>关于<span>博主</span></h2>
-            <img id="masterHeader" src="" width="200" height="200" alt="博主">
+            <img id="masterHeader" src="${ctxPath}/upload/header/header.jpg" width="200" height="200" alt="博主">
             <ul>
-                <li id="masterName">博主：少年</li>
-                <li id="masterCarrer">职业:web前端、网站运营</li>
-                <li id="masterIntroduce">简介：一个不断学习和研究，web前端和SEO技术的90后草根站长.</li>
-                <li id="masterWords"></li>
+                <li id="masterName">博主：${masterResultInfo.masterEntity.master_name}</li>
+                <li id="masterCarrer">职业:${masterResultInfo.masterEntity.master_carrer}</li>
+                <li id="masterIntroduce">个人介绍：${masterResultInfo.masterEntity.master_introduce}</li>
+                <li id="masterWords">座右铭：${masterResultInfo.masterEntity.master_words}</li>
             </ul>
         </div>
         <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
@@ -96,12 +106,25 @@
             <h3 class="ph">
                 <p>点击<span>排行</span></p>
             </h3>
+            <!--初始化点击排行-->
             <ul class="paih" id="rankList">
-                <li><a href="/" title="如何建立个人博客" target="_blank">如何建立个人博客</a></li>
-                <li><a href="/" title="html5标签" target="_blank">html5标签</a></li>
-                <li><a href="/" title="一个网站的开发流程" target="_blank">一个网站的开发流程</a></li>
-                <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
-                <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
+                <%for(aticleEntity in aticleRankResultInfo){
+                if(aticleEntityLP.first&&aticleEntityLP.size==1){%>
+                <li><a href="#" onclick="readAticle('0','0','${aticleEntity.aticleId}')"
+                       title="${aticleEntity.aticleDigest}" target="_blank">${aticleEntity.aticleName}</a></li>
+                <%}else if(aticleEntityLP.first&&aticleEntityLP.size>1){%>
+                <li><a href="#"
+                       onclick="readAticle('0','${aticleRankResultInfo[aticleEntityLP.index].aticleId}','${aticleEntity.aticleId}')"
+                       title="${aticleEntity.aticleDigest}" target="_blank">${aticleEntity.aticleName}</a></li>
+                <%}else if(aticleEntityLP.last){%>
+                <li><a href="#"
+                       onclick="readAticle('${aticleRankResultInfo[aticleEntityLP.index-2].aticleId}','0','${aticleEntity.aticleId}')"
+                       title="${aticleEntity.aticleDigest}" target="_blank">${aticleEntity.aticleName}</a></li>
+                <%}else{%>
+                <li><a href="#"
+                       onclick="readAticle('${aticleRankResultInfo[aticleEntityLP.index-2].aticleId}','${aticleRankResultInfo[aticleEntityLP.index].aticleId}','${aticleEntity.aticleId}')"
+                       title="${aticleEntity.aticleDigest}" target="_blank">${aticleEntity.aticleName}</a></li>
+                <%}}%>
             </ul>
 
             <h3 class="links">

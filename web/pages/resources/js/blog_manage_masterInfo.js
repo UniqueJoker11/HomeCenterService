@@ -10,7 +10,7 @@ $(function () {
             bar = progressbar.find('.uk-progress-bar'),
             settings = {
 
-                action: 'masterpicupload.action', // upload url
+                action: '../masterpicupload.action', // upload url
 
                 allow: '*.(jpg|jpeg|gif|png)', // allow only images
                 param: 'masterheaderpic',
@@ -58,7 +58,7 @@ $(function () {
     initBlogMasterInfo();
     function initBlogMasterInfo() {
         $.ajax({
-            url: 'getMasterInfo.action',
+            url: '../getMasterInfo.action',
             async: false,
             type: 'post',
             dataType: 'json',

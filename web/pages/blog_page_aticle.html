@@ -9,9 +9,9 @@
         <%}else if(aticleBeanLP.first&&aticleBeanLP.size>1){%>
         <a title="阅读全文" href="#" onclick="readAticle('0','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
         <%}else if(aticleBeanLP.last){%>
-        <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' 0 ',' ${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+        <a title="阅读全文" href="#" onclick="readAticle('${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId}','0','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
         <%}else{%>
-        <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' ${aticleResultInfo.resultList[aticleBeanLP.index].aticleId} ',' ${aticleBean.aticleId} ')" target="_blank" class="readmore">阅读全文>></a>
+        <a title="阅读全文" href="#" onclick="readAticle('${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId}','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
         <%}%>
     </ul>
     <div class="clear"></div>

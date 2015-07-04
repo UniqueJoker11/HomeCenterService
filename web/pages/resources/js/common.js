@@ -29,7 +29,6 @@ $(function(){
     //头部共同的导航头
  $("#headerNav").children("li").each(function(i){
     $(this).hover(function(e){
-        console.log($(this).find("a").html());
         $(this).find("a").addClass("hoverNav");
     },function(e){
         $(this).find("a").removeClass("hoverNav");
@@ -55,5 +54,5 @@ $(function(){
     });
 });
 function logOffSystem(){
-    window.location.href="/userLogOff.html";
+    window.location.href="userLogOff.html";
 }

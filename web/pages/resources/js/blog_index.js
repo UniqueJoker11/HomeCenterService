@@ -15,67 +15,23 @@ $(function () {
     //监听分页函数
     $("#aticlePagination").on("select.uk.pagination",function(e, pageIndex){
         var params=new Object();
-        params.currentPage=pageIndex;
+        params.currentPage=parseInt(pageIndex)+1;
         params.pageSize=pageSize;
-        $.load("getAticlePageInfo.html",params,function(data){
+        $.get("getAticlePageInfo.html",params,function(data){
            $("#colin-aticle-page-info").html(data);
         });
     });
 
     //初始化主页博主信息
-    //initBlogMaterInfo();
-    function initBlogMaterInfo() {
-        $.ajax({
-            url: 'getMasterInfo.action',
-            async: false,
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
-                if (data.isSuccess) {
-                    var masterInfo = data.retsultData[0];
-                    $("#masterHeader").attr("src", masterInfo.master_header);
-                    $("#masterName").html("博主：" + masterInfo.master_name);
-                    $("#masterCarrer").html("职业：" + masterInfo.master_carrer);
-                    $("#masterIntroduce").html("个人介绍：" + masterInfo.master_introduce);
-                    $("#masterWords").html("座右铭：" + masterInfo.master_words);
-                    $("#masterHeader").attr("src","/HomeCenterService/upload/header/header.jpg");
-                }
-            }
-        });
-    }
+
 
     //初始化主页banner图
     function initBlogNavPics() {
 
     }
 
-     //初始化点击排行
-    //initBlogClickRank();
-    function initBlogClickRank() {
-        $.post("getAticleClickRank.action", function (data) {
-            if (data.isSuccess && data.retsultData.length > 0) {
-                var showContent = "";
-                var aticleData = data.retsultData;
-                for (var i = 0; i < aticleData.length; i++) {
 
-                    if (i == 0) {
-                        if(aticleData.length==1){
-                            showContent += "<li><a href=\"#\" onclick=\"readAticle('0','0','" + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
-                        }else{
-                            showContent += "<li><a href=\"#\" onclick=\"readAticle('0','" + aticleData[i + 1].aticleId + "," + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
-                        }
-                    } else if (i == aticleData.length - 1) {
-                        showContent += "<li><a href=\"#\" onclick=\"readAticle('" + aticleData[i - 1].aticleId + "','0'," + aticleData[i].aticleId + ")\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
-                    } else {
-                        showContent += "<li><a href=\"#\" onclick=\"readAticle('" + aticleData[i - 1].aticleId + "','" + aticleData[i + 1].aticleId + "','" + aticleData[i].aticleId + "')\" title=\"" + aticleData[i].aticleName + "\" target=\"_blank\">" + aticleData[i].aticleName + "</a></li>";
-                    }
-                }
-                $("#rankList").html(showContent);
-            } else {
-                $.UIkit.notify("还没有发布文章！", "danger");
-            }
-        })
-    }
+
 
    //初始化用户关注
     function initBlogUserFocus() {

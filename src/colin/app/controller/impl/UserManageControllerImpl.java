@@ -18,6 +18,7 @@ import java.util.Map;
  * Created by joker on 14-9-13.
  */
 @Controller
+@RequestMapping(value = "/manage")
 public class UserManageControllerImpl {
 
     @Resource

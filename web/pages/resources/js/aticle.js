@@ -133,7 +133,7 @@ $(function () {
                         showContent += " <tr id=\'aticleId" + i + "\' class=\"uk-table-middle\"><td data-aticleId=\"" + currentAticle.aticleId + "\"><a href=\"#\" onclick=\"readAticle("+prevAticleId+","+nextAticleId+","+currentAticle.aticleId+")\">" + currentAticle.aticleTitle + "</td><td>" + currentAticle.aticleAuthor + "</a></td><td>" + currentAticle.aticleCommentNum + "</td><td>" + currentAticle.aticleBrowserNum + "</td><td>" + currentAticle.aticleCreateDate + "</td><td class=\"uk-text-center\">"
                         + "<div class=\"uk-button-group\">"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"browserAticle(" + currentAticle.aticleId + ")\">浏览</button>"
-                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">更新</button>"
+                        + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"updateAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">编辑</button>"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-danger\"  onClick=\"deleteAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">删除</button>"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-success\" onClick=\"setTopAticle(" + currentAticle.aticleId + ")\">置顶</button>"
                         + "<button data-aticleId=\"" + currentAticle.aticleId + "\" class=\"uk-button uk-button-primary\" onClick=\"commentAticle(" + currentAticle.aticleId + ",\'aticleId" + i + "\')\">评论</button>"
@@ -174,7 +174,7 @@ $(function () {
                 }
                 setTimeout(function () {
                     progressbar.addClass("uk-hidden");
-                }, 1200);
+                }, 2300);
             }
         };
 //检测上传文件是否已经完成，否则继续检测。
@@ -350,7 +350,6 @@ function showAticleContent() {
             type: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
             }
         });
 }
@@ -359,7 +358,7 @@ function browserAticle(idVal) {
     //发送ajax请求获取文章的具体信息
     var params=new Object();
     params.aticleId=idVal;
-    $.post("fetchSingleAticleInfo.action",params,function(data)
+    $.post("browserSingleAticleInfo.action",params,function(data)
     {
         if (data.success) {
             //填充数据

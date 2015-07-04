@@ -32,6 +32,7 @@ import java.util.Map;
  * 文章的内容管理
  */
 @Controller
+@RequestMapping("/manage")
 public class AticleManageAction {
     @Resource
     public IAticleManageService aticleManageService;
@@ -110,8 +111,9 @@ public class AticleManageAction {
     }
 
     @ResponseBody
-    @RequestMapping(name = "/fetchSingleAticleInfo.action",method = RequestMethod.POST)
-    public Map<String,Object> fetchSingleAticleInfo(@RequestParam(value = "aticleId")String aticleId){
+    @RequestMapping(name = "/browserSingleAticleInfo.action",method = RequestMethod.POST)
+    public Map<String,Object> browserSingleAticleInfo(@RequestParam(value = "aticleId")String aticleId){
+        System.out.println("fewfew");
         Map<String,Object> params=new HashMap<>();
         params.put("aticleId",aticleId);
         AticleEntity aticle=this.aticleManageService.fetchSingleAticleService(params);
