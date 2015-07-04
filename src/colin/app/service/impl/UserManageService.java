@@ -55,15 +55,18 @@ public class UserManageService implements IUserManageService {
      * @param paramsMap
      */
     @Override
-    public boolean validateUserInfo(Map<String, Object> paramsMap) {
-        boolean result = true;
+    public  Map<String,Object> validateUserInfo(Map<String, Object> paramsMap) {
+        Map<String,Object> resultMap=new HashMap<>();
         if (paramsMap != null) {
             UserEntity resultEntity = userManageDao.selectUniqueObject(UserEntity.class,paramsMap);
             if(resultEntity==null){
-                result=false;
+                resultMap.put("isExist",false);
+            }else{
+                resultMap.put("isExist",true);
+                resultMap.put("userEntity",resultEntity);
             }
         }
-        return result;
+        return  resultMap;
 
     }
 

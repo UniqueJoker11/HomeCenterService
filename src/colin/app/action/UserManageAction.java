@@ -67,9 +67,9 @@ public ReturnContext validateUserLoginInfo(@RequestParam String username,@Reques
     Map<String,Object> params=new HashMap<String,Object>();
     params.put("username",username);
     params.put("password",password);
-    boolean returnResult=userManageService.validateUserInfo(params);
+    Map<String,Object> returnResult=userManageService.validateUserInfo(params);
     ReturnContext returnContext=ReturnContext.createReturnContext();
-    returnContext.setIsSuccess(returnResult);
+    returnContext.setIsSuccess((Boolean)returnResult.get("isExist"));
     return returnContext;
 }
 /**
@@ -80,10 +80,10 @@ public ReturnContext validateUserLoginInfo(@RequestParam String username,@Reques
     public ReturnContext isUsernameExists(@RequestParam String username) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
-        boolean returnResult = userManageService.validateUserInfo(params);
+        Map<String,Object> returnResult = userManageService.validateUserInfo(params);
         //声明返回结果对象
         ReturnContext returnContext = ReturnContext.createReturnContext();
-        returnContext.setIsSuccess(returnResult);
+        returnContext.setIsSuccess((Boolean)returnResult.get("isExist"));
         return returnContext;
     }
 

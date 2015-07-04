@@ -43,9 +43,31 @@
         <!--end-->
         <div class="colin-page">
             <div class="uk-width-1-1" id="aticlePagnation">
-                <ul id="aticlePagination" class="uk-pagination">
+                <div id="colin-aticle-page-info">
+                    <% for(aticleBean in aticleResultInfo.resultList){ %>
+                    <div class="wz"> <h3 data-aticleId="${aticleBean.aticleId}"> ${aticleBean.aticleTitle} </h3>
+                        <p class="dateview"><span>${strutil.subStringTo(aticleBean.aticleCreateDate,0,10)}</span><span>作者：${aticleBean.aticleAuthor} </span><span><span>阅读： ${aticleBean.aticleBrowserNum} </span><span>分类：[<a href="#"> + ${aticleBean.aticleCategory} </a>]</span></p>
+                        <figure><img src="${aticleBean.aticleCoverImg}"></figure>
+                        <ul>
+                            <p> ${aticleBean.aticleDigest} </p>
+                            <%if(aticleBeanLP.first&&aticleBeanLP.size==1){%>
+                            <a title="阅读全文" href="#" onclick="readAticle('0','0','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <%}else if(aticleBeanLP.first&&aticleBeanLP.size>1){%>
+                            <a title="阅读全文" href="#" onclick="readAticle('0','${aticleResultInfo.resultList[aticleBeanLP.index].aticleId}','${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <%}else if(aticleBeanLP.last){%>
+                            <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' 0 ',' ${aticleBean.aticleId}')" target="_blank" class="readmore">阅读全文>></a>
+                            <%}else{%>
+                            <a title="阅读全文" href="#" onclick="readAticle(' ${aticleResultInfo.resultList[aticleBeanLP.index-2].aticleId} ',' ${aticleResultInfo.resultList[aticleBeanLP.index].aticleId} ',' ${aticleBean.aticleId} ')" target="_blank" class="readmore">阅读全文>></a>
+                            <%}%>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
 
-                </ul>
+                    <%}%>
+
+                </div>
+
+                <ul id="aticlePagination" class="uk-pagination" data-uk-pagination="{items:${aticleResultInfo.totalRecord}, itemsOnPage:${aticleResultInfo.pageSize},currentPage:${aticleResultInfo.currentPage}}"></ul>
             </div>
         </div>
     </div>

@@ -1,7 +1,8 @@
 package colin.app.service.inter;
 
-import antlr.actions.cpp.ActionLexerTokenTypes;
+import colin.app.common.bean.AticleBean;
 import colin.app.common.bean.AticleDetailInfo;
+import colin.app.common.bean.Page;
 import colin.app.core.pojo.AticleEntity;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public interface IAticleManageService {
     /**
      * 分页查询所有的书籍
      */
-    public Map<String, Object> searchAticlePageContent(Map<String, Object> params);
+    public Page<AticleBean> searchAticlePageContent(Map<String, Object> params);
 
     /**
      * 获取文章的详情

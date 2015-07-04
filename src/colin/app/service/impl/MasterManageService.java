@@ -81,14 +81,13 @@ public class MasterManageService implements IMasterManageService{
      */
     @Override
     public Map<String,Object> searchMasterInfo(Map<String, Object> searchParams) {
-
-        List<MasterEntity> resultList=masterManageDao.selectAllObject(MasterEntity.class);
+        MasterEntity masterEntity=masterManageDao.selectUniqueObject(MasterEntity.class,searchParams);
         Map<String,Object> result=new HashMap<String,Object>();
-        if(resultList.isEmpty()||resultList.size()==0){
+        if(masterEntity==null){
             result.put("isExist",false);
         }else{
             result.put("isExist",true);
-            result.put("entity",resultList);
+            result.put("masterEntity",masterEntity);
         }
         return result;
     }

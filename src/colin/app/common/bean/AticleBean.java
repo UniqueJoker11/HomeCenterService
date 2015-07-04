@@ -1,10 +1,12 @@
 package colin.app.common.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by ASUS on 2015/3/26.
  * 后台显示文章的一览列表
  */
-public class AticleBean {
+public class AticleBean implements Serializable{
     private String aticleId;
     private String aticleTitle;
     private String aticleAuthor;

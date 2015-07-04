@@ -36,16 +36,18 @@ public class MasterManageAction {
      */
     @ResponseBody
     @RequestMapping(value = "/getMasterInfo.action", method = RequestMethod.POST)
-    public Object getMasterInfo(HttpServletRequest request) {
-        ReturnContext returnContext = new ReturnContext();
-        Map<String, Object> resultMap = masterManageService.searchMasterInfo(null);
+    public Map<String,Object> getMasterInfo(HttpServletRequest request) {
+        Map<String,Object> returnMap = new HashMap<>();
+        Map<String,Object> params=new HashMap<>();
+        params.put("user_id",request.getSession().getAttribute("loginId").toString());
+        Map<String, Object> resultMap = masterManageService.searchMasterInfo(params);
         if (Boolean.valueOf(resultMap.get("isExist").toString())) {
-            returnContext.setIsSuccess(true);
-            returnContext.setRetsultData((List<MasterEntity>) resultMap.get("entity"));
+            returnMap.put("success",true);
+            returnMap.put("masterEntity",(MasterEntity)resultMap.get("masterEntity"));
         } else {
-            returnContext.setIsSuccess(false);
+            returnMap.put("success", false);
         }
-        return returnContext;
+        return returnMap;
     }
 
     /**
